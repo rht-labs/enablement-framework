@@ -1,0 +1,34 @@
+{{- if .Values.crw }}
+apiVersion: org.eclipse.che/v1
+kind: CheCluster
+metadata:
+  name: {{ .Values.crw.name | default "codeready-workspaces" | quote }}
+  namespace: {{ .Values.crw.namespace | default "do500-workspaces" | quote }}
+spec:
+  server:
+    cheImageTag: {{ .Values.crw.cheImageTag | default "" | quote }}
+    cheFlavor: {{ .Values.crw.cheFlavor | default "codeready" | quote }}
+    devfileRegistryImage: {{ .Values.crw.devRegImage | default "" | quote }}
+    pluginRegistryImage: {{ .Values.crw.pluginRegImage | default "" | quote }}
+    tlsSupport: {{ .Values.crw.tlsSupport | default false }}
+    selfSignedCert: {{ .Values.crw.selfSignedCert | default false }}
+    customCheProperties: {{ toYaml .Values.crw.properties | nindent 6 | default "" }}
+  database:
+    externalDb: false
+    chePostgresHostName: ''
+    chePostgresPort: ''
+    chePostgresUser: ''
+    chePostgresPassword: ''
+    chePostgresDb: ''
+  auth:
+    openShiftoAuth: true
+    identityProviderImage: ''
+    externalIdentityProvider: false
+    identityProviderURL: ''
+    identityProviderRealm: ''
+    identityProviderClientId: ''
+  storage:
+    pvcStrategy: per-workspace
+    pvcClaimSize: 1Gi
+    preCreateSubPaths: true
+{{- end }}
