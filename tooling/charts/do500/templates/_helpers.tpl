@@ -17,7 +17,8 @@
 {{ $.Values.gitlab.ldap.base }}
 {{- else -}}
 {{ $ldap := (index (lookup "config.openshift.io/v1" "OAuth" "" "cluster").spec.identityProviders 0) }}
-{{- regexReplaceAll "^ldap[s]*://" $ldap.ldap.url "${1}" | regexFind "/.*" | trimAll "/" | regexFind "^([^?]+)" }}
+{{- $ldap_base_dn := regexReplaceAll "^ldap[s]*://" $ldap.ldap.url "${1}" | regexFind "/.*" | trimAll "/" | regexFind "^([^?]+)" }}
+{{- printf "%s%s" "cn=accounts," $ldap_base_dn -}}
 {{- end -}}
 {{- end -}}
 
