@@ -6,13 +6,13 @@ projects:
   - name: todolist
     source:
       type: git
-      location: 'https://github.com/ckavili/todolist.git'
+      location: 'https://github.com/haithamshahin333/todolist'
       branch: 'master'
   - name: ci-cd
     clonePath: enablement-ci-cd
     source:
       type: git
-      location: 'https://github.com/ckavili/enablement-ci-cd.git'
+      location: 'https://github.com/haithamshahin333/enablement-ci-cd'
       branch: 'master'      
 components:
   - type: cheEditor
