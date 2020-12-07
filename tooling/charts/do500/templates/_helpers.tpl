@@ -1,9 +1,19 @@
+{{- define "ldap_def" -}}
+{{- $idp := (lookup "config.openshift.io/v1" "OAuth" "" "cluster").spec.identityProviders -}}
+{{- range $idp -}}
+{{- if hasKey . "ldap" }}
+{{- $ldap := . -}}
+{{- $ldap.ldap | toYaml -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
 {{- define "gitlab.ldap.port" -}}
 {{- if $.Values.gitlab.ldap.port -}}
 {{ $.Values.gitlab.ldap.port }}
 {{- else -}}
-{{- $ldap := (index (lookup "config.openshift.io/v1" "OAuth" "" "cluster").spec.identityProviders 0) -}}
-{{- $protocol := regexFind "^ldap[s]*" $ldap.ldap.url -}}
+{{- $ldap := include "ldap_def" . | fromYaml -}}
+{{- $protocol := regexFind "^ldap[s]*" $ldap.url -}}
 {{- if eq $protocol "ldap" }}
 {{- print "389" -}}
 {{- else -}}
@@ -16,8 +26,8 @@
 {{- if $.Values.gitlab.ldap.base -}}
 {{ $.Values.gitlab.ldap.base }}
 {{- else -}}
-{{ $ldap := (index (lookup "config.openshift.io/v1" "OAuth" "" "cluster").spec.identityProviders 0) }}
-{{- $ldap_base_dn := regexReplaceAll "^ldap[s]*://" $ldap.ldap.url "${1}" | regexFind "/.*" | trimAll "/" | regexFind "^([^?]+)" }}
+{{- $ldap := include "ldap_def" . | fromYaml -}}
+{{- $ldap_base_dn := regexReplaceAll "^ldap[s]*://" $ldap.url "${1}" | regexFind "/.*" | trimAll "/" | regexFind "^([^?]+)" }}
 {{- printf "%s%s" "cn=accounts," $ldap_base_dn -}}
 {{- end -}}
 {{- end -}}
@@ -26,8 +36,8 @@
 {{- if $.Values.gitlab.ldap.uri -}}
 {{ $.Values.gitlab.ldap.uri }}
 {{- else -}}
-{{ $ldap := (index (lookup "config.openshift.io/v1" "OAuth" "" "cluster").spec.identityProviders 0) }}
-{{- regexReplaceAll "^ldap[s]*://" $ldap.ldap.url "${1}" | regexFind ".*/" | trimAll "/" | regexFind "^([^:]+)" }}
+{{- $ldap := include "ldap_def" . | fromYaml -}}
+{{- regexReplaceAll "^ldap[s]*://" $ldap.url "${1}" | regexFind ".*/" | trimAll "/" | regexFind "^([^:]+)" }}
 {{- end -}}
 {{- end -}}
 
@@ -58,8 +68,8 @@
 {{- if $.Values.gitlab.ldap.bind_dn -}}
 {{ $.Values.gitlab.ldap.bind_dn }}
 {{- else -}}
-{{ $ldap := (index (lookup "config.openshift.io/v1" "OAuth" "" "cluster").spec.identityProviders 0) }}
-{{- print $ldap.ldap.bindDN -}}
+{{- $ldap := include "ldap_def" . | fromYaml -}}
+{{- print $ldap.bindDN -}}
 {{- end -}}
 {{- end -}}
 
