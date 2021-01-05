@@ -46,7 +46,7 @@ gitlab:
    base: "dc=EXAMPLE,dc=TEST"
    user_filter: ""
    validate_certs: "false"
-   bind_dn: "uid=admin,dc=EXAMPLE,dc=TEST"
+   bind_dn: "uid=admin,cn=users,cn=accounts,dc=EXAMPLE,dc=TEST"
    encryption: "plain"
    uri: "ipa.do500-ipa.svc.cluster.local"
    password: password
@@ -79,3 +79,7 @@ ipaserver:
   image: "registry.redhat.io/rhel7/ipa-server:latest"
   opts: "-U -r EXAMPLE.TEST --setup-dns --no-forwarders --no-ntp -v"
   volume: 1Gi
+  auth_ocp: 
+    enabled: false
+    bind_dn: "uid=admin,cn=users,cn=accounts,dc=EXAMPLE,dc=TEST"
+    base: "cn=users,cn=accounts,dc=EXAMPLE,dc=TEST"
