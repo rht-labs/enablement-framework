@@ -34,7 +34,7 @@ The following procedure allows to upgrade helm charts in order to modify kuberne
 - Upgrade helm instance
 
 ```
-$ helm upgrade --namespace do500 charts/do500
+helm upgrade --namespace do500 charts/do500
 ```
 
 ## Gitlab
@@ -64,7 +64,7 @@ Once Gitlab has been installed and configured to make use of a LDAP provider, it
 - Obtain Openshift Route
 
 ```
-$ oc get route -n do500-gitlab
+oc get route -n do500-gitlab
 ```
 
 - Access WebUI with *username/password* credentials
@@ -82,7 +82,7 @@ Once CodeReady Workspaces has been installed and configured to make use of Opens
 - Obtain Openshift Route
 
 ```
-$ oc get route -n do500-workspaces
+oc get route -n do500-workspaces
 ```
 
 - Access WebUI with *username/password* credentials
@@ -97,7 +97,7 @@ Once IPA server has been installed, it is possible to access to the WebUI:
 - Obtain Openshift Route
 
 ```
-$ oc get route -n do500-ipa
+oc get route -n do500-ipa
 ```
 
 - Access WebUI with **admin** and the respective password defined in values.yaml
@@ -107,9 +107,9 @@ $ oc get route -n do500-ipa
 By default "IPA Auth Openshift" feature is disabled because it is not possible to modify oauth object, named *cluster*, by default. In order to configure IPA server as Openshift Auth provider manually, it is required to follow next steps:
 
 ```
-$ helm template --debug --set ipaserver.auth_ocp.enabled=true --output-dir /tmp charts/do500
-$ oc apply -f  /tmp/do500-env/templates/ocp-auth-ldap/secret.yaml
-$ oc apply -f  /tmp/do500-env/templates/ocp-auth-ldap/oauth.yaml
+helm template --debug --set ipaserver.auth_ocp.enabled=true --output-dir /tmp charts/do500
+oc apply -f  /tmp/do500-env/templates/ocp-auth-ldap/secret.yaml
+oc apply -f  /tmp/do500-env/templates/ocp-auth-ldap/oauth.yaml
 ```
 
 
