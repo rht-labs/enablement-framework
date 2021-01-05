@@ -43,7 +43,7 @@ gitlab:
       stream_uri: "registry.redhat.io/rhscl/postgresql-96-rhel7"
   ldap:
    port: "389"
-   base: "dc=EXAMPLE,dc=TEST"
+   base: "cn=users,cn=accounts,dc=EXAMPLE,dc=TEST"
    user_filter: ""
    validate_certs: "false"
    bind_dn: "uid=admin,cn=users,cn=accounts,dc=EXAMPLE,dc=TEST"
