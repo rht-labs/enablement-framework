@@ -5,12 +5,15 @@
 # Create a helper to create a prefix if one isn't provided? Would help if we moved to shared clusters
 prefix: ""
 
+app_domain: apps.acidonpe.sandbox1493.opentlc.com
+
 gitlab_app_name: "gitlab-ce"
 
 namespaces:
   - name: do500-workspaces
   - name: do500-gitlab
-#  - name: do500-slides
+  - name: do500-ipa
+  # - name: do500-slides
 
 operators:
   - name: codeready-workspaces
@@ -39,19 +42,20 @@ gitlab:
       tag_name: "latest"
       stream_uri: "registry.redhat.io/rhscl/postgresql-96-rhel7"
   ldap:
-#    port: "389"
-#    base: "dc=CORP,dc=EXAMPLE,dc=COM"
-#    uri: "MY-LDAP.example.corp.com"
-#    user_filter: ""
-#    validate_certs: "false"
-    secret_name: my-ldap-secret-name
-#    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
+   port: "389"
+   base: "dc=EXAMPLE,dc=TEST"
+   user_filter: ""
+   validate_certs: "false"
+   bind_dn: "uid=admin,dc=EXAMPLE,dc=TEST"
+   encryption: "plain"
+   uri: "ipa.do500-ipa.svc.cluster.local"
+   password: password
 
 crw:
   namespace: do500-workspaces
   name: "codeready-workspaces"
 #  devRegImage: "quay.io/rht-labs/devfileregistry:test"
-  tlsSupport: true
+  tlsSupport: false
   properties:
     CHE_LIMITS_USER_WORKSPACES_COUNT: "2"
     CHE_LIMITS_USER_WORKSPACES_RUN_COUNT: "1"
@@ -64,3 +68,14 @@ crw:
 #    source_repo: "https://github.com/rht-labs/enablement-docs"
 #    s2i_name: "nodejs"
 #    s2i_tag: "10"
+
+ipaserver:
+  enabled: true
+  sa: ipa
+  service: ipa
+  password: password
+  namespace: do500-ipa
+  timeout: 1000
+  image: "registry.redhat.io/rhel7/ipa-server:latest"
+  opts: "-U -r EXAMPLE.TEST --setup-dns --no-forwarders --no-ntp -v"
+  volume: 1Gi

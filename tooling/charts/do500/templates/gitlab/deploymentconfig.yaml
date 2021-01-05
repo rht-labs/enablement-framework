@@ -62,7 +62,7 @@ spec:
         - name: GITLAB_OMNIBUS_CONFIG
           value:
             root_pass='{{ $.Values.gitlab.root_password | default "Password123" }}';
-            external_url "https://{{ $.Values.gitlab_app_name }}.{{ include "do500.app_domain" . }}";
+            external_url "https://{{ $.Values.gitlab_app_name }}.{{ $.Values.app_domain }}";
             nginx['listen_port']=80;
             nginx['listen_https']=false;
             gitlab_rails['initial_root_password']=root_pass;
@@ -86,7 +86,7 @@ spec:
             prometheus_monitoring['enable'] = false;
             gitlab_rails['rack_attack_git_basic_auth'] = { 'enabled' => false, };
             gitlab_rails['ldap_enabled'] = true;
-            gitlab_rails['ldap_servers'] = { 'main' => { 'label' => '{{ .Values.gitlab.label | default "LDAP" }}', 'host' => '{{ include "gitlab.ldap.uri" . }}', 'port' => '{{ include "gitlab.ldap.port" . }}', 'uid' => 'uid', 'bind_dn' => '{{ include "gitlab.ldap.bind_dn" . }}', 'password' => '{{ include "gitlab.ldap.bind_password" . }}', 'encryption' => '{{ include "gitlab.ldap.encryption" . }}', 'verify_certificates' => {{ .Values.gitlab.ldap.validate_certs | default false }}, 'allow_username_or_email_login' => true, 'block_auto_created_users' => false, 'active_directory' => false, 'base' => '{{ include "gitlab.ldap.base" . }}', 'user_filter' => '{{ include "gitlab.ldap.user_filter" . | default "" }}', 'attributes' => { 'username' => ['uid'], 'email' => ['mail'], 'name' => 'displayName' } } };
+            gitlab_rails['ldap_servers'] = { 'main' => { 'label' => 'LDAP', 'host' => '{{ .Values.gitlab.ldap.uri }}', 'port' => '{{ .Values.gitlab.ldap.port }}', 'uid' => 'uid', 'bind_dn' => '{{ .Values.gitlab.ldap.bind_dn }}', 'password' => '{{ .Values.gitlab.ldap.password }}', 'encryption' => '{{ .Values.gitlab.ldap.encryption }}', 'verify_certificates' => {{ .Values.gitlab.ldap.validate_certs | default false }}, 'allow_username_or_email_login' => true, 'block_auto_created_users' => false, 'active_directory' => false, 'base' => '{{ .Values.gitlab.ldap.base }}', 'user_filter' => '{{ .Values.gitlab.ldap.user_filter }}', 'attributes' => { 'username' => ['uid'], 'email' => ['mail'], 'name' => 'displayName' } } };
         resources:
           limits:
             cpu: '2'

@@ -1,0 +1,105 @@
+{{- if $.Values.ipaserver.enabled }}
+---
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  name: {{ $.Values.ipaserver.service }}
+  namespace: {{ $.Values.ipaserver.namespace }}
+  labels:
+    deploymentconfig: "{{ $.Values.ipaserver.service }}"
+spec:
+  strategy:
+    type: Recreate
+    recreateParams:
+      timeoutSeconds: {{ $.Values.ipaserver.timeout }}
+  triggers:
+  - type: ConfigChange
+  - type: ImageChange
+    imageChangeParams:
+      automatic: true
+      containerNames:
+      - "{{ $.Values.ipaserver.service }}"
+      from:
+        kind: ImageStreamTag
+        name: "{{ $.Values.ipaserver.service }}:latest"
+  replicas: 1
+  test: false
+  selector:
+    deploymentconfig: "{{ $.Values.ipaserver.service }}"
+  template:
+    metadata:
+      name: "{{ $.Values.ipaserver.service }}"
+      labels:
+        deploymentconfig: "{{ $.Values.ipaserver.service }}"
+    spec:
+      volumes:
+      - name: "{{ $.Values.ipaserver.service }}-data"
+        persistentVolumeClaim:
+          claimName: "{{ $.Values.ipaserver.service }}"
+      - name: "{{ $.Values.ipaserver.service }}-run"
+        emptyDir: {}
+      - name: "{{ $.Values.ipaserver.service }}-tmp"
+        emptyDir: {}
+      - name: "{{ $.Values.ipaserver.service }}-journal"
+        emptyDir: {}
+      containers:
+      - name: "{{ $.Values.ipaserver.service }}"
+        image: "{{ $.Values.ipaserver.service }}"
+        ports:
+        - containerPort: 53
+          protocol: TCP
+        - containerPort: 53
+          protocol: UDP
+        - containerPort: 80
+          protocol: TCP
+        - containerPort: 88
+          protocol: TCP
+        - containerPort: 88
+          protocol: UDP
+        - containerPort: 123
+          protocol: UDP
+        - containerPort: 389
+          protocol: TCP
+        - containerPort: 443
+          protocol: TCP
+        - containerPort: 464
+          protocol: TCP
+        - containerPort: 464
+          protocol: UDP
+        - containerPort: 636
+          protocol: TCP
+        env:
+        - name: IPA_SERVER_HOSTNAME
+          value: "{{ $.Values.ipaserver.service }}.{{ $.Values.app_domain }}"
+        - name: IPA_SERVER_INSTALL_OPTS
+          value: "{{ $.Values.ipaserver.opts }}"
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "{{ $.Values.ipaserver.service }}-password"
+              key: admin.password
+        resources: {}
+        volumeMounts:
+        - name: "{{ $.Values.ipaserver.service }}-data"
+          mountPath: "/data"
+        - name: "{{ $.Values.ipaserver.service }}-run"
+          mountPath: "/run"
+        - name: "{{ $.Values.ipaserver.service }}-tmp"
+          mountPath: "/tmp"
+        - name: "{{ $.Values.ipaserver.service }}-journal"
+          mountPath: "/var/log/journal"
+        readinessProbe:
+          exec:
+            command:
+            - "/usr/bin/systemctl"
+            - status
+            - ipa
+          initialDelaySeconds: 60
+          timeoutSeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
+      restartPolicy: Always
+      serviceAccountName: "{{ $.Values.ipaserver.sa }}"
+      securityContext: {}
+{{- end }}
