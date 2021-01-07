@@ -5,6 +5,9 @@ metadata:
   name: {{ .Values.crw.name | default "codeready-workspaces" | quote }}
   namespace: {{ .Values.crw.namespace | default "do500-workspaces" | quote }}
 spec:
+  annotations:
+    "helm.sh/hook": "post-install,post-upgrade"
+    "helm.sh/hook-delete-policy": hook-failed
   server:
     cheImageTag: {{ .Values.crw.cheImageTag | default "" | quote }}
     cheFlavor: {{ .Values.crw.cheFlavor | default "codeready" | quote }}

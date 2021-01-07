@@ -1,0 +1,19 @@
+{{- if .Values.crw }}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: che-cluster-check 
+  annotations:
+    "helm.sh/hook": "post-install"
+    "helm.sh/hook-weight": "-10"
+spec:
+  containers:
+  - name: crd-check 
+    image: quay.io/openshift/origin-cli:4.6
+    imagePullPolicy: IfNotPresent
+    command: ['sh', '-c', 'while [ true ]; do oc get crd checlusters.org.eclipse.che; if [ $? -eq 0 ]; then break; fi ; sleep 5s; done']
+  restartPolicy: Never
+  terminationGracePeriodSeconds: 0
+{{- end -}}
+                     
