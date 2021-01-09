@@ -1,0 +1,14 @@
+{{- if $.Values.ipaserver.enabled }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ $.Values.ipaserver.service }}
+  namespace: {{ $.Values.ipaserver.namespace }}
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: "{{ $.Values.ipaserver.volume }}"
+{{- end }}

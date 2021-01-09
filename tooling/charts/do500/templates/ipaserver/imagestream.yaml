@@ -1,0 +1,16 @@
+{{- if $.Values.ipaserver.enabled }}
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: {{ $.Values.ipaserver.service }}
+  namespace: {{ $.Values.ipaserver.namespace }}
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - from:
+        kind: DockerImage
+        name: "{{ $.Values.ipaserver.image }}"
+      name: latest
+{{- end }}
