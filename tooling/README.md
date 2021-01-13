@@ -14,11 +14,11 @@ The following needs to be run by someone who is an admin in your OpenShift clust
 
 To install this chart, you can run the following from within the chart directory:
 
-`helm install do500 . --create-namespace do500`
+`helm install do500 . --create-namespace --namespace do500`
 
 To uninstall, you can just do the reverse:
 
-`helm uninstall do500 . --namespace do500`
+`helm uninstall do500 --namespace do500`
 
 ## Gitlab
 
