@@ -30,7 +30,7 @@ helm uninstall do500 --namespace do500
 helm uninstall do500-operator --namespace do500
 ```
 
-## Updating charts
+## Updating
 
 Your deployments should look something like this:
 ```bash
