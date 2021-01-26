@@ -1,3 +1,4 @@
+{{- if .Values.subscriptions.only }}
 {{- range $op := .Values.operators }}
 {{- $sub := $op.subscription }}
 ---
@@ -14,6 +15,7 @@ spec:
   sourceNamespace: {{ $sub.sourceNamespace | default "openshift-marketplace" | quote }}
 {{- if $sub.csv }}
   startingCSV: {{ $sub.csv }}
+{{- end }}
 {{- end }}
 {{- end }}
 

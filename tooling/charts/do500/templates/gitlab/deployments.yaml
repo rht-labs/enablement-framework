@@ -1,4 +1,4 @@
-{{- if .Values.gitlab -}}
+{{- if and .Values.gitlab (not .Values.subscriptions.only) -}}
 {{ $db_user := include "gitlab.postgres.user" . }}
 {{ $db_pass := include "gitlab.postgres.password" . }}
 {{ $db_admin_pass := include "gitlab.postgres.admin_password" . }}

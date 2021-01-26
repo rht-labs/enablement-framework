@@ -12,6 +12,10 @@ namespaces:
   - name: do500-gitlab
 #  - name: do500-slides
 
+# subscriptions
+subscriptions:
+  only: false
+
 operators:
   - name: codeready-workspaces
     namespace: do500-workspaces
@@ -21,13 +25,13 @@ operators:
       operatorName: codeready-workspaces
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
-      csv: crwoperator.v2.5.0
+      csv: crwoperator.v2.5.1
     operatorgroup:
       create: true
 
 gitlab:
   namespace: do500-gitlab
-  root_password: Password123
+  root_password: password
   imagestreams:
     - name: "gitlab-ce"
       tag_name: "gitlab-12.8.7"
@@ -44,7 +48,7 @@ gitlab:
 #    uri: "MY-LDAP.example.corp.com"
 #    user_filter: ""
 #    validate_certs: "false"
-    secret_name: my-ldap-secret-name
+    secret_name: ldap-bind-password
 #    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
 
 crw:

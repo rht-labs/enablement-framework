@@ -1,4 +1,4 @@
-{{- if .Values.gitlab }}
+{{- if and .Values.gitlab (not .Values.subscriptions.only) }}
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1

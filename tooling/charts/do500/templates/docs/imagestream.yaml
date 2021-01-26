@@ -1,4 +1,4 @@
-{{- if .Values.docs }}
+{{- if and .Values.docs (not .Values.subscriptions.only) }}
 ---
 apiVersion: image.openshift.io/v1
 kind: ImageStream

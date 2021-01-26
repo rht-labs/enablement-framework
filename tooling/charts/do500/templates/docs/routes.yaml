@@ -1,4 +1,4 @@
-{{- if .Values.docs }}
+{{- if and .Values.docs (not .Values.subscriptions.only) }}
 kind: Route
 apiVersion: v1
 metadata:

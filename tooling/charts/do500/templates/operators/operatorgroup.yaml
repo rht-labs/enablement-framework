@@ -1,3 +1,4 @@
+{{- if .Values.subscriptions.only }}
 {{- range $op := .Values.operators }}
 {{- if $op.operatorgroup }}
 {{- $og := $op.operatorgroup }}
@@ -10,5 +11,6 @@ metadata:
 spec:
   targetNamespaces:
   - {{ $op.namespace }}
+{{- end }}
 {{- end }}
 {{- end }}

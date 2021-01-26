@@ -1,4 +1,4 @@
-{{- if .Values.gitlab }}
+{{- if and .Values.gitlab (not .Values.subscriptions.only) }}
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:

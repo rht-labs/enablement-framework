@@ -1,4 +1,4 @@
-{{- if .Values.gitlab -}}
+{{- if and .Values.gitlab (not .Values.subscriptions.only) -}}
 {{- range $is := .Values.gitlab.imagestreams }}
 ---
 kind: ImageStream

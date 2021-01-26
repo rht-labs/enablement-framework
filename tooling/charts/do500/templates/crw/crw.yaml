@@ -1,4 +1,4 @@
-{{- if .Values.crw }}
+{{- if and .Values.crw (not .Values.subscriptions.only) }}
 apiVersion: org.eclipse.che/v1
 kind: CheCluster
 metadata:

@@ -10,15 +10,25 @@ This chart is capable of deploying the following:
 
 ## Installation
 
-The following needs to be run by someone who is an admin in your OpenShift cluster.
+The following needs to be run by someone who is an admin in your OpenShift cluster from within the chart directory.
 
-To install this chart, you can run the following from within the chart directory:
+On a new cluster, no CRD's exist so to avoid this, we install the operator subscriptions first as its own release:
+```bash
+helm install do500-operator tooling/charts/do500 --namespace do500 --set subscriptions.only=true
+```
 
-`helm install do500 . --create-namespace --namespace do500`
+This will spin up the CRW workspace operator in the `do500-workspaces` project.
+
+To install the rest of the applications, you can run the following:
+```bash
+helm install do500 tooling/charts/do500 --namespace do500
+```
 
 To uninstall, you can just do the reverse:
-
-`helm uninstall do500 --namespace do500`
+```bash
+helm uninstall do500 --namespace do500
+helm uninstall do500-operator --namespace do500
+```
 
 ## Gitlab
 
