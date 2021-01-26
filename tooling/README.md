@@ -30,6 +30,21 @@ helm uninstall do500 --namespace do500
 helm uninstall do500-operator --namespace do500
 ```
 
+## Updating charts
+
+Your deployments should look something like this:
+```bash
+$ helm list -n do500
+NAME          	NAMESPACE	REVISION	UPDATED                                 	STATUS  	CHART          	APP VERSION
+do500         	do500    	1       	2021-01-26 16:46:20.477010119 +1000 AEST	deployed	do500-env-0.0.1	0.0.1      
+do500-operator	do500    	1       	2021-01-26 16:40:56.886855854 +1000 AEST	deployed	do500-env-0.0.1	0.0.1 
+```
+
+If you change anything in `values.yaml` run upgrade install to update the release
+```bash
+helm upgrade --install do500 tooling/charts/do500 --namespace do500
+```
+
 ## Gitlab
 
 With Gitlab, it expects to be able to run against a configured LDAP server. This can be acheived by either uncommenting and providing the appropriate values in your `values.yaml` or you can allow the helm chart to discover these values itself.
