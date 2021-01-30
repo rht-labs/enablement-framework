@@ -1,0 +1,6 @@
+dependencies:
+- name: do500-subs
+  repository: file://../do500-subs
+  version: 0.0.1
+digest: sha256:9465d62aa3fe7fe525e2da44512641d825aa35d1892144cf10ac103957f8749e
+generated: "2021-01-30T10:21:29.378191868+10:00"

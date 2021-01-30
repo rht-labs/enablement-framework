@@ -8,17 +8,33 @@ This chart is capable of deploying the following:
 - CodeReady Workspaces (version X.Y.Z)
 - Instructor Documentation
 
-## Installation
+## New cluster with no CRW CRD's
 
-The following needs to be run by someone who is an admin in your OpenShift cluster.
+If your cluster does not contain the CRW CRD:
+```bash
+oc get crd checlusters.org.eclipse.che
+```
 
-To install this chart, you can run the following from within the chart directory:
+You must first install it as a cluster admin user using the operator subscription which we can uninstall once done.
+```bash
+cd ./do500-subs
+helm upgrade --install do500-subs . --namespace do500 --create-namespace
+helm uninstall do500-subs --namespace do500
+```
+## Cluster that contains CRW CRD's
 
-`helm install do500 . --create-namespace --namespace do500`
+Once to CRW CRD has been installed in the cluster, install the operator and platform into the `do500` namespace
+```bash
+cd ./do500
+helm upgrade --install do500 . --namespace do500 --create-namespace
+```
+## Deleting
 
-To uninstall, you can just do the reverse:
-
-`helm uninstall do500 --namespace do500`
+Deleting the helm chart works, however the ploigos operator does not yet clean up tidily, so run:
+```bash
+helm uninstall do500 --namespace do500
+oc delete project do500
+```
 
 ## Gitlab
 
@@ -41,4 +57,3 @@ After this is deployed, you will have a functional gitlab server that can be use
 ## CodeReady Workspaces
 
 With CRW, this uses the provided Operator to deploy a CRW instance. With the provided defaults, it restricts uses to two workspaces and allows for only a single `running` instance.
-

@@ -1,0 +1,14 @@
+apiVersion: v2
+name: do500-subs
+description: A Helm chart for DO500 Operator Subscriptions
+type: application
+version: 0.0.1
+appVersion: 0.0.1 
+home: https://rht-cop.github.io/helm-charts
+maintainers:
+- name: eformat
+- name: tylerauerbeck
+- name: jacobsee
+- name: jtudelag
+- name: ckavili
+- name: springdo

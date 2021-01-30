@@ -1,10 +1,19 @@
 apiVersion: v2
-name: do500-env
+name: do500
 description: A Helm chart for Kubernetes
 type: application
-
-# This is the chart version. This version number should be incremented each time you make changes
 version: 0.0.1
-
-# This is the version number of the application being deployed. This version number should be
-appVersion: 0.0.1 
+appVersion: 0.0.1
+maintainers:
+- name: eformat
+- name: tylerauerbeck
+- name: jacobsee
+- name: jtudelag
+- name: ckavili
+- name: springdo
+dependencies:
+  - name: do500-subs
+    version: "0.0.1"
+    repository: "file://../do500-subs" #"https://redhat-cop.github.io/helm-charts"
+    tags:
+      - subs
