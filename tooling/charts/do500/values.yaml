@@ -20,7 +20,7 @@ gitlab:
 #    uri: "MY-LDAP.example.corp.com"
 #    user_filter: ""
 #    validate_certs: "false"
-    secret_name: my-ldap-secret-name
+    secret_name: ldap-bind-password
 #    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
 #    password: password
 
