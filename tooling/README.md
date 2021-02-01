@@ -8,32 +8,17 @@ This chart is capable of deploying the following:
 - CodeReady Workspaces (version X.Y.Z)
 - Instructor Documentation
 
-## New cluster with no CRW CRD's
+## Installation
 
-If your cluster does not contain the CRW CRD:
-```bash
-oc get crd checlusters.org.eclipse.che
-```
-
-You must first install it as a cluster admin user using the operator subscription which we can uninstall once done.
-```bash
-cd ./do500-subs
-helm upgrade --install do500-subs . --namespace do500 --create-namespace
-helm uninstall do500-subs --namespace do500
-```
-## Cluster that contains CRW CRD's
-
-Once to CRW CRD has been installed in the cluster, install the operator and platform into the `do500` namespace
 ```bash
 cd ./do500
 helm upgrade --install do500 . --namespace do500 --create-namespace
 ```
 ## Deleting
 
-Deleting the helm chart works, however the ploigos operator does not yet clean up tidily, so run:
+To delete:
 ```bash
 helm uninstall do500 --namespace do500
-oc delete project do500
 ```
 
 ## Gitlab

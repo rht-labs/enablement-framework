@@ -11,9 +11,3 @@ maintainers:
 - name: jtudelag
 - name: ckavili
 - name: springdo
-dependencies:
-  - name: do500-subs
-    version: "0.0.1"
-    repository: "file://../do500-subs" #"https://redhat-cop.github.io/helm-charts"
-    tags:
-      - subs

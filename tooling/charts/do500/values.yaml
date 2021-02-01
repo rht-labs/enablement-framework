@@ -1,5 +1,26 @@
-# Default values for do500.
+# Default values for do500
 gitlab_app_name: "gitlab-ce"
+
+# Create a helper to create a prefix if one isn't provided? Would help if we moved to shared clusters
+prefix: ""
+
+namespaces:
+  - name: do500-workspaces
+  - name: do500-gitlab
+#  - name: do500-slides
+
+operators:
+  - name: codeready-workspaces
+    namespace: do500-workspaces
+    subscription:
+      channel: latest
+      approval: Automatic
+      operatorName: codeready-workspaces
+      sourceName: redhat-operators
+      sourceNamespace: openshift-marketplace
+      csv: crwoperator.v2.5.1
+    operatorgroup:
+      create: true
 
 gitlab:
   namespace: do500-gitlab
@@ -15,14 +36,14 @@ gitlab:
       tag_name: "latest"
       stream_uri: "registry.redhat.io/rhscl/postgresql-96-rhel7"
   ldap:
-#    port: "389"
-#    base: "dc=CORP,dc=EXAMPLE,dc=COM"
-#    uri: "MY-LDAP.example.corp.com"
-#    user_filter: ""
-#    validate_certs: "false"
+    port: "389"
+    base: "dc=CORP,dc=EXAMPLE,dc=COM"
+    uri: "MY-LDAP.example.corp.com"
+    user_filter: ""
+    validate_certs: "false"
+    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
+    password: password
     secret_name: ldap-bind-password
-#    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
-#    password: password
 
 crw:
   namespace: do500-workspaces
