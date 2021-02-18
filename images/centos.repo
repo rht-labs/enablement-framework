@@ -1,0 +1,11 @@
+[centos-app-stream]
+name=Centos App Stream
+baseurl=http://mirror.centos.org/centos-8/8/AppStream/x86_64/os
+enabled=1
+gpgcheck=0
+
+[centos-base-os]
+name=Centos Base OS
+baseurl=http://mirror.centos.org/centos-8/8/BaseOS/x86_64/os
+enabled=1
+gpgcheck=0
