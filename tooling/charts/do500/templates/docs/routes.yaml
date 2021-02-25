@@ -1,6 +1,6 @@
 {{- if .Values.docs }}
 kind: Route
-apiVersion: v1
+apiVersion: route.openshift.io/v1
 metadata:
   name: "{{ .Values.docs.name }}"
   namespace: "{{ .Values.docs.namespace }}"

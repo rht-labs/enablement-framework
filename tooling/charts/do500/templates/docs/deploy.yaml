@@ -1,6 +1,6 @@
 {{- if .Values.docs }}
 ---
-apiVersion: v1
+apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
   name: "{{ .Values.docs.name }}"
