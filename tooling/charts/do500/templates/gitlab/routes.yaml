@@ -7,7 +7,7 @@ metadata:
   labels:
     app: "{{ $.Values.gitlab_app_name }}"
 spec:
-  host: "{{ $.Values.gitlab_app_name }}.{{ include "do500.app_domain" . }}"
+  host: {{ $.Values.gitlab_app_name }}.{{ include "do500.app_domain" . }}
   to:
     kind: Service
     name: "{{ $.Values.gitlab_app_name }}"
