@@ -10,15 +10,16 @@ This chart is capable of deploying the following:
 
 ## Installation
 
-The following needs to be run by someone who is an admin in your OpenShift cluster.
+```bash
+cd ./do500
+helm upgrade --install do500 . --namespace do500 --create-namespace
+```
+## Deleting
 
-To install this chart, you can run the following from within the chart directory:
-
-`helm install do500 . --create-namespace --namespace do500`
-
-To uninstall, you can just do the reverse:
-
-`helm uninstall do500 --namespace do500`
+To delete:
+```bash
+helm uninstall do500 --namespace do500
+```
 
 ## Gitlab
 
@@ -41,4 +42,3 @@ After this is deployed, you will have a functional gitlab server that can be use
 ## CodeReady Workspaces
 
 With CRW, this uses the provided Operator to deploy a CRW instance. With the provided defaults, it restricts uses to two workspaces and allows for only a single `running` instance.
-

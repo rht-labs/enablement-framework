@@ -61,6 +61,8 @@
 {{- define "gitlab.ldap.bind_password" -}}
 {{- if (lookup "v1" "Secret" "openshift-config" $.Values.gitlab.ldap.secret_name ) }}
 {{- print (lookup "v1" "Secret" "openshift-config" $.Values.gitlab.ldap.secret_name ).data.bindPassword | b64dec -}}
+{{- else -}}
+{{ $.Values.gitlab.ldap.password }}
 {{- end }}
 {{- end }}
 
@@ -74,7 +76,11 @@
 {{- end -}}
 
 {{- define "do500.app_domain" -}}
+{{- if (lookup "operator.openshift.io/v1" "IngressController" "openshift-ingress-operator" "default") -}}
 {{- print (lookup "operator.openshift.io/v1" "IngressController" "openshift-ingress-operator" "default").status.domain -}}
+{{- else -}}
+{{- print "example.com" -}}
+{{- end -}}
 {{- end -}}
 
 {{- define "gitlab.root_password" -}}

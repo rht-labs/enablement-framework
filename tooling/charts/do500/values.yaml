@@ -1,11 +1,8 @@
-# Default values for do500.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# Default values for do500
+gitlab_app_name: "gitlab-ce"
 
 # Create a helper to create a prefix if one isn't provided? Would help if we moved to shared clusters
 prefix: ""
-
-gitlab_app_name: "gitlab-ce"
 
 namespaces:
   - name: do500-workspaces
@@ -21,7 +18,7 @@ operators:
       operatorName: codeready-workspaces
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
-      csv: crwoperator.v2.5.0
+      csv: crwoperator.v2.5.1
     operatorgroup:
       create: true
 
@@ -39,13 +36,14 @@ gitlab:
       tag_name: "latest"
       stream_uri: "registry.redhat.io/rhscl/postgresql-96-rhel7"
   ldap:
-#    port: "389"
-#    base: "dc=CORP,dc=EXAMPLE,dc=COM"
-#    uri: "MY-LDAP.example.corp.com"
-#    user_filter: ""
-#    validate_certs: "false"
-    secret_name: my-ldap-secret-name
-#    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
+    port: "389"
+    base: "dc=CORP,dc=EXAMPLE,dc=COM"
+    uri: "MY-LDAP.example.corp.com"
+    user_filter: ""
+    validate_certs: "false"
+    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
+    password: password
+    secret_name: ldap-bind-password
 
 crw:
   namespace: do500-workspaces

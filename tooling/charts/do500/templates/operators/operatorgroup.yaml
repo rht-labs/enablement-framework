@@ -5,7 +5,7 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: {{ $op.name | default "do500-operator-group" | quote }} 
+  name: {{ $op.name | default "do500-operator-group" | quote }}
   namespace: {{ $op.namespace | quote }}
 spec:
   targetNamespaces:
