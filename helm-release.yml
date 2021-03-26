@@ -6,6 +6,6 @@ metadata:
 spec:
   releaseName: do500 
   chart:
-    git: https://github.com/tylerauerbeck/enablement-framework
-    ref: helm-operator
+    git: https://github.com/rht-labs/enablement-framework
+    ref: main
     path: tooling/charts/do500 
