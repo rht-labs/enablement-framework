@@ -36,14 +36,14 @@ gitlab:
       tag_name: "latest"
       stream_uri: "registry.redhat.io/rhscl/postgresql-96-rhel7"
   ldap:
-    port: "389"
-    base: "dc=CORP,dc=EXAMPLE,dc=COM"
-    uri: "MY-LDAP.example.corp.com"
-    user_filter: ""
-    validate_certs: "false"
-    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
-    password: password
-    secret_name: ldap-bind-password
+#    port: "389"
+#    base: "dc=CORP,dc=EXAMPLE,dc=COM"
+#    uri: "MY-LDAP.example.corp.com"
+#    user_filter: ""
+#    validate_certs: "false"
+#    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
+#    password: password
+    secret_name: my-ldap-secret-name
 
 crw:
   namespace: do500-workspaces
