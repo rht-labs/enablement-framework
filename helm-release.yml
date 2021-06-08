@@ -1,0 +1,11 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: enablement-framework 
+  namespace: do500
+spec:
+  releaseName: do500 
+  chart:
+    git: https://github.com/rht-labs/enablement-framework
+    ref: main
+    path: tooling/charts/do500 
