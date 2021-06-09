@@ -59,12 +59,8 @@
 {{- end -}}
 
 {{- define "gitlab.ldap.secret_name" -}}
-{{- if $.Values.gitlab.ldap.secret_name -}}
-{{ $.Values.gitlab.ldap.secret_name -}}
-{{- else -}}
 {{ $ldap := include "ldap_def" . | fromYaml -}}
 {{- print $ldap.bindPassword.name -}}
-{{- end -}}
 {{- end -}}
 
 {{- define "gitlab.ldap.bind_password" -}}
