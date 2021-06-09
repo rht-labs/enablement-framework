@@ -58,9 +58,18 @@
 {{- end -}}
 {{- end -}}
 
+{{- define "gitlab.ldap.secret_name" -}}
+{{- if $.Values.gitlab.ldap.secret_name -}}
+{{ $.Values.gitlab.ldap.secret_name -}}
+{{- else -}}
+{{ $ldap := include "ldap_def" . | fromYaml -}}
+{{- print $ldap.bindPassword.name -}}
+{{- end -}}
+{{- end -}}
+
 {{- define "gitlab.ldap.bind_password" -}}
-{{- if (lookup "v1" "Secret" "openshift-config" $.Values.gitlab.ldap.secret_name ) }}
-{{- print (lookup "v1" "Secret" "openshift-config" $.Values.gitlab.ldap.secret_name ).data.bindPassword | b64dec -}}
+{{- if (lookup "v1" "Secret" "openshift-config" (include "gitlab.ldap.secret_name") ) }}
+{{- print (lookup "v1" "Secret" "openshift-config" (include "gitlab.ldap.secret_name") ).data.bindPassword | b64dec -}}
 {{- else -}}
 {{ $.Values.gitlab.ldap.password }}
 {{- end }}
