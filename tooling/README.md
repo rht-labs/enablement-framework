@@ -25,18 +25,6 @@ helm uninstall do500 --namespace do500
 
 With Gitlab, it expects to be able to run against a configured LDAP server. This can be acheived by either uncommenting and providing the appropriate values in your `values.yaml` or you can allow the helm chart to discover these values itself.
 
-**Note**: There is currently a bug where the chart only looks at the first configured IdentityProvider within the default `OAuth` configuration of the OpenShift cluster to check for an ldap configuration. This is being tracked <here>. In the mean time, you can change it to look at the appropriate position by changing the following occurrences of:
-
-```
-code sample
-```
-
-to look like
-
-```
-code sample
-```
-
 After this is deployed, you will have a functional gitlab server that can be used along with your LDAP identities.
 
 ## CodeReady Workspaces
