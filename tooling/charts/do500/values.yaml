@@ -7,6 +7,7 @@ prefix: ""
 namespaces:
   - name: do500-workspaces
   - name: do500-gitlab
+  - name: do500-shared
 #  - name: do500-slides
 
 operators:
@@ -66,3 +67,17 @@ crw:
 #    source_repo: "https://github.com/rht-labs/enablement-docs"
 #    s2i_name: "nodejs"
 #    s2i_tag: "10"
+
+sealed-secrets:
+  # Disabled by default
+  enabled: true
+  nameOverride: sealed-secrets
+  fullnameOverride: sealed-secrets
+  # namespace must exist, so we use labs-ci-cd by default.
+  namespace: do500-shared
+  # Dont touch the security context values, deployment will fail in OpenShift otherwise.
+  securityContext:
+    runAsUser: ""
+    fsGroup: ""
+  commandArgs:
+    - "--update-status=true"

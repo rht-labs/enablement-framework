@@ -7,11 +7,13 @@ This chart is capable of deploying the following:
 - Gitlab (version X.Y.Z)
 - CodeReady Workspaces (version X.Y.Z)
 - Instructor Documentation
+- SealedSecrets from Bitnami
 
 ## Installation
 
 ```bash
 cd ./do500
+helm dep up
 helm upgrade --install do500 . --namespace do500 --create-namespace
 ```
 ## Deleting
