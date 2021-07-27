@@ -73,7 +73,6 @@ sealed-secrets:
   enabled: true
   nameOverride: sealed-secrets
   fullnameOverride: sealed-secrets
-  # namespace must exist, so we use labs-ci-cd by default.
   namespace: do500-shared
   # Dont touch the security context values, deployment will fail in OpenShift otherwise.
   securityContext:
