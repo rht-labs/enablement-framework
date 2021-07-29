@@ -8,7 +8,7 @@ projects:
     source:
       type: git
       location: 'https://github.com/rht-labs/tech-exercise'
-      branch: 'main'      
+      branch: 'main'
 components:
   - type: cheEditor
     alias: theia-editor
