@@ -5,9 +5,14 @@ type: application
 version: 0.0.2
 appVersion: 0.0.1
 maintainers:
-- name: eformat
-- name: tylerauerbeck
-- name: jacobsee
-- name: jtudelag
-- name: ckavili
-- name: springdo
+  - name: eformat
+  - name: tylerauerbeck
+  - name: jacobsee
+  - name: jtudelag
+  - name: ckavili
+  - name: springdo
+dependencies:
+  - name: sealed-secrets
+    version: "1.16.1"
+    repository: https://bitnami-labs.github.io/sealed-secrets
+    condition: sealed-secrets.enabled
