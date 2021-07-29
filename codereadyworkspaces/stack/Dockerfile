@@ -60,4 +60,8 @@ RUN echo "git config --global http.sslVerify false" >> /etc/bashrc && \
     echo "git config --global user.email 'derek@dinosaur.com'" >> /etc/zshrc && \
     echo "🤗🤗🤗🤗🤗"
 
+# docsify-cli
+RUN npm i -g docsify-cli && \
+    echo "📚📚📚📚📚"
+
 USER 1001
