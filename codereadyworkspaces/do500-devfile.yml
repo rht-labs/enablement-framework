@@ -3,11 +3,6 @@ metadata:
   name: do500
   generateName: do500-
 projects:
-  - name: todolist
-    source:
-      type: git
-      location: 'https://github.com/rht-labs/todolist'
-      branch: 'master'
   - name: tech-exercise
     clonePath: tech-exercise
     source:
