@@ -1,0 +1,17 @@
+[base]
+name=CentOS $releasever – Base
+baseurl=http://mirror.centos.org/centos/7/os/$basearch/
+gpgcheck=0
+enabled=1
+
+[updates]
+name=CentOS $releasever – Updates
+baseurl=http://mirror.centos.org/centos/7/updates/$basearch/
+gpgcheck=0
+enabled=1
+
+[extras]
+name=CentOS $releasever – Extras
+baseurl=http://mirror.centos.org/centos/7/extras/$basearch/
+gpgcheck=0
+enabled=1
