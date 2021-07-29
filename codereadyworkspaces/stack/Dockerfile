@@ -52,6 +52,12 @@ RUN dnf install -y zsh && \
     echo "😎😎😎😎😎"
 
 # sort out git...
-
+RUN echo "git config --global http.sslVerify false" >> /etc/bashrc && \
+    echo "git config --global http.sslVerify false" >> /etc/zshrc && \
+    echo "git config --global user.name 'Derek Dinosaur'" >> /etc/bashrc && \
+    echo "git config --global user.name 'Derek Dinosaur'" >> /etc/zshrc && \
+    echo "git config --global user.email 'derek@dinosaur.com'" >> /etc/bashrc && \
+    echo "git config --global user.email 'derek@dinosaur.com'" >> /etc/zshrc && \
+    echo "🤗🤗🤗🤗🤗"
 
 USER 1001

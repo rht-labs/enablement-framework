@@ -8,12 +8,12 @@ projects:
       type: git
       location: 'https://github.com/rht-labs/todolist'
       branch: 'master'
-  - name: ci-cd
-    clonePath: enablement-ci-cd
+  - name: tech-exercise
+    clonePath: tech-exercise
     source:
       type: git
-      location: 'https://github.com/rht-labs/enablement-ci-cd'
-      branch: 'master'      
+      location: 'https://github.com/rht-labs/tech-exercise'
+      branch: 'main'      
 components:
   - type: cheEditor
     alias: theia-editor
@@ -29,16 +29,14 @@ components:
     type: chePlugin
     id: redhat/vscode-yaml/latest
   - type: dockerimage
-    alias: node-rhel7-ansible
-    image: quay.io/rht-labs/stacks-node-rhel7-ansible:4.3
+    alias: stack-do500
+    image: quay.io/rht-labs/stack-do500:3.0.0
     memoryLimit: 2Gi
     mountSources: true
     command: ['/bin/sh', '-c', 'echo -e "crw_user:x:`id -u`:0:student user:/:/usr/bin/zsh" >> /etc/passwd && sleep infinity']
     volumes:
       - name: projects
         containerPath: /projects
-      - name: mongo
-        containerPath: /projects/mongo
     endpoints:
       - name: ide-8080
         port: 8080
