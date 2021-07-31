@@ -19,7 +19,7 @@ operators:
       operatorName: codeready-workspaces
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
-      csv: crwoperator.v2.5.1
+      csv: crwoperator.v2.10.0
     operatorgroup:
       create: true
 
