@@ -1,0 +1,47 @@
+name: do500-stack-image-pr
+on:
+  pull_request:
+    paths:
+      - codereadyworkspaces/stack/**
+      - .github/workflows/do500-stack-image-pr.yaml
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    env:
+      context: codereadyworkspaces/stack
+      image_name: do500-stack
+    steps:
+      - uses: actions/checkout@master
+      - name: Log in to Red Hat Registry
+        uses: docker/login-action@v1.10.0
+        with:
+          registry: registry.redhat.io
+          username: ${{ secrets.REGISTRY_REDHAT_IO_USER }}
+          password: ${{ secrets.REGISTRY_REDHAT_IO_PASSWORD }}
+      - name: Get image tags
+        id: image_tags
+        run: |
+          echo -n ::set-output name=IMAGE_TAGS::
+           # exposes variable VERSION
+          source ${context}/VERSION
+          echo ${VERSION}
+      - name: Build image
+        uses: redhat-actions/buildah-build@v2.6
+        with:
+          context: ${{ env.context }}
+          dockerfiles: |
+            ./${{ env.context }}/Dockerfile
+          image: ${{ env.image_name }}
+          oci: true
+          tags: ${{ steps.image_tags.outputs.IMAGE_TAGS }}
+      - name: Test image contains the version of CLIs
+        run: |
+          source `docker run  do500-stack env | grep _VERSION`
+          echo "Running: podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} to check CLIs version"
+          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} helm version | grep $HELM_VERSION
+          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} tkn version | grep $TEKTON_VERSION
+          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} kubeseal --version | grep $KUBESEAL_VERSION  
+          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} argocd version | grep $ARGOCD_VERSION
+          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} conftest --version | grep $CONFTEST_VERSION
+          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} yq --version | grep $YQ_VERSION
+          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} jq --version | grep $JQ_VERSION

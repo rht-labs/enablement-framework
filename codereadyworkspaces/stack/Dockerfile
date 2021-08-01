@@ -3,7 +3,7 @@ FROM registry.redhat.io/codeready-workspaces/plugin-java8-rhel8:2.10-4
 ENV ARGOCD_VERSION=2.0.5
 ENV YQ_VERSION=4.11.2
 ENV HELM_VERSION=3.6.3
-ENV KUBESEAL_VERSION=v0.13.1
+ENV KUBESEAL_VERSION=0.13.1
 ENV TEKTON_VERSION=0.19.1
 ENV OC_VERSION=4.8.3
 ENV JQ_VERSION=1.6
@@ -18,7 +18,7 @@ RUN curl -sL https://github.com/argoproj/argo-cd/releases/download/v${ARGOCD_VER
     echo "🐙🐙🐙🐙🐙"
 
 #🦭🦭🦭kubeseal 🦭
-RUN curl -sL https://github.com/bitnami-labs/sealed-secrets/releases/download/${KUBESEAL_VERSION}/kubeseal-linux-amd64 -o /usr/local/bin/kubeseal && \
+RUN curl -sL https://github.com/bitnami-labs/sealed-secrets/releases/download/v${KUBESEAL_VERSION}/kubeseal-linux-amd64 -o /usr/local/bin/kubeseal && \
     chmod -R 755 /usr/local/bin/kubeseal && \
     echo "🦭🦭🦭🦭🦭"
 
