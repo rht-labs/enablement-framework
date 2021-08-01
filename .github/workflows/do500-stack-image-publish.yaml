@@ -15,7 +15,7 @@ jobs:
       image_name: do500-stack
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v1
       - name: Log in to Red Hat Registry
         uses: docker/login-action@v1.10.0
         with:

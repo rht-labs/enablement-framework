@@ -34,21 +34,21 @@ jobs:
           image: ${{ env.image_name }}
           oci: true
           tags: ${{ steps.image_tags.outputs.IMAGE_TAGS }}
-      - name: Test image contains the version of CLIs
+      - name: Test image to check the version of CLIs
         run: |
-          export `docker run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} env | grep _VERSION`
-          echo "Running: podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} to check CLIs version"
-          echo "⚓️helm version"
-          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} helm version | grep $HELM_VERSION
-          echo "🐈tkn version"
-          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} tkn version | grep $TEKTON_VERSION
-          echo "🦭kubeseal --version"
-          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} kubeseal --version | grep $KUBESEAL_VERSION  
-          echo "🐙argocd version"
-          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} argocd version | grep $ARGOCD_VERSION
-          echo "🌲conftest --version"
-          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} conftest --version | grep $CONFTEST_VERSION
-          echo "🦨yq --version"
-          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} yq --version | grep $YQ_VERSION
-          echo "🦨jq --version"
-          podman run ${image_name}:${{ steps.image_tags.outputs.IMAGE_TAGS }} jq --version | grep $JQ_VERSION
+          export `docker run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} env | grep _VERSION`
+          echo "Running: podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} to check CLIs version"
+          echo "⚓️check helm version"
+          podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} helm version | grep $HELM_VERSION
+          echo "🐈check tkn version"
+          podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} tkn version | grep $TEKTON_VERSION
+          echo "🦭check kubeseal --version"
+          podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} kubeseal --version | grep $KUBESEAL_VERSION  
+          echo "🐙check argocd version"
+          podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} argocd version | grep $ARGOCD_VERSION
+          echo "🌲check conftest --version"
+          podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} conftest --version | grep $CONFTEST_VERSION
+          echo "🦨check yq --version"
+          podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} yq --version | grep $YQ_VERSION
+          echo "🦨check jq --version"
+          podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} jq --version | grep $JQ_VERSION
