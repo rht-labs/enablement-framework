@@ -36,7 +36,7 @@ jobs:
           tags: ${{ steps.image_tags.outputs.IMAGE_TAGS }}
       - name: Test image to check the version of CLIs
         run: |
-          export `docker run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} env | grep _VERSION`
+          export `podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} env | grep _VERSION`
           echo "Running: podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} to check CLIs version"
           echo "⚓️check helm version"
           podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} helm version | grep $HELM_VERSION
