@@ -19,9 +19,20 @@ operators:
       operatorName: codeready-workspaces
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
-      csv: crwoperator.v2.10.0
+      csv: crwoperator.v2.10.1
     operatorgroup:
       create: true
+  - name: openshift-pipelines-operator-rh
+    namespace: openshift-operators
+    subscription:
+      channel: preview
+      approval: Automatic
+      operatorName: openshift-pipelines-operator-rh
+      sourceName: redhat-operators
+      sourceNamespace: openshift-marketplace
+      csv: redhat-openshift-pipelines.v1.3.1
+    operatorgroup:
+      create: false
 
 gitlab:
   namespace: do500-gitlab
