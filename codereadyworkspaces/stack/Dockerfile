@@ -24,7 +24,7 @@ RUN curl -sL https://github.com/bitnami-labs/sealed-secrets/releases/download/v$
 
 # tekton
 RUN curl -sL https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/latest/tkn-linux-amd64-${TEKTON_VERSION}.tar.gz -o /tmp/tkn-linux-amd64-${TEKTON_VERSION}.tar.gz && \
-    tar  -C /tmp -zxvf /tmp/tkn-linux-amd64-${TEKTON_VERSION}.tar.gz && \
+    tar  --no-same-owner -C /tmp -xzf /tmp/tkn-linux-amd64-${TEKTON_VERSION}.tar.gz && \
     mv -v /tmp/tkn /usr/local/bin && \
     chmod -R 775 /usr/local/bin/tkn && \
     echo "🐈🐈🐈🐈🐈"
@@ -46,7 +46,6 @@ RUN dnf install -y centos-gpg-keys --nogpgcheck && \
     rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial && \
     dnf install -y zsh
 
-
 # helm
 RUN curl -skL -o /tmp/helm.tar.gz https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
     tar -C /tmp -xzf /tmp/helm.tar.gz && \
@@ -54,8 +53,6 @@ RUN curl -skL -o /tmp/helm.tar.gz https://get.helm.sh/helm-v${HELM_VERSION}-linu
     chmod -R 775 /usr/local/bin/helm && \
     rm -rf /tmp/linux-amd64 && \
     echo "⚓️⚓️⚓️⚓️⚓️"
-
-
 
 # sort out git...
 RUN echo "git config --global http.sslVerify false" >> /etc/bashrc && \
