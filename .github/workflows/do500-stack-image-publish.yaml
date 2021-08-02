@@ -16,12 +16,6 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
-      - name: Log in to Red Hat Registry
-        uses: docker/login-action@v1.10.0
-        with:
-          registry: registry.redhat.io
-          username: ${{ secrets.REGISTRY_REDHAT_IO_USER }}
-          password: ${{ secrets.REGISTRY_REDHAT_IO_PASSWORD }}
       - name: Get image tags
         id: image_tags
         run: |

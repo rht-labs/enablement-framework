@@ -8,6 +8,7 @@ This chart is capable of deploying the following:
 - CodeReady Workspaces (version X.Y.Z)
 - Instructor Documentation
 - SealedSecrets from Bitnami
+- OpenShift Pipelines
 
 ## Installation
 

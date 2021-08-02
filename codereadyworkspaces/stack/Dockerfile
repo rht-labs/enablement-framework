@@ -1,4 +1,4 @@
-FROM registry.redhat.io/codeready-workspaces/plugin-java8-rhel8:2.10-4
+FROM quay.io/crw/plugin-java8-rhel8:2.11
 
 ENV ARGOCD_VERSION=2.0.5
 ENV YQ_VERSION=4.11.2
