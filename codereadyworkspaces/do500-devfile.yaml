@@ -25,7 +25,7 @@ components:
     id: redhat/vscode-yaml/latest
   - type: dockerimage
     alias: stack-do500
-    image: quay.io/eformat/stack-do500:latest
+    image: quay.io/rht-labs/stack-do500:3.0.0
     memoryLimit: 2Gi
     mountSources: true
     command: ['/bin/sh', '-c', 'sleep infinity']
@@ -44,41 +44,41 @@ components:
         attributes:
           discoverable: "true"
           public: "true"
-          protocol: http          
+          protocol: http
       - name: ide-3000
         port: 3000
         attributes:
           discoverable: "true"
           public: "true"
-          protocol: http          
+          protocol: http
       - name: ide-4200
         port: 4200
         attributes:
           discoverable: "true"
           public: "true"
-          protocol: http          
+          protocol: http
       - name: ide-4444
         port: 4444
         attributes:
-          protocol: http          
+          protocol: http
       - name: ide-8081
         port: 8081
         attributes:
           discoverable: "true"
           public: "true"
-          protocol: http          
+          protocol: http
       - name: ide-8082
         port: 8082
         attributes:
           discoverable: "true"
           public: "true"
-          protocol: http          
+          protocol: http
       - name: ide-8083
         port: 8083
         attributes:
           discoverable: "true"
           public: "true"
-          protocol: http          
+          protocol: http
       - name: ide-8084
         port: 8084
         attributes:
