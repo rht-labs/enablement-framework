@@ -19,9 +19,8 @@ baseurl = https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/$basearch/co
 enabled = 1
 gpgcheck = 1
 
-# CentOS-Stream-BaseOS.repo
 [baseos]
 name=CentOS Stream $releasever - BaseOS
-baseurl=http://mirror.centos.org/centos/8-stream/BaseOS/x86_64/os
+baseurl=http://mirror.centos.org/centos/8-stream/BaseOS/$basearch/os
 gpgcheck=1
 enabled=1

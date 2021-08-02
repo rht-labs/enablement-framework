@@ -23,11 +23,13 @@ RUN curl -sL https://github.com/bitnami-labs/sealed-secrets/releases/download/v$
     echo "🦭🦭🦭🦭🦭"
 
 # tekton
-RUN curl -sL https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/latest/tkn-linux-amd64-${TEKTON_VERSION}.tar.gz -o /tmp/tkn-linux-amd64-${TEKTON_VERSION}.tar.gz && \
-    tar  --no-same-owner -C /tmp -xzf /tmp/tkn-linux-amd64-${TEKTON_VERSION}.tar.gz && \
-    mv -v /tmp/tkn /usr/local/bin && \
-    chmod -R 775 /usr/local/bin/tkn && \
+RUN curl -L https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/latest/tkn-linux-amd64-${TEKTON_VERSION}.tar.gz | tar --no-same-owner -C /usr/local/bin -xz tkn && \
     echo "🐈🐈🐈🐈🐈"
+
+# oc client
+RUN rm -f /usr/bin/oc && \
+    curl -L https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/${OC_VERSION}/openshift-client-linux.tar.gz | tar -C /usr/local/bin -xzf -&& \
+    echo "🐨🐨🐨🐨🐨"
 
 # jq / yq
 RUN curl -sLo /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 && \
@@ -67,7 +69,7 @@ RUN echo "git config --global http.sslVerify false" >> /etc/bashrc && \
 RUN npm i -g docsify-cli && \
     echo "📚📚📚📚📚"
 
-#clean up 
+# clean up 
 RUN rm -rf /tmp/* && \
     rm -rf $HOME/.cache && \
     chown 1001 /home/jboss/.config && \
