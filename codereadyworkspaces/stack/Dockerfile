@@ -125,7 +125,7 @@ RUN echo "git config --global http.sslVerify false" | tee -a /etc/bashrc -a /etc
 # create user && clean up 
 RUN rm -rf /tmp/* && \
     useradd -u 1001 -G root -d ${HOME} --shell /bin/bash -m developer && \
-    chown -R 1001:0 ${HOME} && chmod 770 ${HOME} && chmod 770 -R ${HOME}/.config && chmod 775 ${PROJECTS} && \
+    chown -R 1001:0 ${HOME} && chmod 770 ${HOME} && chmod 770 -R ${HOME}/.config && chmod 770 -R ${HOME}/.cache && chmod 775 ${PROJECTS} && \
     echo "🧹🧹🧹🧹🧹"
 
 # runtime
