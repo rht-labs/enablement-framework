@@ -28,7 +28,6 @@ components:
     image: quay.io/eformat/stack-do500:latest
     memoryLimit: 2Gi
     mountSources: true
-    command: ['/bin/sh', '-c', 'echo -e "crw_user:x:`id -u`:0:student user:/:/usr/bin/zsh" >> /etc/passwd && sleep infinity']
     volumes:
       - name: projects
         containerPath: /projects
