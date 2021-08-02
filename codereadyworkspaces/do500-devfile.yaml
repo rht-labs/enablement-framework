@@ -28,6 +28,7 @@ components:
     image: quay.io/eformat/stack-do500:latest
     memoryLimit: 2Gi
     mountSources: true
+    command: ['/bin/sh', '-c', 'sleep infinity']
     volumes:
       - name: projects
         containerPath: /projects
