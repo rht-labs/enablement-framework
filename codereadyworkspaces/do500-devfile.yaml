@@ -32,6 +32,8 @@ components:
     volumes:
       - name: projects
         containerPath: /projects
+      - name: config
+        containerPath: /home/developer/.config
     endpoints:
       - name: ide-8080
         port: 8080
