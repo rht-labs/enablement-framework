@@ -25,7 +25,8 @@ ENV NODEJS_VERSION=14 \
     JAVA_HOME=/usr/lib/jvm/java-11-openjdk \
     PATH=$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:/opt/app-root/src/.npm-global/bin/:/usr/lib/jvm/java-11-openjdk/bin:/usr/bin:$PATH \
     MAVEN_URL=https://archive.apache.org/dist/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz \
-    HOME=/projects \
+    HOME=/home/developer \
+    PROJECTS=/projects \
     MAVEN_CONFIG=/projects/.m2
 
 RUN dnf -y module reset nodejs python39 && \
@@ -34,7 +35,7 @@ RUN dnf -y module reset nodejs python39 && \
       bash tar gzip unzip which findutils wget curl git procps-ng bzip2 java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless python39 python39-devel python39-setuptools python39-pip nodejs npm nodejs-nodemon nss_wrapper zsh && \
     dnf -y -q clean all && rm -rf /var/cache/yum && \
     pip3.9 install pylint && \
-    mkdir -p ${HOME} /usr/share/maven && \
+    mkdir -p ${HOME} ${PROJECTS} /usr/share/maven && \
     curl -fsSL ${MAVEN_URL} | tar -xzC /usr/share/maven --strip-components=1 && \
     ln -s /usr/share/maven/bin/mvn /usr/bin/mvn && \
     ln -s /usr/bin/node /usr/bin/nodejs && \
@@ -96,6 +97,13 @@ RUN curl -skL -o /tmp/helm.tar.gz https://get.helm.sh/helm-v${HELM_VERSION}-linu
 RUN npm i -g docsify-cli && \
     echo "📚📚📚📚📚"
 
+# oh-my-zsh 
+RUN git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh && \
+    cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc && \
+    chmod 660 $HOME/.zshrc && \
+    sed -i '1iZSH_DISABLE_COMPFIX=true' $HOME/.zshrc && \
+    echo "😎😎😎😎😎"
+
 # tools debug
 RUN echo "========" && \
     echo -n "argo "; argocd version && \
@@ -117,15 +125,9 @@ RUN echo "git config --global http.sslVerify false" | tee -a /etc/bashrc -a /etc
 # create user && clean up 
 RUN rm -rf /tmp/* && \
     useradd -u 1001 -G root -d ${HOME} --shell /bin/bash -m developer && \
-    chown -R 1001:1001 ${HOME} && chmod 750 ${HOME} && \
+    chown -R 1001:0 ${HOME} && chmod 770 ${HOME} && chmod 770 -R ${HOME}/.config && chmod 775 ${PROJECTS} && \
     echo "🧹🧹🧹🧹🧹"
 
 # runtime
 USER 1001
-
-# oh-my-zsh 
-RUN git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh && \
-    cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc && \
-    echo "😎😎😎😎😎"
-
 WORKDIR /projects

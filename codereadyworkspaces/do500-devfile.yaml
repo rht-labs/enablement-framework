@@ -25,7 +25,7 @@ components:
     id: redhat/vscode-yaml/latest
   - type: dockerimage
     alias: stack-do500
-    image: quay.io/rht-labs/stack-do500:3.0.0
+    image: quay.io/eformat/stack-do500:latest
     memoryLimit: 2Gi
     mountSources: true
     command: ['/bin/sh', '-c', 'echo -e "crw_user:x:`id -u`:0:student user:/:/usr/bin/zsh" >> /etc/passwd && sleep infinity']
