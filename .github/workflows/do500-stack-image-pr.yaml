@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       context: codereadyworkspaces/stack
-      image_name: do500-stack
+      image_name: stack-do500
     steps:
       - uses: actions/checkout@v1
       - name: Get image tags

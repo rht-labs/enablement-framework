@@ -12,7 +12,7 @@ jobs:
   build:
     env:
       context: codereadyworkspaces/stack
-      image_name: do500-stack
+      image_name: stack-do500
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
