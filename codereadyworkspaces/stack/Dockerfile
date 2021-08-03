@@ -120,6 +120,9 @@ RUN echo "========" && \
 RUN echo "git config --global http.sslVerify false" | tee -a /etc/bashrc -a /etc/zshrc && \
     echo "git config --global user.name 'Derek Dinosaur'" | tee -a /etc/bashrc -a /etc/zshrc&& \
     echo "git config --global user.email 'derek@dinosaur.com'" | tee -a /etc/bashrc -a /etc/zshrc && \
+    echo "git config --global credential.helper 'cache --timeout=172800'" | tee -a /etc/bashrc -a /etc/zshrc && \
+    echo "git config --global pull.rebase 'false'" | tee -a /etc/bashrc -a /etc/zshrc && \
+    echo "git config --global push.default 'simple'" | tee -a /etc/bashrc -a /etc/zshrc && \
     echo "🤗🤗🤗🤗🤗"
 
 # create user && clean up 
