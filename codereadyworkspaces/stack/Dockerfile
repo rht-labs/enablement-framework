@@ -40,21 +40,7 @@ RUN dnf -y module reset nodejs python39 && \
     ln -s /usr/share/maven/bin/mvn /usr/bin/mvn && \
     ln -s /usr/bin/node /usr/bin/nodejs && \
     ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python && \
-    ln -s /usr/bin/pip${PYTHON_VERSION} /usr/bin/pip && \
-    # cleanup and summaries
-    echo "Installed Packages" && rpm -qa | sort -V && echo "End Of Installed Packages" && \
-    echo "========" && \
-    java -version && \
-    mvn -version && \
-    echo "========" && \
-    echo -n "Node "; node --version && \
-    echo -n "npm ";  npm --version && \
-    echo "========" && \
-    python -V && \
-    pip -V && \
-    pylint --version && \
-    echo "========"
-
+    ln -s /usr/bin/pip${PYTHON_VERSION} /usr/bin/pip 
 # argo
 RUN curl -sL https://github.com/argoproj/argo-cd/releases/download/v${ARGOCD_VERSION}/argocd-linux-amd64 -o /usr/local/bin/argocd && \
     chmod -R 775 /usr/local/bin/argocd && \
@@ -104,18 +90,6 @@ RUN git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh && 
     sed -i '1iZSH_DISABLE_COMPFIX=true' $HOME/.zshrc && \
     echo "😎😎😎😎😎"
 
-# tools debug
-RUN echo "========" && \
-    echo -n "argo "; argocd version && \
-    echo "========" && \
-    echo -n "kubeseal ";  kubeseal --version && \
-    echo "========" && \
-    echo -n "oc ";  oc version && \
-    echo "========" && \
-    echo -n "jq ";  jq --version && \
-    echo -n "yq ";  yq --version && \
-    echo "========"
-
 # sort out git
 RUN echo "git config --global http.sslVerify false" | tee -a /etc/bashrc -a /etc/zshrc && \
     echo "git config --global user.name 'Derek Dinosaur'" | tee -a /etc/bashrc -a /etc/zshrc&& \
@@ -127,7 +101,7 @@ RUN echo "git config --global http.sslVerify false" | tee -a /etc/bashrc -a /etc
 
 # create user && clean up 
 RUN rm -rf /tmp/* && \
-    useradd -u 1001 -G root -d ${HOME} --shell /bin/bash -m developer && \
+    useradd -u 1001 -G root -d ${HOME} --shell /bin/bash developer && \
     chown -R 1001:0 ${HOME} && chmod 770 ${HOME} && chmod 770 -R ${HOME}/.config && chmod 770 -R ${HOME}/.cache && chmod 775 ${PROJECTS} && \
     echo "🧹🧹🧹🧹🧹"
 
