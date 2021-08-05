@@ -88,6 +88,7 @@ RUN git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh && 
     cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc && \
     chmod 660 $HOME/.zshrc && \
     sed -i '1iZSH_DISABLE_COMPFIX=true' $HOME/.zshrc && \
+    sed -i '/^# DISABLE_MAGIC_FUNCTIONS.*/s/^#//' $HOME/.zshrc && \
     echo "😎😎😎😎😎"
 
 # sort out git
