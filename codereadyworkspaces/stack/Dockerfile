@@ -32,7 +32,7 @@ ENV NODEJS_VERSION=14 \
 RUN dnf -y module reset nodejs python39 && \
     dnf -y module enable python39:${PYTHON_VERSION} nodejs:$NODEJS_VERSION && \
     dnf -y install \
-      bash tar gzip unzip which findutils wget curl git procps-ng bzip2 java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless python39 python39-devel python39-setuptools python39-pip nodejs npm nodejs-nodemon nss_wrapper zsh && \
+      bash tar gzip unzip which findutils wget curl git procps-ng bzip2 java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless python39 python39-devel python39-setuptools python39-pip nodejs npm nodejs-nodemon nss_wrapper zsh iputils bind-utils net-tools && \
     dnf -y -q clean all && rm -rf /var/cache/yum && \
     pip3.9 install pylint && \
     mkdir -p ${HOME} ${PROJECTS} /usr/share/maven && \
