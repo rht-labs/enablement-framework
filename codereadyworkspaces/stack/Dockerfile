@@ -17,7 +17,8 @@ ENV ARGOCD_VERSION=2.0.5 \
     OC_VERSION=4.8.3 \
     JQ_VERSION=1.6 \
     CONFTEST_VERSION=0.23.0 \
-    ZSH_VERSION=5.8
+    ZSH_VERSION=5.8 \
+    ROX_VERSION=3.63.0
 
 # this is based off of registry.redhat.io/codeready-workspaces/plugin-java8-rhel8
 ENV NODEJS_VERSION=14 \
@@ -40,7 +41,8 @@ RUN dnf -y module reset nodejs python39 && \
     ln -s /usr/share/maven/bin/mvn /usr/bin/mvn && \
     ln -s /usr/bin/node /usr/bin/nodejs && \
     ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python && \
-    ln -s /usr/bin/pip${PYTHON_VERSION} /usr/bin/pip 
+    ln -s /usr/bin/pip${PYTHON_VERSION} /usr/bin/pip
+
 # argo
 RUN curl -sL https://github.com/argoproj/argo-cd/releases/download/v${ARGOCD_VERSION}/argocd-linux-amd64 -o /usr/local/bin/argocd && \
     chmod -R 775 /usr/local/bin/argocd && \
@@ -57,8 +59,13 @@ RUN curl -sL https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/late
 
 # oc client
 RUN rm -f /usr/bin/oc && \
-    curl -sL https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/${OC_VERSION}/openshift-client-linux.tar.gz | tar -C /usr/local/bin -xzf -&& \
+    curl -sL https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/${OC_VERSION}/openshift-client-linux.tar.gz | tar -C /usr/local/bin -xzf - && \
     echo "🐨🐨🐨🐨🐨"
+
+# roxctl client
+RUN curl -sL -o /usr/local/bin/roxctl https://mirror.openshift.com/pub/rhacs/assets/${ROX_VERSION}/bin/Linux/roxctl && \
+    chmod +x /usr/local/bin/roxctl && \
+    echo "🦜🦜🦜🦜🦜"
 
 # jq / yq
 RUN curl -sLo /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 && \
