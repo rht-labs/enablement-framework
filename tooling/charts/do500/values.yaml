@@ -91,3 +91,5 @@ sealed-secrets:
     fsGroup: ""
   commandArgs:
     - "--update-status=true"
+
+userworkloadmonitoring: true
