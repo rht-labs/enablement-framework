@@ -3,5 +3,4 @@ kind: Namespace
 apiVersion: v1
 metadata:
   name: {{ .Values.stackrox.namespace | quote }}
-EOF
 {{- end }}
