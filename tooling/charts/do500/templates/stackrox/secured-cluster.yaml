@@ -1,0 +1,21 @@
+{{- if .Values.stackrox.enabled }}
+apiVersion: platform.stackrox.io/v1alpha1
+kind: SecuredCluster
+metadata:
+  name: stackrox-secured-cluster-services
+  namespace: {{ .Values.stackrox.namespace | quote }}
+spec:
+  admissionControl:
+    listenOnCreates: false
+    listenOnEvents: true
+    listenOnUpdates: false
+  auditLogs:
+    collection: Auto
+  centralEndpoint: 'central.stackrox:443'
+  clusterName: {{ .Values.stackrox.clusterName | quote }}
+  perNode:
+    collector:
+      collection: KernelModule
+      imageFlavor: Regular
+    taintToleration: TolerateTaints
+{{- end }}
