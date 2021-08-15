@@ -43,7 +43,7 @@ operators:
       operatorName: cert-utils-operator
       sourceName: community-operators
       sourceNamespace: openshift-marketplace
-      csv: redhat-openshift-pipelines.v1.1.0
+      csv: cert-utils-operator.v1.1.0
     operatorgroup:
       create: false
 
