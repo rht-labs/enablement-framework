@@ -5,7 +5,7 @@ metadata:
   annotations:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "25"
-  namespace: openshift-operators
+  namespace: stackrox
   name: stackrox-central-services
 spec:
   central:
