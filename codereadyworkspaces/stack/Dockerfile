@@ -18,7 +18,8 @@ ENV ARGOCD_VERSION=2.0.5 \
     JQ_VERSION=1.6 \
     CONFTEST_VERSION=0.23.0 \
     ZSH_VERSION=5.8 \
-    ROX_VERSION=3.63.0
+    ROX_VERSION=3.63.0 \
+    KUBELINTER_VERSION=0.2.2
 
 # this is based off of registry.redhat.io/codeready-workspaces/plugin-java8-rhel8
 ENV NODEJS_VERSION=14 \
@@ -66,6 +67,11 @@ RUN rm -f /usr/bin/oc && \
 RUN curl -sL -o /usr/local/bin/roxctl https://mirror.openshift.com/pub/rhacs/assets/${ROX_VERSION}/bin/Linux/roxctl && \
     chmod +x /usr/local/bin/roxctl && \
     echo "🦜🦜🦜🦜🦜"
+
+# kube-linter
+RUN curl -sL https://github.com/stackrox/kube-linter/releases/download/${KUBELINTER_VERSION}/kube-linter-linux.tar.gz | tar -C /usr/local/bin -xzf - && \
+    chmod +x /usr/local/bin/kube-linter && \
+    echo "🐐🐐🐐🐐🐐"
 
 # jq / yq
 RUN curl -sLo /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 && \

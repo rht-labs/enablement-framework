@@ -1,5 +1,5 @@
 {{- range $op := .Values.operators }}
-{{- if $op.operatorgroup }}
+{{- if $op.operatorgroup.create }}
 {{- $og := $op.operatorgroup }}
 ---
 apiVersion: operators.coreos.com/v1
