@@ -47,6 +47,18 @@ operators:
     operatorgroup:
       create: false
 
+  - name: rhacs-operator
+    namespace: openshift-operators
+    subscription:
+      channel: latest
+      approval: Automatic
+      operatorName: rhacs-operator
+      source: redhat-operators
+      sourceNamespace: openshift-marketplace
+      startingCSV: rhacs-operator.v3.63.0
+    operatorgroup:
+      create: false
+
 gitlab:
   namespace: do500-gitlab
   root_password: Password123
@@ -106,3 +118,8 @@ sealed-secrets:
     - "--update-status=true"
 
 userworkloadmonitoring: true
+
+stackrox:
+  enabled: true
+  clusterName: do500
+  namespace: stackrox
