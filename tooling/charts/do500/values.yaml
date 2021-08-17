@@ -35,6 +35,18 @@ operators:
     operatorgroup:
       create: false
 
+  - name: cert-utils-operator
+    namespace: openshift-operators
+    subscription:
+      channel: alpha
+      approval: Automatic
+      operatorName: cert-utils-operator
+      sourceName: community-operators
+      sourceNamespace: openshift-marketplace
+      csv: cert-utils-operator.v1.1.0
+    operatorgroup:
+      create: false
+
   - name: rhacs-operator
     namespace: openshift-operators
     subscription:
