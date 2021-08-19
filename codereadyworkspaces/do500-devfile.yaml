@@ -25,7 +25,7 @@ components:
     id: redhat/vscode-yaml/latest
   - type: dockerimage
     alias: stack-do500
-    image: quay.io/rht-labs/stack-do500:3.0.6
+    image: quay.io/rht-labs/stack-do500:3.0.7
     memoryLimit: 2Gi
     mountSources: true
     command: ['/bin/sh', '-c', 'sleep infinity']
