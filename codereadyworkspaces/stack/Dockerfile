@@ -19,7 +19,8 @@ ENV ARGOCD_VERSION=2.0.5 \
     CONFTEST_VERSION=0.23.0 \
     ZSH_VERSION=5.8 \
     ROX_VERSION=3.63.0 \
-    KUBELINTER_VERSION=0.2.2
+    KUBELINTER_VERSION=0.2.2 \
+    COSIGN_VERSION=1.0.0
 
 # this is based off of registry.redhat.io/codeready-workspaces/plugin-java8-rhel8
 ENV NODEJS_VERSION=14 \
@@ -91,6 +92,11 @@ RUN curl -skL -o /tmp/helm.tar.gz https://get.helm.sh/helm-v${HELM_VERSION}-linu
     chmod -R 775 /usr/local/bin/helm && \
     rm -rf /tmp/linux-amd64 && \
     echo "⚓️⚓️⚓️⚓️⚓️"
+
+# cosign
+RUN curl -skL -o /usr/local/bin/cosign https://github.com/sigstore/cosign/releases/download/v${COSIGN_VERSION}/cosign-linux-amd64 && \
+    chmod -R 775 /usr/local/bin/cosign && \
+    echo "🔒🔒🔒🔒"
 
 # docsify-cli
 RUN npm i -g docsify-cli && \
