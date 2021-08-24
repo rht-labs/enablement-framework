@@ -59,6 +59,57 @@ operators:
     operatorgroup:
       create: false
 
+  - name: elasticsearch-operator
+    namespace: openshift-operators-redhat
+    subscription:
+      channel: stable-5.1
+      approval: Automatic
+      source: redhat-operators
+      sourceNamespace: openshift-marketplace
+      startingCSV: elasticsearch-operator.5.1.1-36
+    operatorgroup:
+      create: false
+
+  - name: cluster-logging-operator
+    namespace: openshift-logging
+    subscription:
+      channel: stable-5.1
+      approval: Automatic
+      operatorName: cluster-logging
+      source: redhat-operators
+      sourceNamespace: openshift-marketplace
+      startingCSV: cluster-logging.5.1.1-36
+    operatorgroup:
+      create: false
+
+logging:
+  # Might be needed with clusters that have an infra plane
+  # nodeSelector:
+  #   key: node-role.kubernetes.io/infra
+  #   value: ''
+
+  tolerations:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/infra
+    operator: Exists
+
+  elasticsearch:
+    requests:
+      cpu: 500m
+      memory: 4Gi
+    limits:
+      cpu: 4000m
+      memory: 16Gi
+    storage:
+      # size: 200G
+      # class: gp2
+    nodeCount: 1
+    retentionPolicy:
+      application: 7d
+    redundancyPolicy: ZeroRedundancy
+
+  kibana: {}
+
 gitlab:
   namespace: do500-gitlab
   root_password: Password123
