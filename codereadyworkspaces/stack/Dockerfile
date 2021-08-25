@@ -98,6 +98,11 @@ RUN curl -skL -o /usr/local/bin/cosign https://github.com/sigstore/cosign/releas
     chmod -R 775 /usr/local/bin/cosign && \
     echo "🔒🔒🔒🔒"
 
+# hey
+RUN curl -skL -o /usr/local/bin/hey https://hey-release.s3.us-east-2.amazonaws.com/hey_linux_amd64 && \
+    chmod 775 /usr/local/bin/hey && \
+    echo "👋👋👋"
+
 # docsify-cli
 RUN npm i -g docsify-cli && \
     echo "📚📚📚📚📚"
