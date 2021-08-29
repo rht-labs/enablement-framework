@@ -69,7 +69,7 @@ operators:
       sourceNamespace: openshift-marketplace
       startingCSV: elasticsearch-operator.5.1.1-36
     operatorgroup:
-      create: false
+      create: true
 
   - name: cluster-logging-operator
     namespace: openshift-logging
