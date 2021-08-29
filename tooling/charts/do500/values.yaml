@@ -60,10 +60,11 @@ operators:
       create: false
 
   - name: elasticsearch-operator
-    namespace: openshift-operators-redhat
+    namespace: openshift-operators
     subscription:
       channel: stable-5.1
       approval: Automatic
+      operatorName: elasticsearch-operator
       source: redhat-operators
       sourceNamespace: openshift-marketplace
       startingCSV: elasticsearch-operator.5.1.1-36
@@ -80,7 +81,7 @@ operators:
       sourceNamespace: openshift-marketplace
       startingCSV: cluster-logging.5.1.1-36
     operatorgroup:
-      create: false
+      create: true
 
 logging:
   # Might be needed with clusters that have an infra plane
@@ -95,8 +96,8 @@ logging:
 
   elasticsearch:
     requests:
-      cpu: 500m
-      memory: 4Gi
+      cpu: 250m
+      memory: 512Mi
     limits:
       cpu: 4000m
       memory: 16Gi
@@ -131,7 +132,7 @@ gitlab:
 #    validate_certs: "false"
 #    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
 #    password: password
-    secret_name: my-ldap-secret-name
+    secret_name: ldap-bind-password
 
 crw:
   namespace: do500-workspaces
