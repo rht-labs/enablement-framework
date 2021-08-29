@@ -60,7 +60,7 @@ operators:
       create: false
 
   - name: elasticsearch-operator
-    namespace: openshift-operators
+    namespace: openshift-operators-redhat
     subscription:
       channel: stable-5.1
       approval: Automatic
