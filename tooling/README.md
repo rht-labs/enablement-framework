@@ -9,6 +9,9 @@ This chart is capable of deploying the following:
 - Instructor Documentation
 - SealedSecrets from Bitnami
 - OpenShift Pipelines
+- Advanced Cluster Security (StackRox)
+- Cluster Logging (ELK)
+- Certificate Utils
 
 ## Installation
 

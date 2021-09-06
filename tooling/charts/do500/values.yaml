@@ -31,7 +31,7 @@ operators:
       operatorName: openshift-pipelines-operator-rh
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
-      csv: redhat-openshift-pipelines.v1.5.0
+      csv: redhat-openshift-pipelines.v1.5.1
     operatorgroup:
       create: false
 
@@ -43,7 +43,7 @@ operators:
       operatorName: cert-utils-operator
       sourceName: community-operators
       sourceNamespace: openshift-marketplace
-      csv: cert-utils-operator.v1.1.0
+      csv: cert-utils-operator.v1.3.0
     operatorgroup:
       create: false
 
@@ -55,7 +55,7 @@ operators:
       operatorName: rhacs-operator
       source: redhat-operators
       sourceNamespace: openshift-marketplace
-      startingCSV: rhacs-operator.v3.63.0
+      startingCSV: rhacs-operator.v3.64.1
     operatorgroup:
       create: false
 
@@ -64,11 +64,12 @@ operators:
     subscription:
       channel: stable-5.1
       approval: Automatic
+      operatorName: elasticsearch-operator
       source: redhat-operators
       sourceNamespace: openshift-marketplace
       startingCSV: elasticsearch-operator.5.1.1-36
     operatorgroup:
-      create: false
+      create: true
 
   - name: cluster-logging-operator
     namespace: openshift-logging
@@ -80,7 +81,7 @@ operators:
       sourceNamespace: openshift-marketplace
       startingCSV: cluster-logging.5.1.1-36
     operatorgroup:
-      create: false
+      create: true
 
 logging:
   # Might be needed with clusters that have an infra plane
@@ -95,8 +96,8 @@ logging:
 
   elasticsearch:
     requests:
-      cpu: 500m
-      memory: 4Gi
+      cpu: 250m
+      memory: 512Mi
     limits:
       cpu: 4000m
       memory: 16Gi
@@ -131,7 +132,7 @@ gitlab:
 #    validate_certs: "false"
 #    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
 #    password: password
-    secret_name: my-ldap-secret-name
+    secret_name: ldap-bind-password
 
 crw:
   namespace: do500-workspaces
