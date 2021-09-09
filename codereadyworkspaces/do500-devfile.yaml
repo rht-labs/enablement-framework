@@ -34,6 +34,8 @@ components:
         containerPath: /projects
       - name: config
         containerPath: /home/developer/.config
+      - name: npm
+        containerPath: /home/developer/.npm
     endpoints:
       - name: ide-8080
         port: 8080
