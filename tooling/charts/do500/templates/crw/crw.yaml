@@ -32,6 +32,6 @@ spec:
     identityProviderClientId: ''
   storage:
     pvcStrategy: per-workspace
-    pvcClaimSize: 1Gi
+    pvcClaimSize: 2Gi
     preCreateSubPaths: true
 {{- end }}
