@@ -20,13 +20,14 @@ ENV ARGOCD_VERSION=2.0.5 \
     ZSH_VERSION=5.8 \
     ROX_VERSION=3.63.0 \
     KUBELINTER_VERSION=0.2.2 \
-    COSIGN_VERSION=1.0.0
+    COSIGN_VERSION=1.0.0 \
+    JSONNET_VERSION=0.17.0
 
 # this is based off of registry.redhat.io/codeready-workspaces/plugin-java8-rhel8
 ENV NODEJS_VERSION=14 \
     PYTHON_VERSION="3.9" \
     JAVA_HOME=/usr/lib/jvm/java-11-openjdk \
-    PATH=$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:/opt/app-root/src/.npm-global/bin/:/usr/lib/jvm/java-11-openjdk/bin:/usr/bin:$PATH \
+    PATH=$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:/opt/app-root/src/.npm-global/bin/:/usr/lib/jvm/java-11-openjdk/bin:/usr/bin:$HOME/go/bin:$PATH \
     MAVEN_URL=https://archive.apache.org/dist/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz \
     HOME=/home/developer \
     PROJECTS=/projects \
@@ -35,7 +36,7 @@ ENV NODEJS_VERSION=14 \
 RUN dnf -y module reset nodejs python39 && \
     dnf -y module enable python39:${PYTHON_VERSION} nodejs:$NODEJS_VERSION && \
     dnf -y install \
-      bash tar gzip unzip which findutils wget curl git procps-ng bzip2 java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless python39 python39-devel python39-setuptools python39-pip nodejs npm nodejs-nodemon nss_wrapper zsh iputils bind-utils net-tools && \
+      bash tar gzip unzip which findutils wget curl git procps-ng bzip2 java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless python39 python39-devel python39-setuptools python39-pip nodejs npm nodejs-nodemon nss_wrapper zsh iputils bind-utils net-tools go-toolset && \
     dnf -y -q clean all && rm -rf /var/cache/yum && \
     pip3.9 install pylint && \
     mkdir -p ${HOME} ${PROJECTS} /usr/share/maven && \
@@ -102,6 +103,15 @@ RUN curl -skL -o /usr/local/bin/cosign https://github.com/sigstore/cosign/releas
 RUN curl -skL -o /usr/local/bin/hey https://hey-release.s3.us-east-2.amazonaws.com/hey_linux_amd64 && \
     chmod 775 /usr/local/bin/hey && \
     echo "👋👋👋"
+
+# jsonnet & jsonnet bundler 
+RUN GO111MODULE="on" go get github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb github.com/brancz/gojsontoyaml && \
+    curl -skL -o /tmp/jsonnet.tar.gz https://github.com/google/jsonnet/releases/download/v${JSONNET_VERSION}/jsonnet-bin-v${JSONNET_VERSION}-linux.tar.gz && \
+    tar -C /tmp -xzf /tmp/jsonnet.tar.gz && \
+    mv -v /tmp/jsonnet /usr/local/bin && \
+    chmod -R 775 /usr/local/bin/jsonnet && \
+    rm -rf /tmp/jsonnet* && \
+    echo "🎺🎺🎺🎺"
 
 # docsify-cli
 RUN npm i -g docsify-cli && \
