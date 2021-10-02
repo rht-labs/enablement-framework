@@ -1,6 +1,0 @@
-{{- if .Values.stackrox.enabled }}
-kind: Namespace
-apiVersion: v1
-metadata:
-  name: {{ .Values.stackrox.namespace | quote }}
-{{- end }}

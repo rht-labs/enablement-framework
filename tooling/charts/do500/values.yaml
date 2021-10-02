@@ -47,18 +47,6 @@ operators:
     operatorgroup:
       create: false
 
-  - name: rhacs-operator
-    namespace: openshift-operators
-    subscription:
-      channel: latest
-      approval: Automatic
-      operatorName: rhacs-operator
-      source: redhat-operators
-      sourceNamespace: openshift-marketplace
-      startingCSV: rhacs-operator.v3.65.1
-    operatorgroup:
-      create: false
-
   - name: elasticsearch-operator
     namespace: openshift-operators-redhat
     subscription:
