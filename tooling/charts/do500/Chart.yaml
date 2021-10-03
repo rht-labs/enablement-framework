@@ -16,7 +16,7 @@ dependencies:
     version: "1.16.1"
     repository: https://bitnami-labs.github.io/sealed-secrets
     condition: sealed-secrets.enabled
-  - name: 
+  - name: stackrox-chart
     version: "0.0.1"
     repository: https://eformat.github.io/helm-charts
     condition: stackrox.enabled

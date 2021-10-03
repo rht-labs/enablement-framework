@@ -18,8 +18,9 @@ This chart is capable of deploying the following:
 ```bash
 cd ./do500
 helm dep up
-helm upgrade --install do500 . --namespace do500 --create-namespace
+helm upgrade --install do500 . --namespace do500 --create-namespace --timeout=15m
 ```
+
 ## Deleting
 
 To delete:
