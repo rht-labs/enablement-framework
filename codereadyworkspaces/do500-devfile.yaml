@@ -23,6 +23,9 @@ components:
   - alias: vscode-yaml
     type: chePlugin
     id: redhat/vscode-yaml/latest
+  - alias: typescript-language-features
+    type: chePlugin  
+    id: vscode/typescript-language-features/latest
   - type: dockerimage
     alias: stack-do500
     image: quay.io/rht-labs/stack-do500:3.0.9
