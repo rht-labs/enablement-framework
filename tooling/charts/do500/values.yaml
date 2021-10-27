@@ -11,17 +11,17 @@ namespaces:
 #  - name: do500-slides
 
 operators:
-  - name: codeready-workspaces
-    namespace: do500-workspaces
+  - name: codeready-workspaces2
+    namespace: openshift-operators
     subscription:
-      channel: latest
-      approval: Automatic
-      operatorName: codeready-workspaces
-      sourceName: redhat-operators
+      channel: tech-preview-latest-all-namespaces
+      installPlanApproval: Automatic
+      name: codeready-workspaces2
+      source: redhat-operators
       sourceNamespace: openshift-marketplace
-      csv: crwoperator.v2.10.1
+      startingCSV: crwoperatorallnamespaces.v2.12.101
     operatorgroup:
-      create: true
+      create: false
 
   - name: openshift-pipelines-operator-rh
     namespace: openshift-operators
@@ -50,24 +50,24 @@ operators:
   - name: elasticsearch-operator
     namespace: openshift-operators-redhat
     subscription:
-      channel: stable-5.1
+      channel: stable-5.2
       approval: Automatic
       operatorName: elasticsearch-operator
       source: redhat-operators
       sourceNamespace: openshift-marketplace
-      startingCSV: elasticsearch-operator.5.1.1-36
+      startingCSV: elasticsearch-operator.5.2.2-21
     operatorgroup:
       create: true
 
   - name: cluster-logging-operator
     namespace: openshift-logging
     subscription:
-      channel: stable-5.1
+      channel: stable-5.2
       approval: Automatic
       operatorName: cluster-logging
       source: redhat-operators
       sourceNamespace: openshift-marketplace
-      startingCSV: cluster-logging.5.1.1-36
+      startingCSV: cluster-logging.5.2.2-21
     operatorgroup:
       create: true
 
