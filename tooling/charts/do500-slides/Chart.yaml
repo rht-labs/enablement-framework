@@ -1,0 +1,14 @@
+apiVersion: v2
+name: do500-slides
+description: A Helm chart for Kubernetes to deploy DO500 Slides
+type: application
+version: 0.0.1
+appVersion: 0.0.1
+maintainers:
+  - name: eformat
+  - name: tylerauerbeck
+  - name: jacobsee
+  - name: jtudelag
+  - name: ckavili
+  - name: springdo
+  - name: rmarting

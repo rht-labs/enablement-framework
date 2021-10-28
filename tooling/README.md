@@ -16,21 +16,35 @@ This chart is capable of deploying the following:
 ## Installation
 
 ```bash
-cd ./do500
+cd .charts/do500
 helm dep up
 helm upgrade --install do500 . --namespace do500 --create-namespace --timeout=15m
+```
+
+To install DO500 slides:
+
+```bash
+cd .charts/do500-slides
+helm upgrade --install do500-slides . --namespace do500-slides --create-namespace --timeout=15m
 ```
 
 ## Deleting
 
 To delete:
+
 ```bash
 helm uninstall do500 --namespace do500
 ```
 
+To delete DO500 slides:
+
+```bash
+helm uninstall do500-slides --namespace do500-slides
+```
+
 ## Gitlab
 
-With Gitlab, it expects to be able to run against a configured LDAP server. This can be acheived by either uncommenting and providing the appropriate values in your `values.yaml` or you can allow the helm chart to discover these values itself.
+With Gitlab, it expects to be able to run against a configured LDAP server. This can be achieved by either uncommenting and providing the appropriate values in your `values.yaml` or you can allow the helm chart to discover these values itself.
 
 After this is deployed, you will have a functional gitlab server that can be used along with your LDAP identities.
 

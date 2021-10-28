@@ -1,0 +1,16 @@
+# Default values for do500-slides
+
+# Create a helper to create a prefix if one isn't provided? Would help if we moved to shared clusters
+prefix: ""
+
+namespaces:
+  - name: do500-slides
+
+docs:
+  name: do500-slides
+  namespace: do500-slides 
+  build:
+    source_context_dir: "slides"
+    source_repo: "https://github.com/rht-labs/enablement-docs"
+    s2i_name: "nodejs"
+    s2i_tag: "12-ubi8"
