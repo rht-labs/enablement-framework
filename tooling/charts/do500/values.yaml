@@ -8,7 +8,6 @@ namespaces:
   - name: do500-workspaces
   - name: do500-gitlab
   - name: do500-shared
-#  - name: do500-slides
 
 operators:
   - name: codeready-workspaces2
@@ -134,15 +133,6 @@ crw:
     CHE_DOCKER_ALWAYS__PULL__IMAGE: "true"
     CHE_WORKSPACE_DEFAULT__MEMORY__LIMIT__MB: "3072"
     CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: "-1"
-
-#docs:
-#  name: do500-slides
-#  namespace: do500-slides 
-#  build:
-#    source_context_dir: "slides"
-#    source_repo: "https://github.com/rht-labs/enablement-docs"
-#    s2i_name: "nodejs"
-#    s2i_tag: "10"
 
 sealed-secrets:
   # Disabled by default
