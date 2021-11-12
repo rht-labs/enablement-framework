@@ -57,13 +57,13 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
-  name: do500-users
+  name: {{ .Values.group_name }}
 ---
 # to access StackRox
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: do500-users-edit
+  name: {{ .Values.group_name }}-edit
   namespace: stackrox
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -72,7 +72,7 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
-  name: do500-users
+  name: {{ .Values.group_name }}
 ---
 # to view do500 codeready workspaces namespaces
 apiVersion: rbac.authorization.k8s.io/v1
@@ -87,7 +87,7 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
-  name: do500-users
+  name: {{ .Values.group_name }}
 ---
 # to view do500 gitlab namespaces
 apiVersion: rbac.authorization.k8s.io/v1
@@ -102,7 +102,7 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
-  name: do500-users
+  name: {{ .Values.group_name }}
 ---
 # to view do500 shared namespaces
 apiVersion: rbac.authorization.k8s.io/v1
@@ -117,7 +117,7 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
-  name: do500-users
+  name: {{ .Values.group_name }}
 ---
 # to view do500 IPA namespaces
 apiVersion: rbac.authorization.k8s.io/v1
@@ -132,4 +132,4 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
-  name: do500-users
+  name: {{ .Values.group_name }}
