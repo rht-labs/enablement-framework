@@ -18,11 +18,11 @@ operators:
     namespace: openshift-operators
     subscription:
       channel: tech-preview-latest-all-namespaces
-      installPlanApproval: Automatic
-      name: codeready-workspaces2
-      source: redhat-operators
+      approval: Automatic
+      operatoNname: codeready-workspaces2
+      sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
-      startingCSV: crwoperatorallnamespaces.v2.12.101
+      csv: crwoperatorallnamespaces.v2.12.101
     operatorgroup:
       create: false
 
@@ -115,7 +115,7 @@ gitlab:
     - name: "postgresql"
       tag_name: "latest"
       stream_uri: "registry.redhat.io/rhscl/postgresql-96-rhel7"
-  ldap:
+#  ldap:
 #    port: "389"
 #    base: "dc=CORP,dc=EXAMPLE,dc=COM"
 #    uri: "MY-LDAP.example.corp.com"
@@ -123,7 +123,7 @@ gitlab:
 #    validate_certs: "false"
 #    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
 #    password: password
-    secret_name: ldap-bind-password
+#    secret_name: ldap-bind-password
 
 crw:
   namespace: do500-workspaces
