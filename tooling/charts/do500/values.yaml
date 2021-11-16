@@ -19,7 +19,7 @@ operators:
     subscription:
       channel: tech-preview-latest-all-namespaces
       approval: Automatic
-      operatoNname: codeready-workspaces2
+      operatorName: codeready-workspaces2
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
       csv: crwoperatorallnamespaces.v2.12.101
