@@ -2,7 +2,7 @@ apiVersion: v2
 name: do500
 description: A Helm chart for Kubernetes
 type: application
-version: 0.0.4
+version: 0.0.5
 appVersion: 0.0.1
 maintainers:
   - name: eformat
@@ -20,3 +20,7 @@ dependencies:
     version: "0.0.1"
     repository: https://redhat-cop.github.io/helm-charts
     condition: stackrox.enabled
+  - name: gitops-operator
+    version: "0.0.1"
+    repository: https://redhat-cop.github.io/helm-charts
+    condition: gitops-operator.enabled

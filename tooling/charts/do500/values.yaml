@@ -166,3 +166,8 @@ stackrox:
   enabled: true
   clusterName: do500
   namespace: stackrox
+
+gitops-operator:
+  enabled: true
+  namespaces:
+  ignoreHelmHooks: true
