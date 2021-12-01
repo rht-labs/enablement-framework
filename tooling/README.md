@@ -12,6 +12,7 @@ This chart is capable of deploying the following:
 - Advanced Cluster Security (StackRox)
 - Cluster Logging (ELK)
 - Certificate Utils
+- GitOps Operator (ArgoCD)
 
 ## Installation
 
