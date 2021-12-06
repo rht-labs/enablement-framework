@@ -7,5 +7,5 @@ spec:
   releaseName: do500 
   chart:
     git: https://github.com/rht-labs/enablement-framework
-    ref: v1.0.0
+    ref: main
     path: tooling/charts/do500 
