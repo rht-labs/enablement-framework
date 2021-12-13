@@ -22,7 +22,7 @@ operators:
       operatorName: codeready-workspaces2
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
-      csv: crwoperatorallnamespaces.v2.12.101
+      csv: crwoperatorallnamespaces.v2.13.101-0.1639048038.p
     operatorgroup:
       create: false
 
@@ -34,7 +34,7 @@ operators:
       operatorName: openshift-pipelines-operator-rh
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
-      csv: redhat-openshift-pipelines.v1.5.2
+      csv: openshift-pipelines-operator-rh.v1.6.0
     operatorgroup:
       create: false
 
@@ -46,7 +46,7 @@ operators:
       operatorName: cert-utils-operator
       sourceName: community-operators
       sourceNamespace: openshift-marketplace
-      csv: cert-utils-operator.v1.3.0
+      csv: cert-utils-operator.v1.3.2
     operatorgroup:
       create: false
 
@@ -58,7 +58,7 @@ operators:
       operatorName: elasticsearch-operator
       source: redhat-operators
       sourceNamespace: openshift-marketplace
-      startingCSV: elasticsearch-operator.5.2.2-21
+      startingCSV: elasticsearch-operator.5.2.3-31
     operatorgroup:
       create: true
 
@@ -70,7 +70,7 @@ operators:
       operatorName: cluster-logging
       source: redhat-operators
       sourceNamespace: openshift-marketplace
-      startingCSV: cluster-logging.5.2.2-21
+      startingCSV: cluster-logging.5.2.3-31
     operatorgroup:
       create: true
 
