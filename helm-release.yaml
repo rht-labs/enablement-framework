@@ -5,6 +5,7 @@ metadata:
   namespace: do500
 spec:
   releaseName: do500 
+  timeout: 1200
   chart:
     git: https://github.com/rht-labs/enablement-framework
     ref: main
