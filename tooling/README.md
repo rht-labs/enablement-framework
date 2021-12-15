@@ -1,6 +1,6 @@
-# DO500 Cluster Tooling
+# tl500 Cluster Tooling
 
-This directory contains the necessary charts used in order to deploy a DO500 Tech Stack against an OCP 4.X cluster. This assumes that the cluster has valid certificates.
+This directory contains the necessary charts used in order to deploy a tl500 Tech Stack against an OCP 4.X cluster. This assumes that the cluster has valid certificates.
 
 This chart is capable of deploying the following:
 
@@ -17,16 +17,16 @@ This chart is capable of deploying the following:
 ## Installation
 
 ```bash
-cd ./do500
+cd ./tl500
 helm dep up
-helm upgrade --install do500 . --namespace do500 --create-namespace --timeout=15m
+helm upgrade --install tl500 . --namespace tl500 --create-namespace --timeout=15m
 ```
 
 ## Deleting
 
 To delete:
 ```bash
-helm uninstall do500 --namespace do500
+helm uninstall tl500 --namespace tl500
 ```
 
 ## Gitlab

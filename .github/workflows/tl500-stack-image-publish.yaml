@@ -1,4 +1,4 @@
-name: do500-stack-image-publish
+name: tl500-stack-image-publish
 on:
   push:
     branches:
@@ -7,12 +7,12 @@ on:
       - '*'
     paths:
       - codereadyworkspaces/stack/VERSION
-      - .github/workflows/do500-stack-image-publish.yaml
+      - .github/workflows/tl500-stack-image-publish.yaml
 jobs:
   build:
     env:
       context: codereadyworkspaces/stack
-      image_name: stack-do500
+      image_name: stack-tl500
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
