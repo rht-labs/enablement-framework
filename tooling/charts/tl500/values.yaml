@@ -4,8 +4,8 @@ gitlab_app_name: "gitlab-ce"
 # Create a helper to create a prefix if one isn't provided? Would help if we moved to shared clusters
 prefix: ""
 
-# Group name in LDAP / FreeIPA for attendees 
-group_name: tl500-participant
+# Group name in LDAP / IdM (FreeIPA) for attendees 
+group_name: student
 
 namespaces:
   - name: tl500-workspaces
