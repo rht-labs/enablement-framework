@@ -1,7 +1,7 @@
 apiVersion: 1.0.0
 metadata:
-  name: do500
-  generateName: do500-
+  name: tl500
+  generateName: tl500-
 projects:
   - name: tech-exercise
     clonePath: tech-exercise
@@ -27,8 +27,8 @@ components:
     type: chePlugin  
     id: vscode/typescript-language-features/latest
   - type: dockerimage
-    alias: stack-do500
-    image: quay.io/rht-labs/stack-do500:3.0.10
+    alias: stack-tl500
+    image: quay.io/rht-labs/stack-tl500:3.0.10
     memoryLimit: 2Gi
     mountSources: true
     args: ['/bin/sh', '-c', 'sleep infinity']
