@@ -3,7 +3,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: do500-clusterrole
+  name: tl500-clusterrole
 rules:
 - apiGroups:
   - rbac.authorization.k8s.io
@@ -49,11 +49,11 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: do500-clusterrolebinding
+  name: tl500-clusterrolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: do500-clusterrole
+  name: tl500-clusterrole
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
@@ -74,12 +74,12 @@ subjects:
   kind: Group
   name: {{ .Values.group_name }}
 ---
-# to view do500 codeready workspaces namespaces
+# to view tl500 codeready workspaces namespaces
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: do500-workspaces-view
-  namespace: do500-workspaces
+  name: tl500-workspaces-view
+  namespace: tl500-workspaces
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -89,12 +89,12 @@ subjects:
   kind: Group
   name: {{ .Values.group_name }}
 ---
-# to view do500 gitlab namespaces
+# to view tl500 gitlab namespaces
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: do500-gitlab-view
-  namespace: do500-gitlab
+  name: tl500-gitlab-view
+  namespace: tl500-gitlab
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -104,12 +104,12 @@ subjects:
   kind: Group
   name: {{ .Values.group_name }}
 ---
-# to view do500 shared namespaces
+# to view tl500 shared namespaces
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: do500-shared-view
-  namespace: do500-shared
+  name: tl500-shared-view
+  namespace: tl500-shared
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -119,11 +119,11 @@ subjects:
   kind: Group
   name: {{ .Values.group_name }}
 ---
-# to view do500 IPA namespaces
+# to view tl500 IPA namespaces
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: do500-ipa-view
+  name: tl500-ipa-view
   namespace: ipa
 roleRef:
   apiGroup: rbac.authorization.k8s.io

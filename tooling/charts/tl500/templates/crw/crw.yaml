@@ -6,7 +6,7 @@ metadata:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "25"
   name: {{ .Values.crw.name | default "codeready-workspaces" | quote }}
-  namespace: {{ .Values.crw.namespace | default "do500-workspaces" | quote }}
+  namespace: {{ .Values.crw.namespace | default "tl500-workspaces" | quote }}
 spec:
   server:
     cheImageTag: {{ .Values.crw.cheImageTag | default "" | quote }}

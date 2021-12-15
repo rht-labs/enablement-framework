@@ -1,15 +1,15 @@
-name: do500-stack-image-pr
+name: tl500-stack-image-pr
 on:
   pull_request:
     paths:
       - codereadyworkspaces/stack/**
-      - .github/workflows/do500-stack-image-pr.yaml
+      - .github/workflows/tl500-stack-image-pr.yaml
 jobs:
   build:
     runs-on: ubuntu-20.04
     env:
       context: codereadyworkspaces/stack
-      image_name: stack-do500
+      image_name: stack-tl500
     steps:
       - uses: actions/checkout@v1
       - name: Get image tags
