@@ -1,6 +1,6 @@
-# tl500 Cluster Tooling
+# TL500 Cluster Tooling
 
-This directory contains the necessary charts used in order to deploy a tl500 Tech Stack against an OCP 4.X cluster. This assumes that the cluster has valid certificates.
+This directory contains the necessary charts used in order to deploy a TL500 Tech Stack against an OCP 4.X cluster. This assumes that the cluster has valid certificates.
 
 This chart is capable of deploying the following:
 
