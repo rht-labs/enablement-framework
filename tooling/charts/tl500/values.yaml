@@ -34,7 +34,7 @@ operators:
       operatorName: openshift-pipelines-operator-rh
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
-      csv: openshift-pipelines-operator-rh.v1.6.0
+      csv: openshift-pipelines-operator-rh.v1.6.1
     operatorgroup:
       create: false
 
