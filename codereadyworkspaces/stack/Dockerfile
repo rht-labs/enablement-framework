@@ -13,7 +13,7 @@ ENV ARGOCD_VERSION=2.0.5 \
     YQ_VERSION=4.11.2 \
     HELM_VERSION=3.6.3 \
     KUBESEAL_VERSION=0.13.1 \
-    TEKTON_VERSION=0.19.1 \
+    TEKTON_VERSION=0.21.0 \
     OC_VERSION=4.8.3 \
     JQ_VERSION=1.6 \
     CONFTEST_VERSION=0.23.0 \
@@ -57,7 +57,7 @@ RUN curl -sL https://github.com/bitnami-labs/sealed-secrets/releases/download/v$
     echo "🦭🦭🦭🦭🦭"
 
 # tekton
-RUN curl -sL https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/latest/tkn-linux-amd64-${TEKTON_VERSION}.tar.gz | tar --no-same-owner -C /usr/local/bin -xz tkn && \
+RUN curl -sL https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/latest/tkn-linux-amd64-${TEKTON_VERSION}.tar.gz | tar --no-same-owner -xzf - -C /usr/local/bin tkn && \
     echo "🐈🐈🐈🐈🐈"
 
 # oc client
@@ -139,10 +139,24 @@ RUN echo "git config --global http.sslVerify false" | tee -a /etc/bashrc -a /etc
 
 # create user && clean up 
 RUN rm -rf /tmp/* && \
-    useradd -u 1001 -G root -d ${HOME} --shell /bin/bash developer && \
-    chown -R 1001:0 ${HOME} && chmod 770 ${HOME} && chmod 770 -R ${HOME}/.config && chmod 770 -R ${HOME}/.cache && chmod 775 ${PROJECTS} && \
-    echo "🧹🧹🧹🧹🧹"
+    useradd -u 1000 -G wheel,root -d /home/developer --shell /bin/zsh -M developer && \
+    for f in "${HOME}" "/etc/passwd" "/etc/group" "/projects" "${HOME}/.cache"; do \
+        chgrp -R 0 ${f} && \
+        chmod -R g+rwX ${f}; \
+    done && \
+    echo "🧹🧹🧹🧹🧹" && \
+    cat /etc/passwd | \
+    sed s#developer:x.*#developer:x:\${USER_ID}:\${GROUP_ID}::\${HOME}:/bin/zsh#g \
+    > ${HOME}/passwd.template && \
+    cat /etc/group | \
+    sed s#root:x:0:#root:x:0:0,\${USER_ID}:#g \
+    > ${HOME}/group.template && \
+    echo "🐟🐟🐟🐟🐟"
+
+# Prepare entrypoint
+COPY root /
 
 # runtime
-USER 1001
+USER developer
+ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ] 
 WORKDIR /projects
