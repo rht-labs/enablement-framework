@@ -51,7 +51,7 @@ operators:
       create: false
 
   - name: elasticsearch-operator
-    namespace: openshift-operators-redhat
+    namespace: openshift-operators
     subscription:
       channel: stable-5.2
       approval: Automatic
@@ -60,7 +60,7 @@ operators:
       sourceNamespace: openshift-marketplace
       startingCSV: elasticsearch-operator.5.2.3-31
     operatorgroup:
-      create: true
+      create: false
 
   - name: cluster-logging-operator
     namespace: openshift-logging
