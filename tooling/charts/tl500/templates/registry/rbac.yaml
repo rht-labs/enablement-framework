@@ -33,5 +33,5 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: {{ .Release.namespace }}
+  namespace: {{ .Release.namespace | default "tl500" }}
 {{- end }}
