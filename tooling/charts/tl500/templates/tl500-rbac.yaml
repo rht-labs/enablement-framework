@@ -133,3 +133,17 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
   name: {{ .Values.group_name }}
+---
+# to edit/view monotoring
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: tl500-monitoring-edit
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: monitoring-edit
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: {{ .Values.group_name }}
