@@ -1,0 +1,48 @@
+---
+
+name: Release Helm Charts
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Update release version for Helm Charts
+        uses: mikefarah/yq@v4.9.6
+        with:
+          cmd: >
+            yq e -i '.version = "${{ github.ref_name }}"' tooling/charts/tl500/Chart.yaml
+
+      - name: Install Helm dependencies and Package Charts
+        run: |
+          helm dependency update tooling/charts/tl500
+          helm package tooling/charts/tl500 -d /tmp/charts
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v2
+        with:
+          ref: 'gh-pages'
+
+      - name: Bring over the new Charts
+        run: |
+          mv /tmp/charts/tl500-*.tgz .
+
+      - name: Index the Helm Charts
+        run: |
+          helm repo index --url https://enablement-framework.rht-labs.github.io . 
+
+      - name: Publish the updated Charts
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com" 
+          git add .
+          git commit -m "Updated release charts ${{ github.ref_name }}"
+          git push 
+
