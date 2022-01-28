@@ -18,11 +18,11 @@ operators:
     namespace: openshift-operators
     subscription:
       channel: latest
-      installPlanApproval: Automatic
-      name: codeready-workspaces
-      source: redhat-operators
+      approval: Automatic
+      operatorName: codeready-workspaces
+      sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
-      startingCSV: crwoperator.v2.14.0
+      csv: crwoperator.v2.14.0
     operatorgroup:
       create: false
 
