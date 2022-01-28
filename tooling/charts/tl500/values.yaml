@@ -14,15 +14,15 @@ namespaces:
 #  - name: tl500-slides
 
 operators:
-  - name: codeready-workspaces2
+  - name: codeready-workspaces
     namespace: openshift-operators
     subscription:
-      channel: tech-preview-latest-all-namespaces
-      approval: Automatic
-      operatorName: codeready-workspaces2
-      sourceName: redhat-operators
+      channel: latest
+      installPlanApproval: Automatic
+      name: codeready-workspaces
+      source: redhat-operators
       sourceNamespace: openshift-marketplace
-      csv: crwoperatorallnamespaces.v2.13.101-0.1639048038.p
+      startingCSV: crwoperator.v2.14.0
     operatorgroup:
       create: false
 
