@@ -36,7 +36,7 @@ jobs:
 
       - name: Index the Helm Charts
         run: |
-          helm repo index --url https://enablement-framework.rht-labs.github.io . 
+          helm repo index --url https://rht-labs.com/enablement-framework .
 
       - name: Publish the updated Charts
         run: |
