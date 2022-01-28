@@ -162,10 +162,11 @@ sealed-secrets:
 
 userworkloadmonitoring: true
 
-stackrox:
+stackrox-chart:
   enabled: true
-  clusterName: tl500
-  namespace: stackrox
+  stackrox:
+    clusterName: tl500
+    namespace: stackrox
 
 gitops-operator:
   enabled: true
