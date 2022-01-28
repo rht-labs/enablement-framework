@@ -3,7 +3,37 @@ entries:
   tl500:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-01-28T15:08:22.221822593Z"
+    created: "2022-01-28T18:28:20.637847687Z"
+    dependencies:
+    - condition: sealed-secrets.enabled
+      name: sealed-secrets
+      repository: https://bitnami-labs.github.io/sealed-secrets
+      version: 1.16.1
+    - condition: stackrox.enabled
+      name: stackrox-chart
+      repository: https://redhat-cop.github.io/helm-charts
+      version: 0.0.1
+    - condition: gitops-operator.enabled
+      name: gitops-operator
+      repository: https://redhat-cop.github.io/helm-charts
+      version: 0.2.0
+    description: A Helm chart for Kubernetes
+    digest: ee3a90e76c6e915cbf65682ea22f498b33e8c32d7b77b40664fbaf8d21361c69
+    maintainers:
+    - name: eformat
+    - name: tylerauerbeck
+    - name: jacobsee
+    - name: jtudelag
+    - name: ckavili
+    - name: springdo
+    name: tl500
+    type: application
+    urls:
+    - https://rht-labs.com/enablement-framework/tl500-v3.0.2.tgz
+    version: v3.0.2
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-01-28T18:28:20.63516024Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -31,4 +61,4 @@ entries:
     urls:
     - https://rht-labs.com/enablement-framework/tl500-v3.0.1.tgz
     version: v3.0.1
-generated: "2022-01-28T15:08:22.217741436Z"
+generated: "2022-01-28T18:28:20.6320894Z"
