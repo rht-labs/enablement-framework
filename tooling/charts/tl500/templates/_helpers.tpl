@@ -64,11 +64,13 @@
 {{- end -}}
 
 {{- define "gitlab.ldap.bind_password" -}}
+{{- if $.Values.gitlab.ldap.password -}}
+{{ $.Values.gitlab.ldap.password }}
+{{- else -}}
 {{- $secret := include "gitlab.ldap.secret_name" . -}}
 {{- if (lookup "v1" "Secret" "openshift-config" $secret ) }}
 {{- print (lookup "v1" "Secret" "openshift-config" $secret ).data.bindPassword | b64dec -}}
-{{- else -}}
-{{ $.Values.gitlab.ldap.password }}
+{{- end }}
 {{- end }}
 {{- end }}
 
