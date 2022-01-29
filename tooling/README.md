@@ -14,6 +14,10 @@ This chart is capable of deploying the following:
 - Certificate Utils
 - GitOps Operator (ArgoCD)
 
+## Helm Release
+
+This content is also made available as [Helm Releases](http://rht-labs.com/enablement-framework/) if you prefer to use that method. Otherwise, continue below.
+
 ## Installation
 
 ```bash
