@@ -13,12 +13,13 @@ namespaces:
   - name: tl500-shared
 #  - name: tl500-slides
 
+
 operators:
   - name: codeready-workspaces
     namespace: openshift-operators
     subscription:
       channel: latest
-      approval: Automatic
+      approval: Manual
       operatorName: codeready-workspaces
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
@@ -30,7 +31,7 @@ operators:
     namespace: openshift-operators
     subscription:
       channel: stable
-      approval: Automatic
+      approval: Manual
       operatorName: openshift-pipelines-operator-rh
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
@@ -42,7 +43,7 @@ operators:
     namespace: openshift-operators
     subscription:
       channel: alpha
-      approval: Automatic
+      approval: Manual
       operatorName: cert-utils-operator
       sourceName: community-operators
       sourceNamespace: openshift-marketplace
@@ -54,7 +55,7 @@ operators:
     namespace: openshift-operators
     subscription:
       channel: stable-5.2
-      approval: Automatic
+      approval: Manual
       operatorName: elasticsearch-operator
       source: redhat-operators
       sourceNamespace: openshift-marketplace
@@ -66,13 +67,17 @@ operators:
     namespace: openshift-logging
     subscription:
       channel: stable-5.2
-      approval: Automatic
+      approval: Manual
       operatorName: cluster-logging
       source: redhat-operators
       sourceNamespace: openshift-marketplace
       startingCSV: cluster-logging.5.2.3-31
     operatorgroup:
       create: true
+
+installPlanApprovers:
+  - namespace: openshift-logging
+  - namespace: openshift-operators
 
 logging:
   # Might be needed with clusters that have an infra plane

@@ -1,0 +1,90 @@
+{{- range $ija := .Values.installPlanApprovers }}
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: install-plan-approver-role-{{ $ija.namespace }}
+  namespace: {{ $ija.namespace }}
+rules:
+  - apiGroups:
+      - operators.coreos.com
+    resources:
+      - installplans
+      - subscriptions
+    verbs:
+      - get
+      - list
+      - patch
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: install-plan-approver-sa-{{ $ija.namespace }}
+  namespace: {{ $ija.namespace }}
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: installPlanApproverRoleBinding-{{ $ija.namespace }}
+  namespace: {{ $ija.namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: install-plan-approver-role-{{ $ija.namespace }}
+subjects:
+  - kind: ServiceAccount
+    name: install-plan-approver-sa-{{ $ija.namespace }}
+
+---
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: install-plan-approver-job-{{ $ija.namespace }}
+  namespace: {{ $ija.namespace | quote }}
+spec:
+ template:
+  spec:
+    containers:
+      - image: registry.redhat.io/openshift4/ose-cli:v4.4
+        command:
+          - /bin/bash
+          - -c
+          - |
+            export HOME=/tmp/approver
+            echo "Approving operator install.  Waiting a few seconds to make sure the InstallPlan gets created first."
+            sleep $SLEEP
+            oc project $NAMESPACE
+            for subscription in `oc get subscriptions.operators.coreos.com -o jsonpath='{.items[0].metadata.name}'`
+            do
+              echo "Processing subscription '$subscription'"
+              installplan=$(oc get subscriptions.operators.coreos.com --field-selector metadata.name=${subscription} -o jsonpath='{.items[0].status.installPlanRef.name}')
+              echo "Check installplan approved status"
+              oc get installplan $installplan -o jsonpath="{.spec.approved}"
+              if [ "`oc get installplan $installplan -o jsonpath="{.spec.approved}"`" == "false" ]; then
+                echo "Approving Subscription $subscription with install plan $installplan"
+                oc patch installplan $installplan --type=json -p='[{"op":"replace","path": "/spec/approved", "value": true}]'
+              else
+                echo "Install Plan '$installplan' already approved"
+              fi
+            done
+        imagePullPolicy: Always
+        name: installplan-approver-{{ $ija.namespace }}
+        env:
+         - name: SLEEP
+           value: "20"
+         - name: NAMESPACE
+           value: {{ $ija.namespace | quote }}
+    dnsPolicy: ClusterFirst
+    restartPolicy: OnFailure
+    serviceAccount: installplan-approver-job-sa-{{ $ija.namespace }}
+    serviceAccountName: installplan-approver-job-sa-{{ $ija.namespace }}
+    terminationGracePeriodSeconds: 30
+
+{{- end }}
