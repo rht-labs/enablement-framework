@@ -16,7 +16,7 @@ namespaces:
 
 operators:
   - name: codeready-workspaces
-    namespace: openshift-operators
+    namespace: tl500-workspaces
     subscription:
       channel: latest
       approval: Manual
@@ -25,7 +25,7 @@ operators:
       sourceNamespace: openshift-marketplace
       csv: crwoperator.v2.14.0
     operatorgroup:
-      create: false
+      create: true
 
   - name: openshift-pipelines-operator-rh
     namespace: openshift-operators
@@ -78,6 +78,7 @@ operators:
 installPlanApprovers:
   - namespace: openshift-logging
   - namespace: openshift-operators
+  - namespace: tl500-workspaces
 
 logging:
   # Might be needed with clusters that have an infra plane
@@ -177,3 +178,6 @@ gitops-operator:
   enabled: true
   namespaces: []
   ignoreHelmHooks: false
+  operator:
+      installPlanApproval: Manual
+

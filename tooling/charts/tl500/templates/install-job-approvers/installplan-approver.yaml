@@ -31,7 +31,7 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: installPlanApproverRoleBinding-{{ $ija.namespace }}
+  name: install-plan-approver-role-binding-{{ $ija.namespace }}
   namespace: {{ $ija.namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -75,7 +75,7 @@ spec:
               fi
             done
         imagePullPolicy: Always
-        name: installplan-approver-{{ $ija.namespace }}
+        name: install-plan-approver-{{ $ija.namespace }}
         env:
          - name: SLEEP
            value: "20"
@@ -83,8 +83,8 @@ spec:
            value: {{ $ija.namespace | quote }}
     dnsPolicy: ClusterFirst
     restartPolicy: OnFailure
-    serviceAccount: installplan-approver-job-sa-{{ $ija.namespace }}
-    serviceAccountName: installplan-approver-job-sa-{{ $ija.namespace }}
+    serviceAccount: install-plan-approver-job-sa-{{ $ija.namespace }}
+    serviceAccountName: install-plan-approver-job-sa-{{ $ija.namespace }}
     terminationGracePeriodSeconds: 30
 
 {{- end }}
