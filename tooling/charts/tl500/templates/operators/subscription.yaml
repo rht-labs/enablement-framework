@@ -1,3 +1,4 @@
+{{- $operatorApproval := .Values.operators_approval }}
 {{- range $op := .Values.operators }}
 {{- $sub := $op.subscription }}
 ---
@@ -8,7 +9,7 @@ metadata:
   namespace: {{ $op.namespace | quote }}
 spec:
   channel: {{ $sub.channel }} 
-  installPlanApproval: {{ $sub.approval | default "Automatic" | quote }}
+  installPlanApproval: {{ $operatorApproval | quote }}
   name: {{ $sub.operatorName | quote }}
   source: {{ $sub.sourceName | default "redhat-operators" | quote }}
   sourceNamespace: {{ $sub.sourceNamespace | default "openshift-marketplace" | quote }}
