@@ -149,8 +149,8 @@ subjects:
   name: {{ .Values.group_name }}
 ---
 # so stackrox can pull images from all namespaces
-kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
 metadata:
   name: cluster-image-puller-tl500
 subjects:
