@@ -73,7 +73,7 @@ logging:
   # nodeSelector:
   #   key: node-role.kubernetes.io/infra
   #   value: ''
-
+  namespace: openshift-logging
   tolerations:
   - effect: NoSchedule
     key: node-role.kubernetes.io/infra

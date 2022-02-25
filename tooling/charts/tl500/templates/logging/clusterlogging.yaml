@@ -3,7 +3,7 @@ apiVersion: logging.openshift.io/v1
 kind: ClusterLogging
 metadata:
   name: instance
-  namespace: openshift-logging
+  namespace: {{ index .Values "logging" "namespace" | quote }}
   annotations:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "25"
