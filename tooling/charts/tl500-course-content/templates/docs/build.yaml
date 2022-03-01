@@ -1,0 +1,36 @@
+{{- if .Values.docs }}
+---
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: "{{ .Values.docs.name}}"
+  namespace: {{ .Values.docs.namespace }}
+spec:
+  nodeSelector: {}
+  runPolicy: {{ .Values.docs.build.run_policy | default "Serial" | quote }}
+  triggers:
+    - type: "ConfigChange"
+  source:
+    contextDir: {{ .Values.docs.build.source_context_dir | default "" | quote }}
+    git:
+      uri: "{{ .Values.docs.build.source_repo }}"
+      ref: {{ .Values.docs.build.source_repo_ref | default "master" | quote }}
+{{- if .Values.docs.build.secret_name }}
+    sourceSecret:
+      name: "{{ .Values.docs.build.secret_name }}"
+{{- end }}
+    type: Git
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "{{ .Values.docs.build.s2i_name }}:{{ .Values.docs.build.s2i_tag }}"
+        namespace: {{ .Values.docs.build.s2i_namespace | default "openshift" | quote }}
+  output:
+    to:
+      kind: "ImageStreamTag"
+      name: "{{ .Values.docs.name }}:{{ .Values.docs.build.build_tag | default "latest" }}"
+status:
+  lastVersion: 0
+{{- end }}

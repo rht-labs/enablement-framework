@@ -7,6 +7,7 @@ prefix: ""
 # Group name in LDAP / IdM (FreeIPA) for attendees 
 group_name: student
 
+
 namespaces:
   - name: tl500-workspaces
   - name: tl500-gitlab
@@ -93,8 +94,8 @@ logging:
     retentionPolicy:
       application: 7d
     redundancyPolicy: ZeroRedundancy
-
   kibana: {}
+
 
 gitlab:
   namespace: tl500-gitlab
@@ -118,28 +119,6 @@ gitlab:
 #    bind_dn: uid=ldap-admin,cn=users,cn=accounts,dc=CORP,dc=EXAMPLE,dc=COM
 #    password: password
     secret_name: ldap-bind-password
-
-crw:
-  namespace: tl500-workspaces
-  name: "codeready-workspaces"
-#  devRegImage: "quay.io/rht-labs/devfileregistry:test"
-  tlsSupport: true
-  properties:
-    CHE_LIMITS_USER_WORKSPACES_COUNT: "2"
-    CHE_LIMITS_USER_WORKSPACES_RUN_COUNT: "1"
-    CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: "Always"
-    CHE_DOCKER_ALWAYS__PULL__IMAGE: "true"
-    CHE_WORKSPACE_DEFAULT__MEMORY__LIMIT__MB: "3072"
-    CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: "-1"
-
-#docs:
-#  name: tl500-slides
-#  namespace: tl500-slides 
-#  build:
-#    source_context_dir: "slides"
-#    source_repo: "https://github.com/rht-labs/enablement-docs"
-#    s2i_name: "nodejs"
-#    s2i_tag: "10"
 
 sealed-secrets:
   # Disabled by default

@@ -1,0 +1,20 @@
+{{- if .Values.docs }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.docs.name }}
+  namespace: {{ .Values.docs.namespace }}
+spec:
+  ports:
+  - name: http 
+    protocol: TCP 
+    port: 8000
+    targetPort: 8000
+  selector:
+    app: {{ .Values.docs.name }}
+  type: ClusterIP 
+  sessionAffinity: None
+status:
+  loadBalancer: {}
+{{- end }}
