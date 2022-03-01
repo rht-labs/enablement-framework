@@ -1,3 +1,6 @@
+namespaces:
+  - name: tl500-gitlab
+  - name: tl500-shared
 
 operators:
   - name: codeready-workspaces2
