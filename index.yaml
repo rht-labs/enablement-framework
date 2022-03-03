@@ -3,7 +3,37 @@ entries:
   tl500:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-03-03T10:54:49.49152531Z"
+    created: "2022-03-03T10:58:15.203623998Z"
+    dependencies:
+    - condition: sealed-secrets.enabled
+      name: sealed-secrets
+      repository: https://bitnami-labs.github.io/sealed-secrets
+      version: 1.16.1
+    - condition: stackrox.enabled
+      name: stackrox-chart
+      repository: https://redhat-cop.github.io/helm-charts
+      version: 0.0.3
+    - condition: gitops-operator.enabled
+      name: gitops-operator
+      repository: https://redhat-cop.github.io/helm-charts
+      version: 0.2.4
+    description: A Helm chart for Kubernetes
+    digest: e29be007ce07912734480e6e73b4bafd05a82dc48487674578ef03e204aefed1
+    maintainers:
+    - name: eformat
+    - name: tylerauerbeck
+    - name: jacobsee
+    - name: jtudelag
+    - name: ckavili
+    - name: springdo
+    name: tl500
+    type: application
+    urls:
+    - https://rht-labs.com/enablement-framework/tl500-v3.0.6.tgz
+    version: v3.0.6
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-03-03T10:58:15.20145396Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -33,7 +63,7 @@ entries:
     version: v3.0.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-03-03T10:54:49.489044488Z"
+    created: "2022-03-03T10:58:15.199211221Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -63,7 +93,7 @@ entries:
     version: v3.0.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-03-03T10:54:49.484951353Z"
+    created: "2022-03-03T10:58:15.195454355Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -93,7 +123,7 @@ entries:
     version: v3.0.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-03-03T10:54:49.482522232Z"
+    created: "2022-03-03T10:58:15.193249717Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -123,7 +153,7 @@ entries:
     version: v3.0.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-03-03T10:54:49.479582106Z"
+    created: "2022-03-03T10:58:15.191092079Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -151,4 +181,4 @@ entries:
     urls:
     - https://rht-labs.com/enablement-framework/tl500-v3.0.1.tgz
     version: v3.0.1
-generated: "2022-03-03T10:54:49.47654688Z"
+generated: "2022-03-03T10:58:15.188383031Z"
