@@ -3,7 +3,37 @@ entries:
   tl500:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-03-01T09:21:07.096376906Z"
+    created: "2022-03-03T10:54:49.49152531Z"
+    dependencies:
+    - condition: sealed-secrets.enabled
+      name: sealed-secrets
+      repository: https://bitnami-labs.github.io/sealed-secrets
+      version: 1.16.1
+    - condition: stackrox.enabled
+      name: stackrox-chart
+      repository: https://redhat-cop.github.io/helm-charts
+      version: 0.0.3
+    - condition: gitops-operator.enabled
+      name: gitops-operator
+      repository: https://redhat-cop.github.io/helm-charts
+      version: 0.2.4
+    description: A Helm chart for Kubernetes
+    digest: 9bcd3c5c0589a7e4a0e6f14a29c65b784a9fc99923a1dd1d1970bedee3454e4c
+    maintainers:
+    - name: eformat
+    - name: tylerauerbeck
+    - name: jacobsee
+    - name: jtudelag
+    - name: ckavili
+    - name: springdo
+    name: tl500
+    type: application
+    urls:
+    - https://rht-labs.com/enablement-framework/tl500-v3.0.5.tgz
+    version: v3.0.5
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-03-03T10:54:49.489044488Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -33,7 +63,7 @@ entries:
     version: v3.0.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-03-01T09:21:07.092784334Z"
+    created: "2022-03-03T10:54:49.484951353Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -63,7 +93,7 @@ entries:
     version: v3.0.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-03-01T09:21:07.089839875Z"
+    created: "2022-03-03T10:54:49.482522232Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -93,7 +123,7 @@ entries:
     version: v3.0.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-03-01T09:21:07.086825714Z"
+    created: "2022-03-03T10:54:49.479582106Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -121,4 +151,4 @@ entries:
     urls:
     - https://rht-labs.com/enablement-framework/tl500-v3.0.1.tgz
     version: v3.0.1
-generated: "2022-03-01T09:21:07.08264883Z"
+generated: "2022-03-03T10:54:49.47654688Z"
