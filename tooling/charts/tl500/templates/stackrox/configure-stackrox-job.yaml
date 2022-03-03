@@ -12,7 +12,7 @@ spec:
   template:
     spec:
       containers:
-        - image: quay.io/rht-labs/stack-do500:3.0.8
+        - image: quay.io/rht-labs/stack-tl500:latest
           command:
             - /bin/bash
             - -c
