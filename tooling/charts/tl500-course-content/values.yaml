@@ -62,8 +62,6 @@ crw:
 #    s2i_tag: "10"
 
 
-userworkloadmonitoring: true
-
 stackrox-chart:
   enabled: true
   stackrox:
