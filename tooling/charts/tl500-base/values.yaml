@@ -75,27 +75,6 @@ logging:
   #   key: node-role.kubernetes.io/infra
   #   value: ''
   namespace: openshift-logging
-  tolerations:
-  - effect: NoSchedule
-    key: node-role.kubernetes.io/infra
-    operator: Exists
-
-  elasticsearch:
-    requests:
-      cpu: 250m
-      memory: 512Mi
-    limits:
-      cpu: 4000m
-      memory: 16Gi
-    storage:
-      # size: 200G
-      # class: gp2
-    nodeCount: 1
-    retentionPolicy:
-      application: 7d
-    redundancyPolicy: ZeroRedundancy
-  kibana: {}
-
 
 gitlab:
   namespace: tl500-gitlab
