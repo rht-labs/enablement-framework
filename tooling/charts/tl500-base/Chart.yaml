@@ -19,7 +19,7 @@ dependencies:
   - name: stackrox-chart
     version: "0.0.3"
     repository: https://redhat-cop.github.io/helm-charts
-    condition: stackrox.enabled
+    condition: stackrox-chart.enabled
   - name: gitops-operator
     version: "0.2.4"
     repository: https://redhat-cop.github.io/helm-charts
