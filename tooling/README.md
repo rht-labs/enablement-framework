@@ -20,17 +20,26 @@ This content is also made available as [Helm Releases](http://rht-labs.com/enabl
 
 ## Installation
 
+1. Install TL500 Base
 ```bash
-cd ./tl500
+cd ./tl500-base
 helm dep up
-helm upgrade --install tl500 . --namespace tl500 --create-namespace --timeout=15m
+helm upgrade --install tl500-base . --namespace tl500 --create-namespace --timeout=15m
 ```
+2. Install TL500 Course Content
+```bash
+cd ./tl500-course-content
+helm dep up
+helm upgrade --install tl500-course-content . --namespace tl500 --create-namespace --timeout=1>
+```
+
 
 ## Deleting
 
 To delete:
 ```bash
-helm uninstall tl500 --namespace tl500
+helm uninstall tl500-base --namespace tl500
+helm uninstall tl500-course-content --namespace tl500
 ```
 
 ## Gitlab

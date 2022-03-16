@@ -18,12 +18,23 @@ jobs:
         uses: mikefarah/yq@v4.9.6
         with:
           cmd: >
-            yq e -i '.version = "${{ github.ref_name }}"' tooling/charts/tl500/Chart.yaml
+            yq e -i '.version = "${{ github.ref_name }}"' tooling/charts/tl500-base/Chart.yaml
+      
+      - name: Update release version for Helm Charts
+        uses: mikefarah/yq@v4.9.6
+        with:
+          cmd: >
+            yq e -i '.version = "${{ github.ref_name }}"' tooling/charts/tl500-course-content/Chart.yaml
 
-      - name: Install Helm dependencies and Package Charts
+      - name: Install Helm dependencies and Package Charts TL500-base
         run: |
-          helm dependency update tooling/charts/tl500
-          helm package tooling/charts/tl500 -d /tmp/charts
+          helm dependency update tooling/charts/tl500-base
+          helm package tooling/charts/tl500-base -d /tmp/charts
+
+      - name: Install Helm dependencies and Package Charts TL500-course-content
+        run: |
+          helm dependency update tooling/charts/tl500-course-content
+          helm package tooling/charts/tl500-course-content -d /tmp/charts
 
       - name: Checkout gh-pages
         uses: actions/checkout@v2

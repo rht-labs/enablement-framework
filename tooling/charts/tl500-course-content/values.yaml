@@ -1,0 +1,71 @@
+# Create a helper to create a prefix if one isn't provided? Would help if we moved to shared clusters
+prefix: ""
+
+# Group name in LDAP / IdM (FreeIPA) for attendees 
+group_name: student
+
+#namespaces:
+#  - name: tl500-workspaces
+#  - name: tl500-gitlab
+#  - name: tl500-shared
+
+
+logging:
+  # Might be needed with clusters that have an infra plane
+  # nodeSelector:
+  #   key: node-role.kubernetes.io/infra
+  #   value: ''
+  namespace: openshift-logging
+  tolerations:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/infra
+    operator: Exists
+
+  elasticsearch:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 4000m
+      memory: 16Gi
+    storage:
+      # size: 200G
+      # class: gp2
+    nodeCount: 1
+    retentionPolicy:
+      application: 7d
+    redundancyPolicy: ZeroRedundancy
+
+  kibana: {}
+
+
+crw:
+  namespace: tl500-workspaces
+  name: "codeready-workspaces"
+#  devRegImage: "quay.io/rht-labs/devfileregistry:test"
+  tlsSupport: true
+  properties:
+    CHE_LIMITS_USER_WORKSPACES_COUNT: "2"
+    CHE_LIMITS_USER_WORKSPACES_RUN_COUNT: "1"
+    CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: "Always"
+    CHE_DOCKER_ALWAYS__PULL__IMAGE: "true"
+    CHE_WORKSPACE_DEFAULT__MEMORY__LIMIT__MB: "3072"
+    CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: "-1"
+
+#docs:
+#  name: tl500-slides
+#  namespace: tl500-slides 
+#  build:
+#    source_context_dir: "slides"
+#    source_repo: "https://github.com/rht-labs/enablement-docs"
+#    s2i_name: "nodejs"
+#    s2i_tag: "10"
+
+
+userworkloadmonitoring: true
+
+stackrox-chart:
+  enabled: true
+  stackrox:
+    clusterName: tl500
+    namespace: stackrox
