@@ -30,7 +30,7 @@ helm upgrade --install tl500-base . --namespace tl500 --create-namespace --timeo
 ```bash
 cd ./tl500-course-content
 helm dep up
-helm upgrade --install tl500-course-content . --namespace tl500 --create-namespace --timeout=1>
+helm upgrade --install tl500-course-content . --namespace tl500 --create-namespace --timeout=15m
 ```
 
 
