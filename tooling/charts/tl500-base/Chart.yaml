@@ -24,3 +24,7 @@ dependencies:
     version: "0.3.2"
     repository: https://redhat-cop.github.io/helm-charts
     condition: gitops-operator.enabled
+  - name: tl500-teamsters
+    version: "0.0.1"
+    repository: http://rht-labs.com/tl500-teamsters
+    condition: tl500-teamsters.enabled

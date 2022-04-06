@@ -124,3 +124,6 @@ gitops-operator:
   enabled: true
   namespaces: []
   ignoreHelmHooks: false
+
+tl500-teamsters:
+  enabled: true
