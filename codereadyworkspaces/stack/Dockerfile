@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi:8.4
+FROM registry.access.redhat.com/ubi8/ubi:8.5
 
 USER root
 
@@ -9,25 +9,25 @@ RUN dnf install -y centos-gpg-keys --nogpgcheck && \
     rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 
 # rht-labs stuff
-ENV ARGOCD_VERSION=2.0.5 \
+ENV ARGOCD_VERSION=2.3.3 \
     YQ_VERSION=4.11.2 \
-    HELM_VERSION=3.6.3 \
+    HELM_VERSION=3.8.1 \
     KUBESEAL_VERSION=0.13.1 \
-    TEKTON_VERSION=0.21.0 \
-    OC_VERSION=4.8.3 \
+    TEKTON_VERSION=0.23.1 \
+    OC_VERSION=4.10.9 \
     JQ_VERSION=1.6 \
     CONFTEST_VERSION=0.23.0 \
     ZSH_VERSION=5.8 \
     ROX_VERSION=3.63.0 \
-    KUBELINTER_VERSION=0.2.2 \
-    COSIGN_VERSION=1.0.0 \
+    KUBELINTER_VERSION=0.2.6 \
+    COSIGN_VERSION=1.7.2 \
     JSONNET_VERSION=0.17.0
 
 # this is based off of registry.redhat.io/codeready-workspaces/plugin-java8-rhel8
 ENV NODEJS_VERSION=14 \
     PYTHON_VERSION="3.9" \
-    JAVA_HOME=/usr/lib/jvm/java-11-openjdk \
-    PATH=$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:/opt/app-root/src/.npm-global/bin/:/usr/lib/jvm/java-11-openjdk/bin:/usr/bin:$HOME/go/bin:$PATH \
+    JAVA_HOME=/usr/lib/jvm/java-17-openjdk \
+    PATH=$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:/opt/app-root/src/.npm-global/bin/:/usr/lib/jvm/java-17-openjdk/bin:/usr/bin:$HOME/go/bin:$PATH \
     MAVEN_URL=https://archive.apache.org/dist/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz \
     HOME=/home/developer \
     PROJECTS=/projects \
@@ -36,7 +36,7 @@ ENV NODEJS_VERSION=14 \
 RUN dnf -y module reset nodejs python39 && \
     dnf -y module enable python39:${PYTHON_VERSION} nodejs:$NODEJS_VERSION && \
     dnf -y install \
-      bash tar gzip unzip which findutils wget curl git procps-ng bzip2 java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless python39 python39-devel python39-setuptools python39-pip nodejs npm nodejs-nodemon nss_wrapper zsh iputils bind-utils net-tools go-toolset && \
+      bash tar gzip unzip which findutils wget curl git procps-ng bzip2 java-17-openjdk java-17-openjdk-devel java-17-openjdk-headless python39 python39-devel python39-setuptools python39-pip nodejs npm nodejs-nodemon nss_wrapper zsh iputils bind-utils net-tools go-toolset && \
     dnf -y -q clean all && rm -rf /var/cache/yum && \
     pip3.9 install pylint && \
     mkdir -p ${HOME} ${PROJECTS} /usr/share/maven && \
