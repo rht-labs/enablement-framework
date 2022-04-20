@@ -28,7 +28,7 @@ components:
     id: vscode/typescript-language-features/latest
   - type: dockerimage
     alias: stack-tl500
-    image: quay.io/rht-labs/stack-tl500:3.0.10
+    image: quay.io/rht-labs/stack-tl500:3.0.11
     memoryLimit: 2Gi
     mountSources: true
     args: ['/bin/sh', '-c', 'sleep infinity']
