@@ -13,7 +13,7 @@ maintainers:
   - name: springdo
 dependencies:
   - name: sealed-secrets
-    version: "1.16.1"
+    version: "2.1.6"
     repository: https://bitnami-labs.github.io/sealed-secrets
     condition: sealed-secrets.enabled
   - name: stackrox-chart
