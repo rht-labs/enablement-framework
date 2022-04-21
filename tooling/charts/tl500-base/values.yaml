@@ -106,9 +106,10 @@ sealed-secrets:
   fullnameOverride: sealed-secrets
   namespace: tl500-shared
   # Dont touch the security context values, deployment will fail in OpenShift otherwise.
-  securityContext:
-    runAsUser: ""
-    fsGroup: ""
+  podSecurityContext:
+    enabled: false
+  containerSecurityContext:
+    enabled: false
   commandArgs:
     - "--update-status=true"
 
