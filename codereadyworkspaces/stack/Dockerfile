@@ -12,7 +12,7 @@ RUN dnf install -y centos-gpg-keys --nogpgcheck && \
 ENV ARGOCD_VERSION=2.3.3 \
     YQ_VERSION=4.11.2 \
     HELM_VERSION=3.8.1 \
-    KUBESEAL_VERSION=0.13.1 \
+    KUBESEAL_VERSION=0.17.5 \
     TEKTON_VERSION=0.23.1 \
     OC_VERSION=4.10.9 \
     JQ_VERSION=1.6 \
@@ -52,7 +52,7 @@ RUN curl -sL https://github.com/argoproj/argo-cd/releases/download/v${ARGOCD_VER
     echo "🐙🐙🐙🐙🐙"
 
 # kubeseal
-RUN curl -sL https://github.com/bitnami-labs/sealed-secrets/releases/download/v${KUBESEAL_VERSION}/kubeseal-linux-amd64 -o /usr/local/bin/kubeseal && \
+RUN curl -sL https://github.com/bitnami-labs/sealed-secrets/releases/download/v${KUBESEAL_VERSION}/kubeseal-${KUBESEAL_VERSION}-linux-amd64.tar.gz | tar --no-same-owner -xzf - -C /usr/local/bin kubeseal && \
     chmod -R 755 /usr/local/bin/kubeseal && \
     echo "🦭🦭🦭🦭🦭"
 
