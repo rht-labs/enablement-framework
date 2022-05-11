@@ -28,7 +28,7 @@ operators:
   - name: openshift-pipelines-operator-rh
     namespace: openshift-operators
     subscription:
-      channel: stable
+      channel: latest
       approval: Automatic
       operatorName: openshift-pipelines-operator-rh
       sourceName: redhat-operators
