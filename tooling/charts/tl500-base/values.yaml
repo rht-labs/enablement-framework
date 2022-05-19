@@ -78,7 +78,7 @@ logging:
 
 gitlab:
   namespace: tl500-gitlab
-  root_password: Password123
+  root_password: 7aydhn160bOrrsGEbnd172rE
   imagestreams:
     - name: "gitlab-ce"
       tag_name: "gitlab-12.8.7"
