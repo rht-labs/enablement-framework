@@ -61,7 +61,7 @@ spec:
         env:
         - name: GITLAB_OMNIBUS_CONFIG
           value:
-            root_pass='{{ $.Values.gitlab.root_password | default "Password123" }}';
+            root_pass='{{ $.Values.gitlab.root_password | default "kJ4e9qLkm4pOhQnbn7nE" }}';
             external_url "https://{{ $.Values.gitlab_app_name }}.{{ include "tl500.app_domain" . }}";
             nginx['listen_port']=80;
             nginx['listen_https']=false;

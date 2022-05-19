@@ -45,7 +45,7 @@ cd ./tl500-base
 helm dep up
 helm upgrade --install tl500-base . --namespace tl500 --create-namespace --timeout=15m
 ```
-2. Install TL500 Course Content 
+2. Install TL500 Course Content
 ```bash
 cd ./tl500-course-content
 helm dep up
