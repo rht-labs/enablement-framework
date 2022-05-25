@@ -28,3 +28,7 @@ dependencies:
     version: "0.0.3"
     repository: http://rht-labs.com/tl500-teamsters
     condition: tl500-teamsters.enabled
+  - name: operatorhub
+    version: "0.0.10"
+    repository: https://redhat-cop.github.io/helm-charts
+    condition: operatorhub.enabled

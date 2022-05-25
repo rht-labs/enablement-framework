@@ -36,17 +36,6 @@ operators:
     operatorgroup:
       create: false
 
-  - name: cert-utils-operator
-    namespace: openshift-operators
-    subscription:
-      channel: alpha
-      approval: Automatic
-      operatorName: cert-utils-operator
-      sourceName: community-operators
-      sourceNamespace: openshift-marketplace
-    operatorgroup:
-      create: false
-
   - name: elasticsearch-operator
     namespace: openshift-operators
     subscription:
@@ -128,3 +117,18 @@ gitops-operator:
 
 tl500-teamsters:
   enabled: true
+
+operatorhub:
+  enabled: true
+  namespace: openshift-operators
+  operators:
+   - name: cert-utils-operator
+     subscription:
+       channel: alpha
+       approval: Automatic
+       operatorName: cert-utils-operator
+       sourceName: community-operators
+       sourceNamespace: openshift-marketplace
+     operatorgroup:
+       create: false
+
