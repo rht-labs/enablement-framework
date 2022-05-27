@@ -137,7 +137,10 @@ RUN echo "git config --global http.sslVerify false" | tee -a /etc/bashrc -a /etc
     echo "git config --global push.default 'simple'" | tee -a /etc/bashrc -a /etc/zshrc && \
     echo "🤗🤗🤗🤗🤗"
 
-# create user && clean up 
+# custom user functions
+RUN echo "source /usr/local/bin/user-functions.sh" | tee -a /etc/bashrc -a /etc/zshrc
+
+# create user && clean up
 RUN rm -rf /tmp/* && \
     useradd -u 1000 -G wheel,root -d /home/developer --shell /bin/zsh -M developer && \
     for f in "${HOME}" "/etc/passwd" "/etc/group" "/projects" "${HOME}/.cache"; do \
