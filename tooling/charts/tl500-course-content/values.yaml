@@ -60,10 +60,3 @@ crw:
 #    source_repo: "https://github.com/rht-labs/enablement-docs"
 #    s2i_name: "nodejs"
 #    s2i_tag: "10"
-
-
-stackrox-chart:
-  enabled: true
-  stackrox:
-    clusterName: tl500
-    namespace: stackrox
