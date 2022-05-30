@@ -1,19 +1,20 @@
-{{- range $op := .Values.operators }}
-{{- $sub := $op.subscription }}
+{{- range $key, $value := .Values.operators }}
+{{ if eq ($value.enabled | toString) "true" }}
 ---
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: {{ $op.name | quote }}
-  namespace: {{ $op.namespace | quote }}
+  name: {{ $key | quote }}
+  namespace: {{ $value.namespace | quote }}
 spec:
-  channel: {{ $sub.channel }} 
-  installPlanApproval: {{ $sub.approval | default "Automatic" | quote }}
-  name: {{ $sub.operatorName | quote }}
-  source: {{ $sub.sourceName | default "redhat-operators" | quote }}
-  sourceNamespace: {{ $sub.sourceNamespace | default "openshift-marketplace" | quote }}
-{{- if $sub.csv }}
-  startingCSV: {{ $sub.csv }}
+  channel: {{ $value.subscription.channel }} 
+  installPlanApproval: {{ $value.subscription.approval | default "Automatic" | quote }}
+  name: {{ $value.subscription.operatorName | quote }}
+  source: {{ $value.subscription.sourceName | default "redhat-operators" | quote }}
+  sourceNamespace: {{ $value.subscription.sourceNamespace | default "openshift-marketplace" | quote }}
+{{- if $value.subscription.csv }}
+  startingCSV: {{ $value.subscription.csv }}
+{{- end }}
 {{- end }}
 {{- end }}
 

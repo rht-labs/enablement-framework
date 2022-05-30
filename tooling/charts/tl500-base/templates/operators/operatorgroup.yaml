@@ -1,14 +1,15 @@
-{{- range $op := .Values.operators }}
-{{- if $op.operatorgroup.create }}
-{{- $og := $op.operatorgroup }}
+{{- range $key, $value := .Values.operators }}
+{{ if eq ($value.enabled | toString) "true" }}
+{{- if $value.operatorgroup.create }}
 ---
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: {{ $op.name | default "tl500-operator-group" | quote }}
-  namespace: {{ $op.namespace | quote }}
+  name: {{ $key | default "tl500-operator-group" | quote }}
+  namespace: {{ $value.namespace | quote }}
 spec:
   targetNamespaces:
-  - {{ $op.namespace }}
+  - {{ $value.namespace }}
+{{- end }}
 {{- end }}
 {{- end }}

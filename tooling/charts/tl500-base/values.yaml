@@ -14,7 +14,8 @@ namespaces:
   - name: tl500-shared
 
 operators:
-  - name: codeready-workspaces
+  codeready-workspaces:
+    enabled: true
     namespace: tl500-workspaces
     subscription:
       channel: latest
@@ -25,7 +26,8 @@ operators:
     operatorgroup:
       create: true
 
-  - name: openshift-pipelines-operator-rh
+  openshift-pipelines-operator-rh:
+    enabled: true
     namespace: openshift-operators
     subscription:
       channel: latest
@@ -36,18 +38,8 @@ operators:
     operatorgroup:
       create: false
 
-  - name: cert-utils-operator
-    namespace: openshift-operators
-    subscription:
-      channel: alpha
-      approval: Automatic
-      operatorName: cert-utils-operator
-      sourceName: community-operators
-      sourceNamespace: openshift-marketplace
-    operatorgroup:
-      create: false
-
-  - name: elasticsearch-operator
+  elasticsearch-operator:
+    enabled: true
     namespace: openshift-operators
     subscription:
       channel: stable-5.3
@@ -58,7 +50,8 @@ operators:
     operatorgroup:
       create: false
 
-  - name: cluster-logging-operator
+  cluster-logging-operator:
+    enabled: true
     namespace: openshift-logging
     subscription:
       channel: stable-5.3
@@ -68,6 +61,18 @@ operators:
       sourceNamespace: openshift-marketplace
     operatorgroup:
       create: true
+
+  cert-utils-operator:
+     enabled: true
+     subscription:
+       channel: alpha
+       approval: Automatic
+       operatorName: cert-utils-operator
+       sourceName: community-operators
+       sourceNamespace: openshift-marketplace
+     operatorgroup:
+       create: false
+
 
 logging:
   # Might be needed with clusters that have an infra plane
@@ -128,3 +133,4 @@ gitops-operator:
 
 tl500-teamsters:
   enabled: true
+
