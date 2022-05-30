@@ -64,6 +64,7 @@ operators:
 
   cert-utils-operator:
      enabled: true
+     namespace: openshift-operators
      subscription:
        channel: alpha
        approval: Automatic
