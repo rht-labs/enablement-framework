@@ -2,6 +2,8 @@
 
 This directory contains the necessary charts used in order to deploy a TL500 Tech Stack against an OCP 4.X cluster. This assumes that the cluster has valid certificates.
 
+🐞 Please ensure your cluster is the latest Z release - 4.9.z or 4.10.z release. We test against these. 🐞
+
 This chart is capable of deploying the following:
 
 - Gitlab (version X.Y.Z)
