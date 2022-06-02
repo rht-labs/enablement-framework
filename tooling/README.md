@@ -55,7 +55,6 @@ helm dep up
 2. Install TL500 Base
 
 ```bash
-helm dep up
 helm upgrade --install tl500-base . --namespace tl500 --create-namespace --timeout=15m
 ```
 
