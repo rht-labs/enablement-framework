@@ -33,6 +33,7 @@ When specifying a chart version, make sure to use the same version for both char
 ```bash
 helm repo add enablement-framework https://rht-labs.com/enablement-framework 
 helm repo update
+helm search repo enablement-framework
 helm install tl500-base enablement-framework/tl500-base --version XYZ --namespace tl500 --create-namespace --timeout=15m
 ```
 
@@ -41,6 +42,7 @@ helm install tl500-base enablement-framework/tl500-base --version XYZ --namespac
 ```bash
 helm repo add enablement-framework https://rht-labs.com/enablement-framework 
 helm repo update
+helm search repo enablement-framework
 helm install tl500-course-content enablement-framework/tl500-course-content --version XYZ --namespace tl500 --create-namespace --timeout=15m
 ```
 
