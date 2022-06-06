@@ -3,7 +3,7 @@ entries:
   tl500:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.69970105Z"
+    created: "2022-06-06T07:30:14.057452498Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -33,7 +33,7 @@ entries:
     version: v3.0.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.697212286Z"
+    created: "2022-06-06T07:30:14.054926649Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -63,7 +63,7 @@ entries:
     version: v3.0.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.694474525Z"
+    created: "2022-06-06T07:30:14.051056274Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -93,7 +93,7 @@ entries:
     version: v3.0.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.69126507Z"
+    created: "2022-06-06T07:30:14.048592826Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -123,7 +123,7 @@ entries:
     version: v3.0.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.688829005Z"
+    created: "2022-06-06T07:30:14.046160179Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -153,7 +153,7 @@ entries:
     version: v3.0.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.68639494Z"
+    created: "2022-06-06T07:30:14.04361283Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -184,7 +184,41 @@ entries:
   tl500-base:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.679143943Z"
+    created: "2022-06-06T07:30:14.034480053Z"
+    dependencies:
+    - condition: sealed-secrets.enabled
+      name: sealed-secrets
+      repository: https://bitnami-labs.github.io/sealed-secrets
+      version: 2.1.6
+    - condition: stackrox-chart.enabled
+      name: stackrox-chart
+      repository: https://redhat-cop.github.io/helm-charts
+      version: 0.0.5
+    - condition: gitops-operator.enabled
+      name: gitops-operator
+      repository: https://redhat-cop.github.io/helm-charts
+      version: 0.3.9
+    - condition: tl500-teamsters.enabled
+      name: tl500-teamsters
+      repository: http://rht-labs.com/tl500-teamsters
+      version: 0.0.3
+    description: A Helm chart for Kubernetes
+    digest: 0a1645bfd1ff736cfe428fc2c59b50b8a3ad6c03c340e638e9e4741a77606109
+    maintainers:
+    - name: eformat
+    - name: tylerauerbeck
+    - name: jacobsee
+    - name: jtudelag
+    - name: ckavili
+    - name: springdo
+    name: tl500-base
+    type: application
+    urls:
+    - https://rht-labs.com/enablement-framework/tl500-base-v3.2.8.tgz
+    version: v3.2.8
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-06-06T07:30:14.021196396Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -218,7 +252,7 @@ entries:
     version: v3.2.7
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.664669748Z"
+    created: "2022-06-06T07:30:14.007040521Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -252,7 +286,7 @@ entries:
     version: v3.2.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.661541793Z"
+    created: "2022-06-06T07:30:14.003969462Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -286,7 +320,7 @@ entries:
     version: v3.2.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.65826254Z"
+    created: "2022-06-06T07:30:14.000862402Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -320,7 +354,7 @@ entries:
     version: v3.2.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.654835288Z"
+    created: "2022-06-06T07:30:13.997101929Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -354,7 +388,7 @@ entries:
     version: v3.2.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.650781946Z"
+    created: "2022-06-06T07:30:13.993896867Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -388,7 +422,7 @@ entries:
     version: v3.2.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.647556792Z"
+    created: "2022-06-06T07:30:13.990857608Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -418,7 +452,7 @@ entries:
     version: v3.2.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.645207325Z"
+    created: "2022-06-06T07:30:13.988621265Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -449,7 +483,23 @@ entries:
   tl500-course-content:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.683896575Z"
+    created: "2022-06-06T07:30:14.041158682Z"
+    description: A Helm chart for Kubernetes
+    digest: 5419b79e67d2eb7c2f891deff4b2426bf91ee4d433d422de62fcefa6b216422b
+    maintainers:
+    - name: eformat
+    - name: jacobsee
+    - name: jtudelag
+    - name: ckavili
+    - name: springdo
+    name: tl500-course-content
+    type: application
+    urls:
+    - https://rht-labs.com/enablement-framework/tl500-course-content-v3.2.8.tgz
+    version: v3.2.8
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-06-06T07:30:14.040663873Z"
     description: A Helm chart for Kubernetes
     digest: b88e1cb73d6dffb310e747682eee1e58d42f044529846b20a38ef38a179f2277
     maintainers:
@@ -465,7 +515,7 @@ entries:
     version: v3.2.7
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.683385582Z"
+    created: "2022-06-06T07:30:14.040191163Z"
     description: A Helm chart for Kubernetes
     digest: 002484e8d86b9d43022849bdd7c8ce5fd84756334f871ac880e234981a9f8f97
     maintainers:
@@ -481,7 +531,7 @@ entries:
     version: v3.2.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.682632093Z"
+    created: "2022-06-06T07:30:14.039701654Z"
     description: A Helm chart for Kubernetes
     digest: c2eef882c72ba8ddcbf2a8e8db6c9930f713076645a1245693c5c148b3e7148d
     maintainers:
@@ -497,7 +547,7 @@ entries:
     version: v3.2.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.681966703Z"
+    created: "2022-06-06T07:30:14.038898138Z"
     description: A Helm chart for Kubernetes
     digest: 18c388dce97c636a13298690d07dd157001cd1e7ddff1d0b0d01e46fdd585bbb
     maintainers:
@@ -513,7 +563,7 @@ entries:
     version: v3.2.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.681094315Z"
+    created: "2022-06-06T07:30:14.037244006Z"
     description: A Helm chart for Kubernetes
     digest: 043640a6e06935294827734bf96adfc0a1830c6560d46b92992cbb7fc4b91b24
     maintainers:
@@ -529,7 +579,7 @@ entries:
     version: v3.2.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.680612122Z"
+    created: "2022-06-06T07:30:14.036614794Z"
     description: A Helm chart for Kubernetes
     digest: 0e51dd6dd2b9284778a887218df4e132df2ff330487eae654ce0555f596e7bff
     maintainers:
@@ -545,7 +595,7 @@ entries:
     version: v3.2.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.680138629Z"
+    created: "2022-06-06T07:30:14.035944381Z"
     description: A Helm chart for Kubernetes
     digest: 522a5cdd088a0f35d10cc6eab0082e31b31d6083516ed33db0617d26033c9db8
     maintainers:
@@ -561,7 +611,7 @@ entries:
     version: v3.2.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-06-01T10:13:16.679665035Z"
+    created: "2022-06-06T07:30:14.035003663Z"
     description: A Helm chart for Kubernetes
     digest: ae4d211c907f4aeb4b8a5ca721c739b339050d4add520943c12e1f9e7020f98f
     maintainers:
@@ -575,4 +625,4 @@ entries:
     urls:
     - https://rht-labs.com/enablement-framework/tl500-course-content-v3.1.0.tgz
     version: v3.1.0
-generated: "2022-06-01T10:13:16.641557277Z"
+generated: "2022-06-06T07:30:13.9853015Z"
