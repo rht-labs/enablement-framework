@@ -17,7 +17,7 @@ dependencies:
     repository: https://bitnami-labs.github.io/sealed-secrets
     condition: sealed-secrets.enabled
   - name: stackrox-chart
-    version: "0.0.5"
+    version: "0.0.6"
     repository: https://redhat-cop.github.io/helm-charts
     condition: stackrox-chart.enabled
   - name: gitops-operator
