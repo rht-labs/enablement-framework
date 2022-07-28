@@ -45,7 +45,7 @@ operators:
       channel: stable-5.3
       approval: Automatic
       operatorName: elasticsearch-operator
-      source: redhat-operators
+      sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
     operatorgroup:
       create: false
@@ -57,7 +57,7 @@ operators:
       channel: stable-5.3
       approval: Automatic
       operatorName: cluster-logging
-      source: redhat-operators
+      sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
     operatorgroup:
       create: true
