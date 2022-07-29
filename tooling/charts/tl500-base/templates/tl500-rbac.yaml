@@ -120,6 +120,8 @@ subjects:
   name: {{ .Values.group_name }}
 ---
 # to view tl500 IPA namespaces
+# Only if IPA namespace is there
+{{ if (lookup "v1" "Namespace" "" "ipa") }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -133,6 +135,7 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
   name: {{ .Values.group_name }}
+{{- end }}
 ---
 # to edit/view monotoring
 apiVersion: rbac.authorization.k8s.io/v1
