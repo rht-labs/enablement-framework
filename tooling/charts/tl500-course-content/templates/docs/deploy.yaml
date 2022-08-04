@@ -17,14 +17,12 @@ spec:
         app: "{{ .Values.docs.name }}"
     spec:
       containers:
-      - image: "{{ .Values.docs.name }}"
+      - image: "{{ .Values.docs.image }}"
         imagePullPolicy: Always
         name: "{{ .Values.docs.name }}"
-        command: ["/bin/sh","-c"]
-        args: ["npm install; npm start"]
         ports:
         - name: http 
-          containerPort: 8000
+          containerPort: 8080
           protocol: TCP
         resources: {}
         terminationMessagePath: "/dev/termination-log"
@@ -33,14 +31,4 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 30
   test: false
-  triggers:
-  - type: ConfigChange
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - "{{ .Values.docs.name }}"
-      from:
-       kind: ImageStreamTag
-       name: "{{ .Values.docs.name }}:{{ .Values.docs.build.build_tag | default "latest" }}"
-    type: ImageChange
 {{- end }}

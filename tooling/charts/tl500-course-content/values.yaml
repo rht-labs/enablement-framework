@@ -4,12 +4,6 @@ prefix: ""
 # Group name in LDAP / IdM (FreeIPA) for attendees 
 group_name: student
 
-#namespaces:
-#  - name: tl500-workspaces
-#  - name: tl500-gitlab
-#  - name: tl500-shared
-
-
 logging:
   # Might be needed with clusters that have an infra plane
   # nodeSelector:
@@ -52,14 +46,12 @@ crw:
     CHE_WORKSPACE_DEFAULT__MEMORY__LIMIT__MB: "3072"
     CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: "-1"
 
-#docs:
-#  name: tl500-slides
-#  namespace: tl500-slides 
-#  build:
-#    source_context_dir: "slides"
-#    source_repo: "https://github.com/rht-labs/enablement-docs"
-#    s2i_name: "nodejs"
-#    s2i_tag: "10"
+# Tech-exercises deployment to engagement environment
+# Deployment done only if `docs:` is uncommented 
+# docs:
+#   name: tl500-docs
+#   namespace: tl500-tech-exercise
+#   image: quay.io/rht-labs/tl500-tech-exercise:v1.0.0
 
 
 stackrox-chart:

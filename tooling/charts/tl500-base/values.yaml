@@ -10,6 +10,7 @@ group_name: student
 
 namespaces:
   - name: tl500-workspaces
+  - name: tl500-tech-exercise
   - name: tl500-gitlab
   - name: tl500-shared
 
