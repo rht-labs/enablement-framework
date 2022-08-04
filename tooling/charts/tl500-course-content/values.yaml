@@ -48,16 +48,16 @@ crw:
 
 # Tech-exercises deployment to engagement environment
 # Deployment done only if `docs:` is uncommented 
-# docs:
+#docs:
 #   name: tl500-docs
 #   namespace: tl500-tech-exercise
 #   image: quay.io/rht-labs/tl500-tech-exercise:v1.0.2
-#  devfile_cm_name: tl500-docs-vars
-#  devfile_path: |
-#     {
-#     "devfile_location": "https://raw.githubusercontent.com/rht-labs/enablement-framework/main/codereadyworkspaces/tl>
-#     }
-
+#   devfile:
+#      configmap_name: tl500-docs-vars
+#      custom_path: |
+#        {
+#        "devfile_location": "https://raw.githubusercontent.com/rht-labs/enablement-framework/main/codereadyworkspaces/tl500-devfile.yaml"
+#        }
 
 stackrox-chart:
   enabled: true

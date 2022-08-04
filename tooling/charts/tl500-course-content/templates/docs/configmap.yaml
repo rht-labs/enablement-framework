@@ -1,10 +1,10 @@
-{{- if .Values.docs.devfile_path }}
+{{- if .Values.docs.devfile }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ $.Values.docs.devfile_cm_name}}
+  name: {{ .Values.docs.devfile.configmap_name }}
   namespace: {{ $.Values.docs.namespace }}
 data:
-  tl500-variables.json: {{ $.Values.docs.devfile_path}}
+  tl500-variables.json: {{ $.Values.docs.devfile.custom_path }}
 {{- end }}
