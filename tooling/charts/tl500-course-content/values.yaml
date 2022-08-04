@@ -51,7 +51,12 @@ crw:
 # docs:
 #   name: tl500-docs
 #   namespace: tl500-tech-exercise
-#   image: quay.io/rht-labs/tl500-tech-exercise:v1.0.0
+#   image: quay.io/rht-labs/tl500-tech-exercise:v1.0.2
+#  devfile_cm_name: tl500-docs-vars
+#  devfile_path: |
+#     {
+#     "devfile_location": "https://raw.githubusercontent.com/rht-labs/enablement-framework/main/codereadyworkspaces/tl>
+#     }
 
 
 stackrox-chart:

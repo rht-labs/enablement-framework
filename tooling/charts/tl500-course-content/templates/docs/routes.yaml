@@ -14,7 +14,7 @@ spec:
   port:
     targetPort: http
   tls:
-    termination: edge
+    termination: edge 
     insecureEdgeTerminationPolicy: Redirect
   wildcardPolicy: None
 {{- end }}
