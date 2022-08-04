@@ -1,0 +1,13 @@
+{{- if .Values.crw.custom_ca }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "20"
+  name: che-git-self-signed-cert
+  namespace: tl500-workspaces
+data:
+  ca.crt: {{ $.Values.crw.custom_ca }}
+{{- end }}
