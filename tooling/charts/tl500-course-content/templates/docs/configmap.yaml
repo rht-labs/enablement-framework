@@ -6,5 +6,5 @@ metadata:
   name: {{ .Values.docs.devfile.configmap_name }}
   namespace: {{ $.Values.docs.namespace }}
 data:
-  tl500-variables.json: {{ $.Values.docs.devfile.custom_path }}
+  all.json: {{ $.Values.docs.devfile.custom_path }}
 {{- end }}
