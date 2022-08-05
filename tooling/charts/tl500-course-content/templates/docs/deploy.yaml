@@ -1,7 +1,7 @@
 {{- if .Values.docs }}
 ---
 apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+kind: Deployment
 metadata:
   name: "{{ .Values.docs.name }}"
   namespace: "{{ .Values.docs.namespace }}"
@@ -10,25 +10,43 @@ metadata:
 spec:
   replicas: 1
   selector:
-    app: "{{ .Values.docs.name }}"
+    matchLabels:
+      app: "{{ .Values.docs.name }}"
   template:
-    metadata:
-      labels:
-        app: "{{ .Values.docs.name }}"
     spec:
+{{- if .Values.docs.config }}
+      volumes:
+        - name: {{ .Values.docs.config.configMapName }}
+          configMap:
+            name: {{ .Values.docs.config.configMapName }}
+            defaultMode: 420
+            optional: true
+{{- end }}
       containers:
-      - image: "{{ .Values.docs.image }}"
-        imagePullPolicy: Always
-        name: "{{ .Values.docs.name }}"
-        ports:
-        - name: http 
-          containerPort: 8080
-          protocol: TCP
-        resources: {}
-        terminationMessagePath: "/dev/termination-log"
-      dnsPolicy: ClusterFirst
+        - name: {{ .Values.docs.name }}
+          image: {{ .Values.docs.image }}
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+{{- if .Values.docs.config }}
+          volumeMounts:
+            - name: {{ .Values.docs.config.configMapName }}
+              mountPath: /docs/config
+{{- end }}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
       restartPolicy: Always
-      securityContext: {}
       terminationGracePeriodSeconds: 30
-  test: false
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
 {{- end }}
