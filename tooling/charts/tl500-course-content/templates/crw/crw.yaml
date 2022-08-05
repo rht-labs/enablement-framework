@@ -15,8 +15,9 @@ spec:
     pluginRegistryImage: {{ .Values.crw.pluginRegImage | default "" | quote }}
     tlsSupport: {{ .Values.crw.tlsSupport | default false }}
     selfSignedCert: {{ .Values.crw.selfSignedCert | default false }}
-    gitSelfSignedCert: {{ .Values.crw.gitSelfSignedCert | default false}}
-    ServerTrustStoreConfigMapName: {{ .Values.crw.ServerTrustStoreConfigMapName | default "" }}
+{{- if .Values.crw.gitCustomCA }}
+    gitSelfSignedCert: true
+{{- end }}
     customCheProperties: {{ toYaml .Values.crw.properties | nindent 6 | default "" }}
   database:
     externalDb: false
