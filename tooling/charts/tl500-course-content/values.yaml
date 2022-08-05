@@ -38,6 +38,7 @@ crw:
   name: "codeready-workspaces"
 #  devRegImage: "quay.io/rht-labs/devfileregistry:test"
 #  selfSignedCert: false
+#  customCaConfigMapName: che-git-self-signed-cert
 #  gitSelfSignedCert: false
 #  ServerTrustStoreConfigMapName: che-git-self-signed-cert
 #  custom_ca: |
