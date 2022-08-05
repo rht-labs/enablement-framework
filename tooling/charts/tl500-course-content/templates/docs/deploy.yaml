@@ -1,18 +1,19 @@
 {{- if .Values.docs }}
 ---
-apiVersion: apps.openshift.io/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "{{ .Values.docs.name }}"
   namespace: "{{ .Values.docs.namespace }}"
-  labels:
-    app: "{{ .Values.docs.name }}"
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: "{{ .Values.docs.name }}"
   template:
+    metadata:
+      labels:
+        app: "{{ .Values.docs.name }}"
     spec:
 {{- if .Values.docs.config }}
       volumes:
