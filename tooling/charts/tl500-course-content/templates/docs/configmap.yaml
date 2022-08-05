@@ -6,5 +6,5 @@ metadata:
   name: {{ .Values.docs.config.configMapName }}
   namespace: {{ $.Values.docs.namespace }}
 data:
-  all.json: {{ $.Values.docs.config.configFileContent }}
+  all.json: {{ $.Values.docs.config.configFileContent | toJson | quote }}
 {{- end }}
