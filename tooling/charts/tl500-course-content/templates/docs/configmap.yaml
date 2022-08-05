@@ -1,10 +1,10 @@
-{{- if .Values.docs.devfile }}
+{{- if .Values.docs.config }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Values.docs.devfile.configmap_name }}
+  name: {{ .Values.docs.config.configMapName }}
   namespace: {{ $.Values.docs.namespace }}
 data:
-  all.json: {{ $.Values.docs.devfile.custom_path }}
+  all.json: {{ $.Values.docs.config.configFileContent }}
 {{- end }}

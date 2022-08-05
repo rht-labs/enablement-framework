@@ -14,11 +14,11 @@ spec:
       app: "{{ .Values.docs.name }}"
   template:
     spec:
-{{- if .Values.docs.devfile }}
+{{- if .Values.docs.config }}
       volumes:
-        - name: {{ .Values.docs.devfile.configmap_name }}
+        - name: {{ .Values.docs.config.configMapName }}
           configMap:
-            name: {{ .Values.docs.devfile.configmap_name }}
+            name: {{ .Values.docs.config.configMapName }}
             defaultMode: 420
             optional: true
 {{- end }}
@@ -29,9 +29,9 @@ spec:
             - containerPort: 8080
               protocol: TCP
           resources: {}
-{{- if .Values.docs.devfile }}
+{{- if .Values.docs.config }}
           volumeMounts:
-            - name: {{ .Values.docs.devfile.configmap_name }}
+            - name: {{ .Values.docs.config.configMapName }}
               mountPath: /docs/config
 {{- end }}
           terminationMessagePath: /dev/termination-log

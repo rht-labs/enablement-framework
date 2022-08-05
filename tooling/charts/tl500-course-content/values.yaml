@@ -52,9 +52,9 @@ crw:
 #   name: tl500-docs
 #   namespace: tl500-tech-exercise
 #   image: quay.io/rht-labs/tl500-tech-exercise:v1.0.2
-#   devfile:
-#      configmap_name: tl500-docs-vars
-#      custom_path: |
+#   config:
+#      configMapName: tl500-docs-config
+#      configFileContent: |
 #        {
 #        "devfile_location": "https://raw.githubusercontent.com/rht-labs/enablement-framework/main/codereadyworkspaces/tl500-devfile.yaml"
 #        }
