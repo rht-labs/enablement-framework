@@ -119,14 +119,13 @@ subjects:
   kind: Group
   name: {{ .Values.group_name }}
 ---
-# to view tl500 IPA namespaces
-# Only if IPA namespace is there
-{{ if (lookup "v1" "Namespace" "" "ipa") }}
+{{- if .Values.ipa_namespace -}}
+# to view tl500 IPA namespaces. Only if IPA namespace exists.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: tl500-ipa-view
-  namespace: ipa
+  namespace: {{ .Values.ipa_namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -135,7 +134,7 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
   name: {{ .Values.group_name }}
-{{- end }}
+{{- end -}}
 ---
 # to edit/view monotoring
 apiVersion: rbac.authorization.k8s.io/v1
