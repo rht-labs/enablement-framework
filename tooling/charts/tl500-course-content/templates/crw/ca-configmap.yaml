@@ -9,5 +9,5 @@ metadata:
   name: che-git-self-signed-cert
   namespace: tl500-workspaces
 data:
-  ca.crt: {{ $.Values.crw.custom_ca }}
+  ca.crt: {{ $.Values.crw.custom_ca | indent 4 }}
 {{- end }}

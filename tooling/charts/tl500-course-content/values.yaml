@@ -39,7 +39,11 @@ crw:
 #  devRegImage: "quay.io/rht-labs/devfileregistry:test"
 #  selfSignedCert: false
 #  gitSelfSignedCert: false
-#  ServerTrustStoreConfigMapName: custom-ca-cert
+#  ServerTrustStoreConfigMapName: che-git-self-signed-cert
+#  custom_ca: |
+#           -----BEGIN CERTIFICATE-----
+#           your CA certificate goes here
+#           -----END CERTIFICATE-----
   tlsSupport: true
   properties:
     CHE_LIMITS_USER_WORKSPACES_COUNT: "2"
