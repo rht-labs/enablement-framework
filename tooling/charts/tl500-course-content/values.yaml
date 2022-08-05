@@ -37,6 +37,11 @@ crw:
   namespace: tl500-workspaces
   name: "codeready-workspaces"
 #  devRegImage: "quay.io/rht-labs/devfileregistry:test"
+#  selfSignedCert: false
+#  gitCustomCA: |
+#           -----BEGIN CERTIFICATE-----
+#           your CA certificate goes here
+#           -----END CERTIFICATE-----
   tlsSupport: true
   properties:
     CHE_LIMITS_USER_WORKSPACES_COUNT: "2"
