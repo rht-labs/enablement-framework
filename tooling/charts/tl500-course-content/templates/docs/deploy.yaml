@@ -14,7 +14,7 @@ spec:
       app: "{{ .Values.docs.name }}"
   template:
     spec:
-{{- if .Values.docs.config }}
+{{- if and .Values.docs .Values.docs.config }}
       volumes:
         - name: {{ .Values.docs.config.configMapName }}
           configMap:
@@ -29,7 +29,7 @@ spec:
             - containerPort: 8080
               protocol: TCP
           resources: {}
-{{- if .Values.docs.config }}
+{{- if and .Values.docs .Values.docs.config }}
           volumeMounts:
             - name: {{ .Values.docs.config.configMapName }}
               mountPath: /docs/config

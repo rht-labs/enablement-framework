@@ -1,3 +1,4 @@
+{{- if .Values.docs }}
 {{- if .Values.docs.config }}
 ---
 apiVersion: v1
@@ -7,4 +8,5 @@ metadata:
   namespace: {{ $.Values.docs.namespace }}
 data:
   all.json: {{ $.Values.docs.config.configFileContent }}
+{{- end }}
 {{- end }}
