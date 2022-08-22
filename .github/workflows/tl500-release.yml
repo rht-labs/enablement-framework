@@ -6,6 +6,14 @@ on:
   release:
     types:
       - created
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+    paths:
+      - 'tooling/charts/tl500-course-content/**'
+      - 'tooling/charts/tl500-base/**'
 
 jobs:
   release:
@@ -19,12 +27,24 @@ jobs:
         with:
           cmd: >
             yq e -i '.version = "${{ github.ref_name }}"' tooling/charts/tl500-base/Chart.yaml
-      
+
       - name: Update release version for Helm Charts
         uses: mikefarah/yq@v4.9.6
         with:
           cmd: >
             yq e -i '.version = "${{ github.ref_name }}"' tooling/charts/tl500-course-content/Chart.yaml
+
+      - name: Update release version for Helm Charts
+        uses: mikefarah/yq@v4.9.6
+        with:
+          cmd: >
+            yq e -i '.description = "${{ github.sha }}"' tooling/charts/tl500-base/Chart.yaml
+
+      - name: Update release version for Helm Charts
+        uses: mikefarah/yq@v4.9.6
+        with:
+          cmd: >
+            yq e -i '.description = "${{ github.sha }}"' tooling/charts/tl500-course-content/Chart.yaml
 
       - name: Install Helm dependencies and Package Charts TL500-base
         run: |
