@@ -1,0 +1,74 @@
+---
+name: Publish latest TL500 Helm Charts
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+    paths:
+      - 'tooling/charts/tl500-course-content/**'
+      - 'tooling/charts/tl500-base/**'
+jobs:
+  publish-latest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Update release version for Helm Charts
+        uses: mikefarah/yq@v4.9.6
+        with:
+          cmd: >
+            yq e -i '.description = "${{ github.ref_name }}"' tooling/charts/tl500-base/Chart.yaml
+
+      - name: Update release version for Helm Charts
+        uses: mikefarah/yq@v4.9.6
+        with:
+          cmd: >
+            yq e -i '.description = "${{ github.ref_name }}"' tooling/charts/tl500-course-content/Chart.yaml
+
+      - name: Update release version for Helm Charts
+        uses: mikefarah/yq@v4.9.6
+        with:
+          cmd: >
+            yq e -i '.version = latest' tooling/charts/tl500-base/Chart.yaml
+
+      - name: Update release version for Helm Charts
+        uses: mikefarah/yq@v4.9.6
+        with:
+          cmd: >
+            yq e -i '.version = latest' tooling/charts/tl500-course-content/Chart.yaml
+
+      - name: Install Helm dependencies and Package Charts TL500-base
+        run: |
+          helm dependency update tooling/charts/tl500-base
+          helm package tooling/charts/tl500-base -d /tmp/charts
+
+      - name: Install Helm dependencies and Package Charts TL500-course-content
+        run: |
+          helm dependency update tooling/charts/tl500-course-content
+          helm package tooling/charts/tl500-course-content -d /tmp/charts
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v2
+        with:
+          ref: 'gh-pages'
+
+      - name: Bring over the new Charts
+        run: |
+          mv /tmp/charts/tl500-*.tgz .
+
+      - name: Index the Helm Charts
+        run: |
+          helm repo index --url https://rht-labs.com/enablement-framework .
+
+      - name: Publish the updated Charts
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com" 
+          git add .
+          git commit -m "Updated latest charts ${{ github.ref_name }}"
+          git push 
+
