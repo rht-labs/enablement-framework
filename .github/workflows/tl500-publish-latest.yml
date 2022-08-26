@@ -10,9 +10,7 @@ on:
     paths:
       - 'tooling/charts/tl500-course-content/**'
       - 'tooling/charts/tl500-base/**'
-  release:
-    types:
-      - created
+
 jobs:
   publish-latest:
     runs-on: ubuntu-latest
@@ -20,25 +18,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Update release version for Helm Charts
+      - name: Update publish description for TL500-Base Helm Charts
         uses: mikefarah/yq@v4.9.6
         with:
           cmd: >
             yq e -i '.description = "${{ github.sha }}"' tooling/charts/tl500-base/Chart.yaml
 
-      - name: Update release version for Helm Charts
+      - name: Update publish description for TL500-Course-Content Helm Charts
         uses: mikefarah/yq@v4.9.6
         with:
           cmd: >
             yq e -i '.description = "${{ github.sha }}"' tooling/charts/tl500-course-content/Chart.yaml
 
-      - name: Update release version for Helm Charts
+      - name: Update publish version for TL500-Base Helm Chart
         uses: mikefarah/yq@v4.9.6
         with:
           cmd: >
             yq e -i '.version = v99.99.99' tooling/charts/tl500-base/Chart.yaml
 
-      - name: Update release version for Helm Charts
+      - name: Update publish version for TL500-Course-Content Helm Chart 
         uses: mikefarah/yq@v4.9.6
         with:
           cmd: >
