@@ -17,17 +17,17 @@ namespaces:
   - name: tl500-shared
 
 operators:
-  codeready-workspaces:
+  devspaces:
     enabled: true
-    namespace: tl500-workspaces
+    namespace: openshift-operators
     subscription:
-      channel: latest
+      channel: stable
       approval: Automatic
-      operatorName: codeready-workspaces
+      operatorName: devspaces
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
     operatorgroup:
-      create: true
+      create: false
 
   openshift-pipelines-operator-rh:
     enabled: true
