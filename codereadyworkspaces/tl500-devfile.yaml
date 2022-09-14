@@ -1,7 +1,9 @@
-apiVersion: 1.0.0
+apiVersion: 2.1.0
 metadata:
   name: tl500
   generateName: tl500-
+attributes:
+  che-theia.eclipse.org/sidecar-policy: USE_DEV_CONTAINER
 projects:
   - name: tech-exercise
     clonePath: tech-exercise
@@ -10,22 +12,22 @@ projects:
       location: 'https://github.com/rht-labs/tech-exercise'
       branch: 'main'
 components:
-  - type: cheEditor
-    alias: theia-editor
-    id: eclipse/che-theia/latest
-    memoryLimit: 2Gi
-  - alias: exec-plugin
-    type: chePlugin
-    id: eclipse/che-machine-exec-plugin/latest
-  - alias: node-debug2
-    type: chePlugin
-    id: ms-vscode/node-debug2/latest
-  - alias: vscode-yaml
-    type: chePlugin
-    id: redhat/vscode-yaml/latest
-  - alias: typescript-language-features
-    type: chePlugin
-    id: vscode/typescript-language-features/latest
+  # - type: cheEditor
+  #   alias: theia-editor
+  #   id: eclipse/che-theia/latest
+  #   memoryLimit: 2Gi
+  # - alias: exec-plugin
+  #   type: chePlugin
+  #   id: eclipse/che-machine-exec-plugin/latest
+  # - alias: node-debug2
+  #   type: chePlugin
+  #   id: ms-vscode/node-debug2/latest
+  # - alias: vscode-yaml
+  #   type: chePlugin
+  #   id: redhat/vscode-yaml/latest
+  # - alias: typescript-language-features
+  #   type: chePlugin
+  #   id: vscode/typescript-language-features/latest
   - type: dockerimage
     alias: stack-tl500
     image: quay.io/rht-labs/stack-tl500:3.0.16
@@ -39,56 +41,56 @@ components:
         containerPath: /home/developer/.config
       - name: npm
         containerPath: /home/developer/.npm
-    endpoints:
-      - name: ide-8080
-        port: 8080
-        attributes:
-          discoverable: "true"
-          public: "true"
-          protocol: http
-      - name: ide-9000
-        port: 9000
-        attributes:
-          discoverable: "true"
-          public: "true"
-          protocol: http
-      - name: ide-3000
-        port: 3000
-        attributes:
-          discoverable: "true"
-          public: "true"
-          protocol: http
-      - name: ide-4200
-        port: 4200
-        attributes:
-          discoverable: "true"
-          public: "true"
-          protocol: http
-      - name: ide-4444
-        port: 4444
-        attributes:
-          protocol: http
-      - name: ide-8081
-        port: 8081
-        attributes:
-          discoverable: "true"
-          public: "true"
-          protocol: http
-      - name: ide-8082
-        port: 8082
-        attributes:
-          discoverable: "true"
-          public: "true"
-          protocol: http
-      - name: ide-8083
-        port: 8083
-        attributes:
-          discoverable: "true"
-          public: "true"
-          protocol: http
-      - name: ide-8084
-        port: 8084
-        attributes:
-          discoverable: "true"
-          public: "true"
-          protocol: http
+    # endpoints:
+    #   - name: ide-8080
+    #     port: 8080
+    #     attributes:
+    #       discoverable: "true"
+    #       public: "true"
+    #       protocol: http
+    #   - name: ide-9000
+    #     port: 9000
+    #     attributes:
+    #       discoverable: "true"
+    #       public: "true"
+    #       protocol: http
+    #   - name: ide-3000
+    #     port: 3000
+    #     attributes:
+    #       discoverable: "true"
+    #       public: "true"
+    #       protocol: http
+    #   - name: ide-4200
+    #     port: 4200
+    #     attributes:
+    #       discoverable: "true"
+    #       public: "true"
+    #       protocol: http
+    #   - name: ide-4444
+    #     port: 4444
+    #     attributes:
+    #       protocol: http
+    #   - name: ide-8081
+    #     port: 8081
+    #     attributes:
+    #       discoverable: "true"
+    #       public: "true"
+    #       protocol: http
+    #   - name: ide-8082
+    #     port: 8082
+    #     attributes:
+    #       discoverable: "true"
+    #       public: "true"
+    #       protocol: http
+    #   - name: ide-8083
+    #     port: 8083
+    #     attributes:
+    #       discoverable: "true"
+    #       public: "true"
+    #       protocol: http
+    #   - name: ide-8084
+    #     port: 8084
+    #     attributes:
+    #       discoverable: "true"
+    #       public: "true"
+    #       protocol: http
