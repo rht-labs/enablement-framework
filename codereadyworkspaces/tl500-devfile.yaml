@@ -12,8 +12,8 @@ components:
     container:
       image: quay.io/rht-labs/stack-tl500:3.0.16
       memoryLimit: 2Gi
-      mountSources: true
       args: ['/bin/sh', '-c', 'sleep infinity']
+      mountSources: true
       volumeMounts:
         - name: projects
           path: /projects
@@ -21,3 +21,12 @@ components:
           path: /home/developer/.config
         - name: npm
           path: /home/developer/.npm
+  - name: projects
+    volume:
+      size: 256Mi
+  - name: config
+    volume:
+      size: 256Mi
+  - name: npm
+    volume:
+      size: 256Mi
