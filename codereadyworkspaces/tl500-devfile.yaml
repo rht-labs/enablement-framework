@@ -2,13 +2,11 @@ schemaVersion: 2.1.0
 metadata:
   name: tl500
   generateName: tl500-
-starterProjects:
+projects:
   - name: tech-exercise
-    clonePath: tech-exercise
-    source:
-      type: git
-      location: 'https://github.com/rht-labs/tech-exercise'
-      branch: 'main'
+    git:
+      remotes:
+        origin: 'https://github.com/rht-labs/tech-exercise.git'
 components:
   - type: dockerimage
     alias: stack-tl500
