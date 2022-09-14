@@ -8,16 +8,16 @@ projects:
       remotes:
         origin: 'https://github.com/rht-labs/tech-exercise.git'
 components:
-  - type: dockerimage
-    alias: stack-tl500
-    image: quay.io/rht-labs/stack-tl500:3.0.16
-    memoryLimit: 2Gi
-    mountSources: true
-    args: ['/bin/sh', '-c', 'sleep infinity']
-    volumes:
-      - name: projects
-        containerPath: /projects
-      - name: config
-        containerPath: /home/developer/.config
-      - name: npm
-        containerPath: /home/developer/.npm
+  - name: stack-tl500
+    container:
+      image: quay.io/rht-labs/stack-tl500:3.0.16
+      memoryLimit: 2Gi
+      mountSources: true
+      args: ['/bin/sh', '-c', 'sleep infinity']
+      volumeMounts:
+        - name: projects
+          path: /projects
+        - name: config
+          path: /home/developer/.config
+        - name: npm
+          path: /home/developer/.npm
