@@ -97,6 +97,8 @@ gitlab:
     - name: "postgresql"
       tag_name: "latest"
       stream_uri: "registry.redhat.io/rhscl/postgresql-96-rhel7"
+# a body of CA certificate that Gitlab should be using goes in here. Body needs to be Base64!
+#  cacert:
   ldap:
 #    port: "389"
 #    base: "dc=CORP,dc=EXAMPLE,dc=COM"
