@@ -1,0 +1,116 @@
+schemaVersion: 2.1.0
+metadata:
+  name: tl500
+attributes:
+  che-theia.eclipse.org/sidecar-policy: USE_DEV_CONTAINER
+  controller.devfile.io/devworkspace-config:
+    name: devworkspace-config
+    namespace: tl500-workspaces
+  controller.devfile.io/storage-type: per-workspace
+  metadata-name-field: generateName
+  metadata-name-original-value: tl500-
+projects:
+  - attributes:
+      source-origin: branch
+    clonePath: tech-exercise
+    git:
+      checkoutFrom:
+        revision: main
+      remotes:
+        origin: 'https://github.com/rht-labs/tech-exercise'
+    name: tech-exercise
+components:
+  - container:
+      args:
+        - /bin/sh
+        - '-c'
+        - sleep infinity
+      endpoints:
+        - attributes:
+            discoverable: 'true'
+            protocol: http
+            public: 'true'
+          exposure: public
+          name: ide-8080
+          protocol: http
+          targetPort: 8080
+        - attributes:
+            discoverable: 'true'
+            protocol: http
+            public: 'true'
+          exposure: public
+          name: ide-9000
+          protocol: http
+          targetPort: 9000
+        - attributes:
+            discoverable: 'true'
+            protocol: http
+            public: 'true'
+          exposure: public
+          name: ide-3000
+          protocol: http
+          targetPort: 3000
+        - attributes:
+            discoverable: 'true'
+            protocol: http
+            public: 'true'
+          exposure: public
+          name: ide-4200
+          protocol: http
+          targetPort: 4200
+        - attributes:
+            protocol: http
+          exposure: public
+          name: ide-4444
+          protocol: http
+          targetPort: 4444
+        - attributes:
+            discoverable: 'true'
+            protocol: http
+            public: 'true'
+          exposure: public
+          name: ide-8081
+          protocol: http
+          targetPort: 8081
+        - attributes:
+            discoverable: 'true'
+            protocol: http
+            public: 'true'
+          exposure: public
+          name: ide-8082
+          protocol: http
+          targetPort: 8082
+        - attributes:
+            discoverable: 'true'
+            protocol: http
+            public: 'true'
+          exposure: public
+          name: ide-8083
+          protocol: http
+          targetPort: 8083
+        - attributes:
+            discoverable: 'true'
+            protocol: http
+            public: 'true'
+          exposure: public
+          name: ide-8084
+          protocol: http
+          targetPort: 8084
+      image: 'quay.io/rht-labs/stack-tl500:3.0.16'
+      memoryLimit: 2Gi
+      mountSources: true
+      sourceMapping: /projects
+      volumeMounts:
+        - name: projects
+          path: /projects
+        - name: config
+          path: /home/developer/.config
+        - name: npm
+          path: /home/developer/.npm
+    name: stack-tl500
+  - name: projects
+    volume: {}
+  - name: config
+    volume: {}
+  - name: npm
+    volume: {}
