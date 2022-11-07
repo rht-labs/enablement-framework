@@ -2,7 +2,7 @@
 
 This directory contains the necessary charts used in order to deploy a TL500 Tech Stack against an OCP 4.X cluster. This assumes that the cluster has valid certificates.
 
-🐞 Please ensure your cluster is the latest Z release - 4.9.z or 4.10.z release. We test against these. 🐞
+🐞 Please ensure your cluster is the latest Z release - 4.10.z or 4.11.z release. We test against these. 🐞
 
 This chart is capable of deploying the following:
 
@@ -30,11 +30,19 @@ When specifying a chart version, make sure to use the same version for both char
 
 1. Install TL500 Base
 
+For 4.10.z OpenShift:
+
 ```bash
 helm repo add enablement-framework https://rht-labs.com/enablement-framework 
 helm repo update
 helm search repo enablement-framework
 helm install tl500-base enablement-framework/tl500-base --version XYZ --namespace tl500 --create-namespace --timeout=15m
+```
+
+When deploying to OpenShift 4.11.z+ there are some breaking changes in newer OpenShift versions, specifically around DevSpaces operator. Use the newer values file:
+
+```bash
+helm install tl500-base enablement-framework/tl500-base -f tl500-base/values-v4.11.yaml --version XYZ --namespace tl500 --create-namespace --timeout=15m
 ```
 
 2. Install TL500 Course Content
