@@ -17,17 +17,17 @@ namespaces:
   - name: tl500-shared
 
 operators:
-  codeready-workspaces:
+  devspaces:
     enabled: true
-    namespace: tl500-workspaces
+    namespace: openshift-operators
     subscription:
-      channel: latest
+      channel: stable
       approval: Automatic
-      operatorName: codeready-workspaces
+      operatorName: devspaces
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
     operatorgroup:
-      create: true
+      create: false
 
   openshift-pipelines-operator-rh:
     enabled: true
@@ -97,8 +97,6 @@ gitlab:
     - name: "postgresql"
       tag_name: "latest"
       stream_uri: "registry.redhat.io/rhscl/postgresql-96-rhel7"
-# a body of CA certificate that Gitlab should be using goes in here. Body needs to be Base64!
-#  cacert:
   ldap:
 #    port: "389"
 #    base: "dc=CORP,dc=EXAMPLE,dc=COM"
