@@ -1,37 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
   name: tl500
-  namespace: user1-devspaces
-attributes:
-  .che/che-editor.yaml: |
-    id: eclipse/che-theia/latest
-  .che/che-theia-plugins.yaml: |
-    - id: eclipse/che-machine-exec-plugin/latest
-      override:
-        sidecar:
-          name: exec-plugin
-    - id: redhat/vscode-yaml/latest
-      override:
-        sidecar:
-          name: vscode-yaml
-    - id: vscode/typescript-language-features/latest
-      override:
-        sidecar:
-          name: typescript-language-features
-  .vscode/extensions.json: |-
-    {
-      "recommendations": [
-        "eclipse/che-machine-exec-plugin",
-        "redhat/vscode-yaml",
-        "vscode/typescript-language-features"
-      ]
-    }
-  controller.devfile.io/devworkspace-config:
-    name: devworkspace-config
-    namespace: tl500-workspaces
-  controller.devfile.io/storage-type: per-workspace
-  metadata-name-field: generateName
-  metadata-name-original-value: tl500-
 projects:
   - attributes:
       source-origin: branch
