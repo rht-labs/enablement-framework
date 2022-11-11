@@ -1,5 +1,5 @@
 {{- if .Values.crw }}
-apiVersion: org.eclipse.che/v1
+apiVersion: org.eclipse.che/v2
 kind: CheCluster
 metadata:
   annotations:
@@ -8,24 +8,15 @@ metadata:
   name: {{ .Values.crw.name | default "codeready-workspaces" | quote }}
   namespace: {{ .Values.crw.namespace | default "tl500-workspaces" | quote }}
 spec:
-  server:
-    cheImageTag: {{ .Values.crw.cheImageTag | default "" | quote }}
-    cheFlavor: {{ .Values.crw.cheFlavor | default "codeready" | quote }}
-    devfileRegistryImage: {{ .Values.crw.devRegImage | default "" | quote }}
-    pluginRegistryImage: {{ .Values.crw.pluginRegImage | default "" | quote }}
-    tlsSupport: {{ .Values.crw.tlsSupport | default false }}
-    selfSignedCert: {{ .Values.crw.selfSignedCert | default false }}
-{{- if .Values.crw.gitCustomCA }}
-    gitSelfSignedCert: true
-{{- end }}
-    customCheProperties: {{ toYaml .Values.crw.properties | nindent 6 | default "" }}
-  database:
-    externalDb: false
-    chePostgresHostName: ''
-    chePostgresPort: ''
-    chePostgresUser: ''
-    chePostgresPassword: ''
-    chePostgresDb: ''
+  components:
+    database:
+      externalDb: false
+    metrics:
+      enable: false
+    cheServer:
+      debug: false
+      logLevel: INFO
+      extraProperties: {{ toYaml .Values.crw.properties | nindent 8 | default "" }}
   auth:
     openShiftoAuth: true
     identityProviderImage: ''
@@ -33,8 +24,11 @@ spec:
     identityProviderURL: ''
     identityProviderRealm: ''
     identityProviderClientId: ''
-  storage:
-    pvcStrategy: per-workspace
-    pvcClaimSize: 2Gi
-    preCreateSubPaths: true
+  devEnvironments:
+    secondsOfRunBeforeIdling: -1
+    defaultNamespace:
+      template: <username>-devspaces
+    secondsOfInactivityBeforeIdling: -1
+    storage:
+      pvcStrategy: per-user
 {{- end }}
