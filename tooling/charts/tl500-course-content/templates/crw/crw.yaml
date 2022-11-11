@@ -17,13 +17,6 @@ spec:
       debug: false
       logLevel: INFO
       extraProperties: {{ toYaml .Values.crw.properties | nindent 8 | default "" }}
-  auth:
-    openShiftoAuth: true
-    identityProviderImage: ''
-    externalIdentityProvider: false
-    identityProviderURL: ''
-    identityProviderRealm: ''
-    identityProviderClientId: ''
   devEnvironments:
     secondsOfRunBeforeIdling: -1
     defaultNamespace:
