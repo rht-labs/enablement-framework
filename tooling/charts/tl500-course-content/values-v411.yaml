@@ -1,36 +1,4 @@
-# Create a helper to create a prefix if one isn't provided? Would help if we moved to shared clusters
-prefix: ""
-
-# Group name in LDAP / IdM (FreeIPA) for attendees 
-group_name: student
-
-logging:
-  # Might be needed with clusters that have an infra plane
-  # nodeSelector:
-  #   key: node-role.kubernetes.io/infra
-  #   value: ''
-  namespace: openshift-logging
-  tolerations:
-  - effect: NoSchedule
-    key: node-role.kubernetes.io/infra
-    operator: Exists
-
-  elasticsearch:
-    requests:
-      cpu: 250m
-      memory: 512Mi
-    limits:
-      cpu: 4000m
-      memory: 16Gi
-    storage:
-      # size: 200G
-      # class: gp2
-    nodeCount: 1
-    retentionPolicy:
-      application: 7d
-    redundancyPolicy: ZeroRedundancy
-
-  kibana: {}
+# OpenShift 411 extra values
 
 crw: # undefine v1
 
@@ -42,22 +10,3 @@ crwv2:
   properties:
     CHE_LIMITS_USER_WORKSPACES_COUNT: "2"
     CHE_WORKSPACE_DEFAULT__MEMORY__LIMIT__MB: "3072"
-
-# Tech-exercises deployment to engagement environment
-# Deployment done only if `docs:` is uncommented 
-#docs:
-#   name: tl500-docs
-#   namespace: tl500-tech-exercise
-#   image: quay.io/rht-labs/tl500-tech-exercise:v1.0.2
-#   config:
-#      configMapName: tl500-docs-config
-#      configFileContent: |
-#        {
-#        "devfile": "https://raw.githubusercontent.com/rht-labs/enablement-framework/main/codereadyworkspaces/tl500-devfile.yaml"
-#        }
-
-stackrox-chart:
-  enabled: true
-  stackrox:
-    clusterName: tl500
-    namespace: stackrox
