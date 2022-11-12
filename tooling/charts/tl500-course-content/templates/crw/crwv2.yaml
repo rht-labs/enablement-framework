@@ -1,0 +1,28 @@
+{{- if .Values.crwv2 }}
+apiVersion: org.eclipse.che/v2
+kind: CheCluster
+metadata:
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "25"
+  name: {{ .Values.crw.name | default "codeready-workspaces" | quote }}
+  namespace: {{ .Values.crw.namespace | default "tl500-workspaces" | quote }}
+spec:
+  components:
+    database:
+      externalDb: false
+    metrics:
+      enable: false
+    cheServer:
+      debug: false
+      logLevel: INFO
+      extraProperties: {{ toYaml .Values.crw.properties | nindent 8 | default "" }}
+  devEnvironments:
+    runningLimit: 1
+    secondsOfRunBeforeIdling: {{ .Values.crw.secondsOfRunBeforeIdling | default "-1" | quote }}
+    defaultNamespace:
+      template: <username>-devspaces
+    secondsOfInactivityBeforeIdling:  {{ .Values.crw.secondsOfInactivityBeforeIdling | default "-1" | quote }}
+    storage:
+      pvcStrategy: per-user
+{{- end }}
