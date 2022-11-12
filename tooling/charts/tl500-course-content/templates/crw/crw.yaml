@@ -18,10 +18,11 @@ spec:
       logLevel: INFO
       extraProperties: {{ toYaml .Values.crw.properties | nindent 8 | default "" }}
   devEnvironments:
-    secondsOfRunBeforeIdling: -1
+    runningLimit: 1
+    secondsOfRunBeforeIdling: {{ .Values.crw.secondsOfRunBeforeIdling | default "-1" | quote }}
     defaultNamespace:
       template: <username>-devspaces
-    secondsOfInactivityBeforeIdling: -1
+    secondsOfInactivityBeforeIdling:  {{ .Values.crw.secondsOfInactivityBeforeIdling | default "-1" | quote }}
     storage:
       pvcStrategy: per-user
 {{- end }}
