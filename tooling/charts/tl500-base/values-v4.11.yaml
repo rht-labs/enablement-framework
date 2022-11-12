@@ -1,6 +1,8 @@
 # OpenShift 411 override values
 
 operators:
+  codeready-workspaces: # undefine
+
   devspaces:
     enabled: true
     namespace: openshift-operators
@@ -12,51 +14,3 @@ operators:
       sourceNamespace: openshift-marketplace
     operatorgroup:
       create: false
-
-  openshift-pipelines-operator-rh:
-    enabled: true
-    namespace: openshift-operators
-    subscription:
-      channel: latest
-      approval: Automatic
-      operatorName: openshift-pipelines-operator-rh
-      sourceName: redhat-operators
-      sourceNamespace: openshift-marketplace
-    operatorgroup:
-      create: false
-
-  elasticsearch-operator:
-    enabled: true
-    namespace: openshift-operators
-    subscription:
-      channel: stable-5.3
-      approval: Automatic
-      operatorName: elasticsearch-operator
-      sourceName: redhat-operators
-      sourceNamespace: openshift-marketplace
-    operatorgroup:
-      create: false
-
-  cluster-logging-operator:
-    enabled: true
-    namespace: openshift-logging
-    subscription:
-      channel: stable-5.3
-      approval: Automatic
-      operatorName: cluster-logging
-      sourceName: redhat-operators
-      sourceNamespace: openshift-marketplace
-    operatorgroup:
-      create: true
-
-  cert-utils-operator:
-     enabled: true
-     namespace: openshift-operators
-     subscription:
-       channel: alpha
-       approval: Automatic
-       operatorName: cert-utils-operator
-       sourceName: community-operators
-       sourceNamespace: openshift-marketplace
-     operatorgroup:
-       create: false
