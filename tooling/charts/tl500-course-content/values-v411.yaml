@@ -32,6 +32,7 @@ logging:
 
   kibana: {}
 
+crw: # undefine v1
 
 crwv2:
   namespace: tl500-workspaces
