@@ -32,15 +32,23 @@ logging:
 
   kibana: {}
 
-
-crwv2:
+crw:
   namespace: tl500-workspaces
   name: "codeready-workspaces"
-  secondsOfRunBeforeIdling: "-1"
-  secondsOfInactivityBeforeIdling: "-1"
+#  devRegImage: "quay.io/rht-labs/devfileregistry:test"
+#  selfSignedCert: false
+#  gitCustomCA: |
+#           -----BEGIN CERTIFICATE-----
+#           your CA certificate goes here
+#           -----END CERTIFICATE-----
+  tlsSupport: true
   properties:
     CHE_LIMITS_USER_WORKSPACES_COUNT: "2"
+    CHE_LIMITS_USER_WORKSPACES_RUN_COUNT: "1"
+    CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: "Always"
+    CHE_DOCKER_ALWAYS__PULL__IMAGE: "true"
     CHE_WORKSPACE_DEFAULT__MEMORY__LIMIT__MB: "3072"
+    CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: "-1"
 
 # Tech-exercises deployment to engagement environment
 # Deployment done only if `docs:` is uncommented 
