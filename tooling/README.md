@@ -47,6 +47,8 @@ helm install tl500-base enablement-framework/tl500-base -f tl500-base/values-v4.
 
 2. Install TL500 Course Content
 
+For 4.10.z OpenShift:
+
 ```bash
 helm repo add enablement-framework https://rht-labs.com/enablement-framework 
 helm repo update
