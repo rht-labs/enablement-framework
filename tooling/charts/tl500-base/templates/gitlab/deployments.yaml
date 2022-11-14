@@ -41,15 +41,15 @@ spec:
       - name: gitlab-ce-volume-2
         persistentVolumeClaim:
           claimName: "{{ $.Values.gitlab_app_name }}-data"
-{{- if .Values.gitlab.cacert }}
-      - name: gitlab-ca
-        secret:
-          defaultMode: 420
-          items:
-          - key: "ca-cert.crt"
-            path: "ca-cert.crt"
-          secretName: gitlab-ca
-{{- end }}
+#      - name: gitlab-certificates
+#        secret:
+#          defaultMode: 420
+#          items:
+#          - key: "gitlab.crt"
+#            path: "gitlab.crt"
+#          - key: "gitlab.key"
+#            path: "gitlab.key"
+#          secretName: gitlab-certs
       containers:
       - name: gitlab-ce
         image: gitlab-ce
@@ -100,10 +100,8 @@ spec:
           mountPath: "/etc/gitlab"
         - name: gitlab-ce-volume-2
           mountPath: "/gitlab-data"
-{{- if .Values.gitlab.cacert }}
-        - name: gitlab-ca
-          mountPath: /etc/gitlab-ssl
-{{- end }}
+#        - name: gitlab-certificates
+#          mountPath: /etc/gitlab-ssl
         livenessProbe:
           httpGet:
             path: "/help"
