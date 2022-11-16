@@ -1,3 +1,4 @@
+{{- if .Values.crw }}
 {{- if .Values.crw.gitCustomCA }}
 ---
 apiVersion: v1
@@ -10,4 +11,5 @@ metadata:
   namespace: {{ .Values.crw.namespace | default "tl500-workspaces" | quote }}
 data:
   ca.crt: {{ .Values.crw.gitCustomCA | indent 4 }}
+{{- end }}
 {{- end }}

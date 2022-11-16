@@ -1,0 +1,12 @@
+# OpenShift 411 extra values
+
+crw: # undefine v1
+
+crwv2:
+  namespace: tl500-workspaces
+  name: "codeready-workspaces"
+  secondsOfRunBeforeIdling: "-1"
+  secondsOfInactivityBeforeIdling: "-1"
+  properties:
+    CHE_LIMITS_USER_WORKSPACES_COUNT: "2"
+    CHE_WORKSPACE_DEFAULT__MEMORY__LIMIT__MB: "3072"

@@ -32,7 +32,6 @@ logging:
 
   kibana: {}
 
-
 crw:
   namespace: tl500-workspaces
   name: "codeready-workspaces"
