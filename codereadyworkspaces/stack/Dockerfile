@@ -13,7 +13,6 @@ ENV ARGOCD_VERSION=2.3.3 \
     YQ_VERSION=4.11.2 \
     HELM_VERSION=3.8.1 \
     KUBESEAL_VERSION=0.17.5 \
-    TEKTON_VERSION=0.23.1 \
     OC_VERSION=4.10.9 \
     JQ_VERSION=1.6 \
     CONFTEST_VERSION=0.23.0 \
@@ -57,7 +56,7 @@ RUN curl -sL https://github.com/bitnami-labs/sealed-secrets/releases/download/v$
     echo "🦭🦭🦭🦭🦭"
 
 # tekton
-RUN curl -sL https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/latest/tkn-linux-amd64-${TEKTON_VERSION}.tar.gz | tar --no-same-owner -xzf - -C /usr/local/bin tkn && \
+RUN curl -sL https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/latest/tkn-linux-amd64.tar.gz | tar --no-same-owner -xzf - -C /usr/local/bin tkn && \
     echo "🐈🐈🐈🐈🐈"
 
 # oc client
