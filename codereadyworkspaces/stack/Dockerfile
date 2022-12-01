@@ -21,6 +21,7 @@ ENV ARGOCD_VERSION=2.3.3 \
     ROX_VERSION=3.63.0 \
     KUBELINTER_VERSION=0.2.6 \
     COSIGN_VERSION=1.7.2 \
+    K6_VERSION=0.41.0 \
     JSONNET_VERSION=0.17.0
 
 # this is based off of registry.redhat.io/codeready-workspaces/plugin-java8-rhel8
@@ -102,6 +103,11 @@ RUN curl -skL -o /usr/local/bin/cosign https://github.com/sigstore/cosign/releas
 # hey
 RUN curl -skL -o /usr/local/bin/hey https://hey-release.s3.us-east-2.amazonaws.com/hey_linux_amd64 && \
     chmod 775 /usr/local/bin/hey && \
+    echo "👋👋👋"
+
+# k6
+RUN curl -skL https://github.com/grafana/k6/releases/download/v${K6_VERSION}/k6-v${K6_VERSION}-linux-amd64.tar.gz | tar zxf - -C /usr/local/bin --strip-components=1 k6-v${K6_VERSION}-linux-amd64/k6 && \
+    chmod 775 /usr/local/bin/k6 && \
     echo "👋👋👋"
 
 # jsonnet & jsonnet bundler 
