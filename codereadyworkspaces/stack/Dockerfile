@@ -58,6 +58,7 @@ RUN curl -sL https://github.com/bitnami-labs/sealed-secrets/releases/download/v$
 
 # tekton
 RUN curl -sL https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/${TEKTON_VERSION}/tkn-macos-amd64-${TEKTON_VERSION}.tar.gz | tar --no-same-owner -xzf - -C /usr/local/bin tkn && \
+    chmod -R 755 /usr/local/bin/tkn && \
     echo "🐈🐈🐈🐈🐈"
 
 # oc client
