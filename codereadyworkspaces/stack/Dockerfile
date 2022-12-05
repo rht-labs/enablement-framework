@@ -13,7 +13,6 @@ ENV ARGOCD_VERSION=2.3.3 \
     YQ_VERSION=4.11.2 \
     HELM_VERSION=3.8.1 \
     KUBESEAL_VERSION=0.17.5 \
-    TEKTON_VERSION=0.23.1 \
     OC_VERSION=4.10.9 \
     JQ_VERSION=1.6 \
     CONFTEST_VERSION=0.23.0 \
@@ -57,7 +56,7 @@ RUN curl -sL https://github.com/bitnami-labs/sealed-secrets/releases/download/v$
     echo "🦭🦭🦭🦭🦭"
 
 # tekton
-RUN curl -sL https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/latest/tkn-linux-amd64-${TEKTON_VERSION}.tar.gz | tar --no-same-owner -xzf - -C /usr/local/bin tkn && \
+RUN curl -sL https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/latest/tkn-linux-amd64.tar.gz | tar --no-same-owner -xzf - -C /usr/local/bin tkn && \
     echo "🐈🐈🐈🐈🐈"
 
 # oc client
@@ -105,7 +104,7 @@ RUN curl -skL -o /usr/local/bin/hey https://hey-release.s3.us-east-2.amazonaws.c
     echo "👋👋👋"
 
 # jsonnet & jsonnet bundler 
-RUN GO111MODULE="on" go get github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb github.com/brancz/gojsontoyaml && \
+RUN GO111MODULE="on" go install github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest && go install github.com/brancz/gojsontoyaml@latest && \
     curl -skL -o /tmp/jsonnet.tar.gz https://github.com/google/jsonnet/releases/download/v${JSONNET_VERSION}/jsonnet-bin-v${JSONNET_VERSION}-linux.tar.gz && \
     tar -C /tmp -xzf /tmp/jsonnet.tar.gz && \
     mv -v /tmp/jsonnet /usr/local/bin && \
