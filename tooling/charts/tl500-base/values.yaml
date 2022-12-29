@@ -138,3 +138,14 @@ gitops-operator:
 
 tl500-teamsters:
   enabled: true
+
+# assumes node-role.kubernetes.io/infra: "" on one or more nodes
+runOnInfra: false
+
+# not sure if this should be in this repo but putting somewhere for safe keeping at least 
+machineset:
+  enabled: false
+  cluster_id: ''
+  region: 'eu-west-2'
+  availability_zone: 'eu-west-2a'
+  ami_id: 'ami-0993bc7222e12bd80' # eu-west-2

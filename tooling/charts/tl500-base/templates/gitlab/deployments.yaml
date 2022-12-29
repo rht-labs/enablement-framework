@@ -34,6 +34,17 @@ spec:
         app: "{{ $.Values.gitlab_app_name }}"
         deploymentconfig: "{{ $.Values.gitlab_app_name }}"
     spec:
+      {{- if .Values.runOnInfra }}
+      nodeSelector:
+        node-role.kubernetes.io/infra: ''
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+        value: reserved
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+        value: reserved
+      {{- end }}
       volumes:
       - name: gitlab-ce-volume-1
         persistentVolumeClaim:
@@ -164,6 +175,17 @@ spec:
         app: "{{ $.Values.gitlab_app_name }}"
         deploymentconfig: "{{ $.Values.gitlab_app_name }}-redis"
     spec:
+      {{- if .Values.runOnInfra }}
+      nodeSelector:
+        node-role.kubernetes.io/infra: ''
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+        value: reserved
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+        value: reserved
+      {{- end }}
       volumes:
       - name: gitlab-ce-volume-4
         persistentVolumeClaim:
@@ -205,6 +227,8 @@ metadata:
 spec:
   strategy:
     type: Recreate
+    # this doesn't work when on an infra node as the node selector is inherited from the Deploy bt the tollerations are not...
+    {{- if not .Values.runOnInfra }}
     recreateParams:
       post:
         failurePolicy: Abort
@@ -224,6 +248,7 @@ spec:
             value: "/var/lib/pgsql/data/userdata"
           - name: CONTAINER_SCRIPTS_PATH
             value: "/usr/share/container-scripts/postgresql"
+      {{- end }}
     resources: {}
   triggers:
   - type: ConfigChange
@@ -247,6 +272,17 @@ spec:
         app: "{{ $.Values.gitlab_app_name }}"
         deploymentconfig: "{{ $.Values.gitlab_app_name }}-postgresql"
     spec:
+      {{- if .Values.runOnInfra }}
+      nodeSelector:
+        node-role.kubernetes.io/infra: ''
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+        value: reserved
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+        value: reserved
+      {{- end }}
       volumes:
       - name: gitlab-ce-volume-3
         persistentVolumeClaim:
@@ -296,4 +332,49 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
+{{- if .Values.runOnInfra }}
+---
+# job needs to be here otherwise the $db_admin_pass changes
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: configure-postgresql
+  namespace: "{{ $.Values.gitlab.namespace }}"
+spec:
+  template:
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/infra: ''
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+        value: reserved
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+        value: reserved
+      containers:
+      - command:
+          - /bin/bash
+          - -c
+          - |
+            echo "Patching the postgresql, waiting a mo for it to be up ..."
+            sleep 30
+            /usr/bin/scl enable rh-postgresql96
+            export PGPASSWORD='{{ $db_admin_pass }}'
+            psql -h '{{ $.Values.gitlab_app_name }}-postgresql' -U postgres -d {{ .Values.gitlab.db_name | default "gitlabhq_production" }} -c 'CREATE EXTENSION IF NOT EXISTS pg_trgm;'
+            exit 0
+        image: "registry.redhat.io/rhscl/postgresql-96-rhel7:latest"
+        imagePullPolicy: IfNotPresent
+        name: job
+        env:
+          - name: HOME
+            value: "/var/lib/pgsql"
+          - name: PGDATA
+            value: "/var/lib/pgsql/data/userdata"
+          - name: CONTAINER_SCRIPTS_PATH
+            value: "/usr/share/container-scripts/postgresql"
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      terminationGracePeriodSeconds: 10
+{{- end }}
 {{- end -}}

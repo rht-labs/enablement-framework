@@ -103,3 +103,20 @@ After this is deployed, you will have a functional gitlab server that can be use
 ## CodeReady Workspaces
 
 With CRW, this uses the provided Operator to deploy a CRW instance. With the provided defaults, it restricts uses to two workspaces and allows for only a single `running` instance.
+
+
+## Running on infra nodes
+
+To run on an infra node (currenly only AWS supported) you can enable this by setting `runOnInfra: true`. This assumes 1) there is at least one infra node configured with the label `node-role.kubernetes.io/infra: ""`.
+
+If you want to provision the node for this too, set the `machineSet` property with appropriate values:
+
+```yaml
+# not sure if this should be in this repo but putting somewhere for safe keeping at least 
+machineset:
+  enabled: true 
+  cluster_id: '' # id of the cluster
+  region: 'eu-west-2'
+  availability_zone: 'eu-west-2a'
+  ami_id: 'ami-0993bc7222e12bd80' # eu-west-2 for example, you'd need to find the right ami for the region
+```
