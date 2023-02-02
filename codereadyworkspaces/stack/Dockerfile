@@ -2,12 +2,6 @@ FROM registry.access.redhat.com/ubi8/ubi:8.5
 
 USER root
 
-# dnf repos
-RUN rm -f /etc/yum.repos.d/*
-ADD ubi8.repo /etc/yum.repos.d/ubi8.repo
-RUN dnf install -y centos-gpg-keys --nogpgcheck && \
-    rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
-
 # rht-labs stuff
 ENV ARGOCD_VERSION=2.3.3 \
     YQ_VERSION=4.11.2 \
