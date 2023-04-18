@@ -1,4 +1,4 @@
-# OpenShift 412 override values
+# OpenShift 411,412 override values
 
 operators:
   codeready-workspaces: # undefine

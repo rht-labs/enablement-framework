@@ -39,10 +39,10 @@ helm search repo enablement-framework
 helm install tl500-base enablement-framework/tl500-base --version XYZ --namespace tl500 --create-namespace --timeout=15m
 ```
 
-When deploying to OpenShift 4.11.z+ there are some breaking changes in newer OpenShift versions, specifically around DevSpaces operator. Use the newer values file:
+When deploying to OpenShift 4.11.z+ or 4.12.z+ there are some breaking changes in newer OpenShift versions, specifically around DevSpaces operator. Use the newer values file:
 
 ```bash
-helm install tl500-base enablement-framework/tl500-base -f tl500-base/values-v4.11.yaml --version XYZ --namespace tl500 --create-namespace --timeout=15m
+helm install tl500-base enablement-framework/tl500-base -f tl500-base/values-v4.11+.yaml --version XYZ --namespace tl500 --create-namespace --timeout=15m
 ```
 
 2. Install TL500 Course Content
@@ -56,10 +56,10 @@ helm search repo enablement-framework
 helm install tl500-course-content enablement-framework/tl500-course-content --version XYZ --namespace tl500 --create-namespace --timeout=15m
 ```
 
-When deploying to OpenShift 4.11.z+ there are some breaking changes in newer OpenShift versions, specifically around DevSpaces operator. Use the newer values file:
+When deploying to OpenShift 4.11.z+ or 4.12.z+ there are some breaking changes in newer OpenShift versions, specifically around DevSpaces operator. Use the newer values file:
 
 ```bash
-helm install  tl500-course-content enablement-framework/tl500-course-content -f tl500-base/values-v4.11.yaml --version XYZ --namespace tl500 --create-namespace --timeout=15m
+helm install  tl500-course-content enablement-framework/tl500-course-content -f tl500-base/values-v4.11+.yaml --version XYZ --namespace tl500 --create-namespace --timeout=15m
 ```
 
 ## Using the helm chart source code
