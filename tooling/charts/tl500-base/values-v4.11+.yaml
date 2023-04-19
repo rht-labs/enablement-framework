@@ -1,0 +1,40 @@
+# OpenShift 411,412 override values
+
+operators:
+  codeready-workspaces: # undefine
+
+  devspaces:
+    enabled: true
+    namespace: openshift-operators
+    subscription:
+      channel: stable
+      approval: Automatic
+      operatorName: devspaces
+      sourceName: redhat-operators
+      sourceNamespace: openshift-marketplace
+    operatorgroup:
+      create: false
+
+  elasticsearch-operator:
+    enabled: true
+    namespace: openshift-operators
+    subscription:
+      channel: stable
+      approval: Automatic
+      operatorName: elasticsearch-operator
+      sourceName: redhat-operators
+      sourceNamespace: openshift-marketplace
+    operatorgroup:
+      create: false
+
+  cluster-logging-operator:
+    enabled: true
+    namespace: openshift-logging
+    subscription:
+      channel: stable
+      approval: Automatic
+      operatorName: cluster-logging
+      sourceName: redhat-operators
+      sourceNamespace: openshift-marketplace
+    operatorgroup:
+      create: true
