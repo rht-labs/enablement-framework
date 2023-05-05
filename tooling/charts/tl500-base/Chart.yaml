@@ -13,7 +13,7 @@ maintainers:
   - name: springdo
 dependencies:
   - name: sealed-secrets
-    version: "2.6.1"
+    version: "2.8.2"
     repository: https://bitnami-labs.github.io/sealed-secrets
     condition: sealed-secrets.enabled
   - name: stackrox-chart
@@ -21,7 +21,7 @@ dependencies:
     repository: https://redhat-cop.github.io/helm-charts
     condition: stackrox-chart.enabled
   - name: gitops-operator
-    version: "0.5.1"
+    version: "0.7.0"
     repository: https://redhat-cop.github.io/helm-charts
     condition: gitops-operator.enabled
   - name: tl500-teamsters
