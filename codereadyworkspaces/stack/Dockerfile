@@ -8,7 +8,7 @@ ENV ARGOCD_VERSION=2.7.1 \
     HELM_VERSION=3.11.2 \
     KUBESEAL_VERSION=0.20.5 \
     OC_VERSION=4.12.14 \
-    TEKTON_VERSION=0.24.1 \
+    TEKTON_VERSION=1.10.0 \
     JQ_VERSION=1.6 \
     CONFTEST_VERSION=0.41.0 \
     ROX_VERSION=3.74.3 \
@@ -25,7 +25,7 @@ ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk \
     MAVEN_CONFIG=/projects/.m2
 
 RUN dnf -y install \
-    bash tar gzip unzip which findutils wget git procps-ng python3-pip bzip2 java-17-openjdk java-17-openjdk-devel java-17-openjdk-headless nodejs npm nodejs-nodemon nss_wrapper zsh iputils bind-utils net-tools go-toolset && \
+    bash tar gzip unzip which findutils wget git procps-ng python3-pip bzip2 java-17-openjdk java-17-openjdk-devel java-17-openjdk-headless nodejs npm nodejs-nodemon nss_wrapper zsh iputils bind-utils net-tools go-toolset openssl && \
     dnf -y -q clean all && rm -rf /var/cache/yum && \
     pip3 install pylint && \
     mkdir -p ${HOME} ${PROJECTS} /usr/share/maven && \
@@ -120,6 +120,10 @@ RUN echo "git config --global http.sslVerify false" | tee -a /etc/bashrc -a /etc
     echo "git config --global pull.rebase 'false'" | tee -a /etc/bashrc -a /etc/zshrc && \
     echo "git config --global push.default 'simple'" | tee -a /etc/bashrc -a /etc/zshrc && \
     echo "🤗🤗🤗🤗🤗"
+
+# needed for DevSpaces nodejs agent version for now, not in ubi - libcrypto.so.1.1
+RUN dnf install -y https://rpmfind.net/linux/fedora/linux/releases/37/Everything/x86_64/os/Packages/o/openssl1.1-1.1.1q-2.fc37.x86_64.rpm && \
+  dnf -y -q clean all && rm -rf /var/cache/yum
 
 # custom user functions
 RUN echo "source /usr/local/bin/user-functions.sh" | tee -a /etc/bashrc -a /etc/zshrc
