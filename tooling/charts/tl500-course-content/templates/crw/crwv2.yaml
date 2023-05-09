@@ -29,5 +29,5 @@ spec:
     storage:
       perUserStrategyPvcConfig:
         claimSize: 2Gi
-      pvcStrategy: per-user
+      pvcStrategy: per-workspace
 {{- end }}
