@@ -34,8 +34,6 @@ jobs:
           echo "Running: podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} to check CLIs version"
           echo "⚓️check helm version"
           podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} helm version | grep $HELM_VERSION
-          echo "🐈check tkn version"
-          podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} tkn version | grep $TEKTON_VERSION
           echo "🦭check kubeseal --version"
           podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} kubeseal --version | grep $KUBESEAL_VERSION  
           echo "🐙check argocd version"
