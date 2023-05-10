@@ -18,10 +18,16 @@ spec:
       logLevel: INFO
       extraProperties: {{ toYaml .Values.crwv2.properties | nindent 8 | default "" }}
   devEnvironments:
+    startTimeoutSeconds: 300
     secondsOfRunBeforeIdling: {{ .Values.crwv2.secondsOfRunBeforeIdling | default -1 }}
+    secondsOfInactivityBeforeIdling: {{ .Values.crwv2.secondsOfInactivityBeforeIdling | default -1 }}
+    maxNumberOfWorkspacesPerUser: -1
+    disableContainerBuildCapabilities: true
     defaultNamespace:
+      autoProvision: true
       template: <username>-devspaces
-    secondsOfInactivityBeforeIdling:  {{ .Values.crwv2.secondsOfInactivityBeforeIdling | default -1 }}
     storage:
-      pvcStrategy: per-user
+      perUserStrategyPvcConfig:
+        claimSize: 2Gi
+      pvcStrategy: per-workspace
 {{- end }}

@@ -96,7 +96,7 @@ components:
           name: ide-8084
           protocol: http
           targetPort: 8084
-      image: 'quay.io/rht-labs/stack-tl500:3.0.16'
+      image: 'quay.io/rht-labs/stack-tl500:3.0.17'
       memoryLimit: 2Gi
       mountSources: true
       sourceMapping: /projects

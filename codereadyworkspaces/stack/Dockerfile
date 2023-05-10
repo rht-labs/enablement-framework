@@ -1,51 +1,37 @@
-FROM registry.access.redhat.com/ubi8/ubi:8.5
+FROM registry.access.redhat.com/ubi9/ubi:9.1
 
 USER root
 
-# dnf repos
-RUN rm -f /etc/yum.repos.d/*
-ADD ubi8.repo /etc/yum.repos.d/ubi8.repo
-RUN dnf install -y centos-gpg-keys --nogpgcheck && \
-    rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
-
 # rht-labs stuff
-ENV ARGOCD_VERSION=2.3.3 \
-    YQ_VERSION=4.11.2 \
-    HELM_VERSION=3.8.1 \
-    KUBESEAL_VERSION=0.17.5 \
-    OC_VERSION=4.10.9 \
-    TEKTON_VERSION=0.24.1 \
+ENV ARGOCD_VERSION=2.7.1 \
+    YQ_VERSION=4.23.1 \
+    HELM_VERSION=3.11.2 \
+    KUBESEAL_VERSION=0.20.5 \
+    OC_VERSION=4.12.14 \
+    TEKTON_VERSION=1.10.0 \
     JQ_VERSION=1.6 \
-    CONFTEST_VERSION=0.23.0 \
-    ZSH_VERSION=5.8 \
-    ROX_VERSION=3.63.0 \
-    KUBELINTER_VERSION=0.2.6 \
-    COSIGN_VERSION=1.7.2 \
-    K6_VERSION=0.41.0 \
-    JSONNET_VERSION=0.17.0
+    CONFTEST_VERSION=0.41.0 \
+    ROX_VERSION=3.74.3 \
+    KUBELINTER_VERSION=0.6.3 \
+    COSIGN_VERSION=2.0.2 \
+    K6_VERSION=0.44.0 \
+    JSONNET_VERSION=0.20.0
 
-# this is based off of registry.redhat.io/codeready-workspaces/plugin-java8-rhel8
-ENV NODEJS_VERSION=14 \
-    PYTHON_VERSION="3.9" \
-    JAVA_HOME=/usr/lib/jvm/java-17-openjdk \
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk \
     PATH=$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:/opt/app-root/src/.npm-global/bin/:/usr/lib/jvm/java-17-openjdk/bin:/usr/bin:$HOME/go/bin:$PATH \
-    MAVEN_URL=https://archive.apache.org/dist/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz \
+    MAVEN_URL=https://archive.apache.org/dist/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz \
     HOME=/home/developer \
     PROJECTS=/projects \
     MAVEN_CONFIG=/projects/.m2
 
-RUN dnf -y module reset nodejs python39 && \
-    dnf -y module enable python39:${PYTHON_VERSION} nodejs:$NODEJS_VERSION && \
-    dnf -y install \
-      bash tar gzip unzip which findutils wget curl git procps-ng bzip2 java-17-openjdk java-17-openjdk-devel java-17-openjdk-headless python39 python39-devel python39-setuptools python39-pip nodejs npm nodejs-nodemon nss_wrapper zsh iputils bind-utils net-tools go-toolset && \
+RUN dnf -y install \
+    bash tar gzip unzip which findutils wget git procps-ng python3-pip bzip2 java-17-openjdk java-17-openjdk-devel java-17-openjdk-headless nodejs npm nodejs-nodemon nss_wrapper zsh iputils bind-utils net-tools go-toolset openssl && \
     dnf -y -q clean all && rm -rf /var/cache/yum && \
-    pip3.9 install pylint && \
+    pip3 install pylint && \
     mkdir -p ${HOME} ${PROJECTS} /usr/share/maven && \
     curl -fsSL ${MAVEN_URL} | tar -xzC /usr/share/maven --strip-components=1 && \
     ln -s /usr/share/maven/bin/mvn /usr/bin/mvn && \
-    ln -s /usr/bin/node /usr/bin/nodejs && \
-    ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python && \
-    ln -s /usr/bin/pip${PYTHON_VERSION} /usr/bin/pip
+    ln -s /usr/bin/node /usr/bin/nodejs
 
 # argo
 RUN curl -sL https://github.com/argoproj/argo-cd/releases/download/v${ARGOCD_VERSION}/argocd-linux-amd64 -o /usr/local/bin/argocd && \
@@ -73,7 +59,7 @@ RUN curl -sL -o /usr/local/bin/roxctl https://mirror.openshift.com/pub/rhacs/ass
     echo "🦜🦜🦜🦜🦜"
 
 # kube-linter
-RUN curl -sL https://github.com/stackrox/kube-linter/releases/download/${KUBELINTER_VERSION}/kube-linter-linux.tar.gz | tar -C /usr/local/bin -xzf - && \
+RUN curl -sL https://github.com/stackrox/kube-linter/releases/download/v${KUBELINTER_VERSION}/kube-linter-linux.tar.gz | tar -C /usr/local/bin -xzf - && \
     chmod +x /usr/local/bin/kube-linter && \
     echo "🐐🐐🐐🐐🐐"
 
@@ -111,15 +97,6 @@ RUN curl -skL https://github.com/grafana/k6/releases/download/v${K6_VERSION}/k6-
     chmod 775 /usr/local/bin/k6 && \
     echo "👋👋👋"
 
-# jsonnet & jsonnet bundler 
-RUN GO111MODULE="on" go install github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest && go install github.com/brancz/gojsontoyaml@latest && \
-    curl -skL -o /tmp/jsonnet.tar.gz https://github.com/google/jsonnet/releases/download/v${JSONNET_VERSION}/jsonnet-bin-v${JSONNET_VERSION}-linux.tar.gz && \
-    tar -C /tmp -xzf /tmp/jsonnet.tar.gz && \
-    mv -v /tmp/jsonnet /usr/local/bin && \
-    chmod -R 775 /usr/local/bin/jsonnet && \
-    rm -rf /tmp/jsonnet* && \
-    echo "🎺🎺🎺🎺"
-
 # docsify-cli
 RUN npm i -g docsify-cli && \
     echo "📚📚📚📚📚"
@@ -143,6 +120,10 @@ RUN echo "git config --global http.sslVerify false" | tee -a /etc/bashrc -a /etc
     echo "git config --global pull.rebase 'false'" | tee -a /etc/bashrc -a /etc/zshrc && \
     echo "git config --global push.default 'simple'" | tee -a /etc/bashrc -a /etc/zshrc && \
     echo "🤗🤗🤗🤗🤗"
+
+# needed for DevSpaces nodejs agent version for now, not in ubi - libcrypto.so.1.1
+RUN dnf install -y https://rpmfind.net/linux/fedora/linux/releases/37/Everything/x86_64/os/Packages/o/openssl1.1-1.1.1q-2.fc37.x86_64.rpm && \
+  dnf -y -q clean all && rm -rf /var/cache/yum
 
 # custom user functions
 RUN echo "source /usr/local/bin/user-functions.sh" | tee -a /etc/bashrc -a /etc/zshrc
