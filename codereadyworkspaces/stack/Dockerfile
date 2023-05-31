@@ -89,7 +89,7 @@ RUN curl -skL -o /usr/local/bin/cosign https://github.com/sigstore/cosign/releas
     echo "🔒🔒🔒🔒"
 
 # syft
-RUN curl -sSfL https://raw.githubusercontent.com/anchore/syft/v${SYFT_VERSION}/install.sh | sh -s -- -b  sh -s -- -b /usr/local/bin && \
+RUN curl -sSfL https://raw.githubusercontent.com/anchore/syft/v${SYFT_VERSION}/install.sh | sh -s -- -b /usr/local/bin && \
     echo "🛼🛼🛼"
 
 # hey
