@@ -15,7 +15,8 @@ ENV ARGOCD_VERSION=2.7.1 \
     KUBELINTER_VERSION=0.6.3 \
     COSIGN_VERSION=2.0.2 \
     K6_VERSION=0.44.0 \
-    JSONNET_VERSION=0.20.0
+    JSONNET_VERSION=0.20.0 \
+    SYFT_VERSION=0.82.0
 
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk \
     PATH=$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:/opt/app-root/src/.npm-global/bin/:/usr/lib/jvm/java-17-openjdk/bin:/usr/bin:$HOME/go/bin:$PATH \
@@ -87,6 +88,10 @@ RUN curl -skL -o /usr/local/bin/cosign https://github.com/sigstore/cosign/releas
     chmod -R 775 /usr/local/bin/cosign && \
     echo "🔒🔒🔒🔒"
 
+# syft
+RUN curl -sSfL https://raw.githubusercontent.com/anchore/syft/v${SYFT_VERSION}/install.sh | sh -s -- -b  sh -s -- -b /usr/local/bin && \
+    echo "🛼🛼🛼"
+
 # hey
 RUN curl -skL -o /usr/local/bin/hey https://hey-release.s3.us-east-2.amazonaws.com/hey_linux_amd64 && \
     chmod 775 /usr/local/bin/hey && \
@@ -95,7 +100,7 @@ RUN curl -skL -o /usr/local/bin/hey https://hey-release.s3.us-east-2.amazonaws.c
 # k6
 RUN curl -skL https://github.com/grafana/k6/releases/download/v${K6_VERSION}/k6-v${K6_VERSION}-linux-amd64.tar.gz | tar zxf - -C /usr/local/bin --strip-components=1 k6-v${K6_VERSION}-linux-amd64/k6 && \
     chmod 775 /usr/local/bin/k6 && \
-    echo "👋👋👋"
+    echo "🐶🐶🐶"
 
 # docsify-cli
 RUN npm i -g docsify-cli && \
