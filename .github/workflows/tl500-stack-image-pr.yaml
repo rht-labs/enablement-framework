@@ -44,3 +44,5 @@ jobs:
           podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} yq --version | grep $YQ_VERSION
           echo "🦨check jq --version"
           podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} jq --version | grep $JQ_VERSION
+          echo "🦨check syft --version"
+          podman run ${{ env.image_name }}:${{ steps.image_tags.outputs.IMAGE_TAGS }} syft --version | grep $SYFT_VERSION
