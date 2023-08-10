@@ -17,6 +17,12 @@ spec:
       debug: false
       logLevel: INFO
       extraProperties: {{ toYaml .Values.crwv2.properties | nindent 8 | default "" }}
+    pluginRegistry:
+      deployment:
+        containers:
+          - image: >-
+              registry.redhat.io/devspaces/pluginregistry-rhel8@sha256:1be5c836fb2531475f07f48153d4b8c3db84fb7281c2cd54844b9037b0a526d5
+            name: plugin-registry
   devEnvironments:
     startTimeoutSeconds: 300
     secondsOfRunBeforeIdling: {{ .Values.crwv2.secondsOfRunBeforeIdling | default -1 }}
