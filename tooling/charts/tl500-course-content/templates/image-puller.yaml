@@ -1,0 +1,12 @@
+---
+apiVersion: che.eclipse.org/v1alpha1
+kind: KubernetesImagePuller
+metadata:
+  name: image-puller
+  namespace: openshift-operators
+spec:
+  configMapName: k8s-image-puller
+  daemonsetName: k8s-image-puller
+  deploymentName: kubernetes-image-puller
+  imagePullerImage: 'quay.io/eclipse/kubernetes-image-puller:next'
+  images: 'tl500=quay.io/rht-labs/stack-tl500:latest'
