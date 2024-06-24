@@ -76,6 +76,18 @@ operators:
        sourceNamespace: openshift-marketplace
      operatorgroup:
        create: false
+  
+  kubernetes-imagepuller-operator:
+     enabled: true
+     namespace: openshift-operators
+     subscription:
+       channel: stable
+       approval: Automatic
+       operatorName: kubernetes-imagepuller-operator
+       sourceName: community-operators
+       sourceNamespace: openshift-marketplace
+     operatorgroup:
+       create: false    
 
 logging:
   # Might be needed with clusters that have an infra plane
