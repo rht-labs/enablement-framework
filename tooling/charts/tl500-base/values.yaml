@@ -15,19 +15,21 @@ namespaces:
   - name: tl500-tech-exercise
   - name: tl500-gitlab
   - name: tl500-shared
+  - name: tl500-minio
 
 operators:
-  codeready-workspaces:
+
+  devspaces:
     enabled: true
-    namespace: tl500-workspaces
+    namespace: openshift-operators
     subscription:
-      channel: latest
+      channel: stable
       approval: Automatic
-      operatorName: codeready-workspaces
+      operatorName: devspaces
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
     operatorgroup:
-      create: true
+      create: false
 
   openshift-pipelines-operator-rh:
     enabled: true
@@ -41,29 +43,31 @@ operators:
     operatorgroup:
       create: false
 
-  elasticsearch-operator:
-    enabled: true
-    namespace: openshift-operators
-    subscription:
-      channel: stable-5.3
-      approval: Automatic
-      operatorName: elasticsearch-operator
-      sourceName: redhat-operators
-      sourceNamespace: openshift-marketplace
-    operatorgroup:
-      create: false
-
   cluster-logging-operator:
     enabled: true
     namespace: openshift-logging
     subscription:
-      channel: stable-5.3
+      channel: stable-5.9
       approval: Automatic
       operatorName: cluster-logging
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
     operatorgroup:
       create: true
+      targetNamespace: AllNamespaces
+
+  loki-operator:
+    enabled: true
+    namespace: openshift-operators-redhat
+    subscription:
+      channel: stable
+      approval: Automatic
+      operatorName: cluster-logging
+      sourceName: redhat-operators
+      sourceNamespace: openshift-marketplace
+    operatorgroup:
+      create: true
+      targetNamespace: AllNamespaces
 
   cert-utils-operator:
      enabled: true
@@ -95,6 +99,9 @@ logging:
   #   key: node-role.kubernetes.io/infra
   #   value: ''
   namespace: openshift-logging
+
+minio:
+  namespace: tl500-minio
 
 gitlab:
   namespace: tl500-gitlab
