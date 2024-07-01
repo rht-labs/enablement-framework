@@ -15,3 +15,5 @@ spec:
       name: logging-loki
   collection:
     type: vector
+  visualization:
+    type: ocp-console
