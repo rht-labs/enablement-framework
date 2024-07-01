@@ -1,0 +1,65 @@
+{{- if not .Values.ignoreHelmHooks }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: create-bucket-cr
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: create-bucket-crb
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: create-bucket-cr
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: {{ .Values.minio.namespace }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-bucket
+  namespace: {{ .Values.minio.namespace }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "3"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      serviceAccount: default
+      serviceAccountName: default
+      containers:
+      - name: job
+        image: "quay.io/openshift/origin-cli:latest"
+        imagePullPolicy: IfNotPresent
+        command:
+          - /bin/bash
+          - -c
+          - | # create bucket
+            oc -n {{ .Values.minio.namespace }} wait pod --for=condition=Ready -l app=minio
+            curl -o /tmp/mc https://dl.min.io/client/mc/release/linux-amd64/mc
+            chmod +x /tmp/mc
+            /tmp/mc --config-dir /tmp/ alias set myminio http://minio-service.{{ .Values.minio.namespace }}.svc.cluster.local:9000 minio IJrixDGbADAkgey5
+            /tmp/mc --config-dir /tmp/ mb myminio/loki
+{{- end }}

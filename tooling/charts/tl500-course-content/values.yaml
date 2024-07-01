@@ -10,45 +10,25 @@ logging:
   #   key: node-role.kubernetes.io/infra
   #   value: ''
   namespace: openshift-logging
+  # lokistack configuration requires the sc name. If you are deploying outside of AWS, make sure you update this value
+  storageclass: gp3-csi 
   tolerations:
   - effect: NoSchedule
     key: node-role.kubernetes.io/infra
     operator: Exists
 
-  elasticsearch:
-    requests:
-      cpu: 250m
-      memory: 512Mi
-    limits:
-      cpu: 4000m
-      memory: 16Gi
-    storage:
-      # size: 200G
-      # class: gp2
-    nodeCount: 1
-    retentionPolicy:
-      application: 7d
-    redundancyPolicy: ZeroRedundancy
-
-  kibana: {}
-
 crw:
   namespace: tl500-workspaces
   name: "codeready-workspaces"
-#  devRegImage: "quay.io/rht-labs/devfileregistry:test"
-#  selfSignedCert: false
-#  gitCustomCA: |
-#           -----BEGIN CERTIFICATE-----
-#           your CA certificate goes here
-#           -----END CERTIFICATE-----
-  tlsSupport: true
+  secondsOfRunBeforeIdling: "-1"
+  secondsOfInactivityBeforeIdling: "-1"
   properties:
     CHE_LIMITS_USER_WORKSPACES_COUNT: "2"
-    CHE_LIMITS_USER_WORKSPACES_RUN_COUNT: "1"
-    CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: "Always"
-    CHE_DOCKER_ALWAYS__PULL__IMAGE: "true"
     CHE_WORKSPACE_DEFAULT__MEMORY__LIMIT__MB: "3072"
-    CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: "-1"
+    CHE_DOCKER_ALWAYS__PULL__IMAGE: 'true'
+    CHE_LIMITS_USER_WORKSPACES_RUN_COUNT: '1'
+    CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: '-1'
+    CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: Always
 
 # Tech-exercises deployment to engagement environment
 # Deployment done only if `docs:` is uncommented 
