@@ -150,6 +150,20 @@ subjects:
   kind: Group
   name: {{ .Values.group_name }}
 ---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: view-application-logs
+  namespace: 
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-logging-application-view
+subjects:
+- kind: Group
+  name: {{ .Values.group_name }}
+  apiGroup: rbac.authorization.k8s.io
+---
 # so stackrox can pull images from all namespaces
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
