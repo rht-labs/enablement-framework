@@ -17,7 +17,7 @@ spec:
             - /bin/bash
             - -c
             - |
-              oc get consoles.operator.openshift.io cluster -o yaml |grep logging-view-plugin || oc patch consoles.operator.openshift.io cluster --type=merge --patch '{ "spec": { "plugins": ["logging-view-plugin"]}}'
+              oc get consoles.operator.openshift.io cluster -o yaml | grep logging-view-plugin || oc patch consoles.operator.openshift.io cluster --type=json --patch '[{"op": "add", "path": "/spec/plugins/-", "value":"logging-view-plugin"}]'
           imagePullPolicy: Always
           name: configure-console-plugin
       dnsPolicy: ClusterFirst
