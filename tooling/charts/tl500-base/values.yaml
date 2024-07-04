@@ -60,9 +60,9 @@ operators:
     enabled: true
     namespace: openshift-operators-redhat
     subscription:
-      channel: stable
+      channel: stable-5.9
       approval: Automatic
-      operatorName: cluster-logging
+      operatorName: loki-operator
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
     operatorgroup:
