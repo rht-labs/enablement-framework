@@ -1,5 +1,5 @@
-{{- if .Values.crw }}
-apiVersion: org.eclipse.che/v1
+---
+apiVersion: org.eclipse.che/v2
 kind: CheCluster
 metadata:
   annotations:
@@ -8,33 +8,25 @@ metadata:
   name: {{ .Values.crw.name | default "codeready-workspaces" | quote }}
   namespace: {{ .Values.crw.namespace | default "tl500-workspaces" | quote }}
 spec:
-  server:
-    cheImageTag: {{ .Values.crw.cheImageTag | default "" | quote }}
-    cheFlavor: {{ .Values.crw.cheFlavor | default "codeready" | quote }}
-    devfileRegistryImage: {{ .Values.crw.devRegImage | default "" | quote }}
-    pluginRegistryImage: {{ .Values.crw.pluginRegImage | default "" | quote }}
-    tlsSupport: {{ .Values.crw.tlsSupport | default false }}
-    selfSignedCert: {{ .Values.crw.selfSignedCert | default false }}
-{{- if .Values.crw.gitCustomCA }}
-    gitSelfSignedCert: true
-{{- end }}
-    customCheProperties: {{ toYaml .Values.crw.properties | nindent 6 | default "" }}
-  database:
-    externalDb: false
-    chePostgresHostName: ''
-    chePostgresPort: ''
-    chePostgresUser: ''
-    chePostgresPassword: ''
-    chePostgresDb: ''
-  auth:
-    openShiftoAuth: true
-    identityProviderImage: ''
-    externalIdentityProvider: false
-    identityProviderURL: ''
-    identityProviderRealm: ''
-    identityProviderClientId: ''
-  storage:
-    pvcStrategy: per-workspace
-    pvcClaimSize: 2Gi
-    preCreateSubPaths: true
-{{- end }}
+  components:
+    database:
+      externalDb: false
+    metrics:
+      enable: false
+    cheServer:
+      debug: false
+      logLevel: INFO
+      extraProperties: {{ toYaml .Values.crw.properties | nindent 8 | default "" }}
+  devEnvironments:
+    startTimeoutSeconds: 300
+    secondsOfRunBeforeIdling: {{ .Values.crw.secondsOfRunBeforeIdling | default -1 }}
+    secondsOfInactivityBeforeIdling: {{ .Values.crw.secondsOfInactivityBeforeIdling | default -1 }}
+    maxNumberOfWorkspacesPerUser: -1
+    disableContainerBuildCapabilities: true
+    defaultNamespace:
+      autoProvision: true
+      template: <username>-devspaces
+    storage:
+      perUserStrategyPvcConfig:
+        claimSize: 2Gi
+      pvcStrategy: per-workspace

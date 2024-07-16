@@ -8,8 +8,11 @@ metadata:
   name: {{ $key | default "tl500-operator-group" | quote }}
   namespace: {{ $value.namespace | quote }}
 spec:
+  upgradeStrategy: Default
+  {{- if (ne $value.operatorgroup.targetNamespace "AllNamespaces") }}
   targetNamespaces:
   - {{ $value.namespace }}
+  {{- end }}
 {{- end }}
 {{- end }}
 {{- end }}

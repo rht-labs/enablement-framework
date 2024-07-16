@@ -1,0 +1,75 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: configure-console-plugin
+  namespace: {{ index .Values "logging" "namespace" | quote }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "3"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  template:
+    spec:
+      containers:
+        - image: quay.io/rht-labs/stack-tl500:latest
+          command:
+            - /bin/bash
+            - -c
+            - |
+              oc get consoles.operator.openshift.io cluster -o yaml | grep logging-view-plugin || oc patch consoles.operator.openshift.io cluster --type=json --patch '[{"op": "add", "path": "/spec/plugins/-", "value":"logging-view-plugin"}]'
+          imagePullPolicy: Always
+          name: configure-console-plugin
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: configure-console-plugin
+      serviceAccountName: configure-console-plugin
+      terminationGracePeriodSeconds: 10
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: configure-console-plugin
+  namespace: {{ index .Values "logging" "namespace" | quote }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: configure-console-plugin
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+rules:
+  - apiGroups:
+      - "operator.openshift.io"
+    resources:
+      - "consoles"
+    verbs:
+      - get
+      - list
+      - create
+      - patch
+      - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: configure-console-plugin
+  namespace: {{ index .Values "logging" "namespace" | quote }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: configure-console-plugin
+subjects:
+  - kind: ServiceAccount
+    name: configure-console-plugin
+    namespace: {{ index .Values "logging" "namespace" | quote }}
