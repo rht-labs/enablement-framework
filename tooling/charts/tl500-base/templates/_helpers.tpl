@@ -92,17 +92,45 @@
 {{- end -}}
 
 {{- define "gitlab.root_password" -}}
-{{- print (randAlphaNum 10) -}}
+{{- $password := default (randAlphaNum 10) .Values.gitlab.credentials.root_password }}
+{{- if not .Values.gitlab.credentials.root_password }}
+{{- $existingSecret := (lookup "v1" "Secret" .Values.gitlab.namespace "gitlab-credentials") }}
+{{- if $existingSecret }}
+{{- $password = index $existingSecret.data "root_password" | b64dec }}
+{{- end -}}
+{{- end -}}
+{{- print $password -}}
 {{- end -}}
 
 {{- define "gitlab.postgres.user" -}}
-{{- print (randAlphaNum 10) -}}
+{{- $username := default (randAlphaNum 10) .Values.gitlab.credentials.postgres_user }}
+{{- if not .Values.gitlab.credentials.postgres_user }}
+{{- $existingSecret := (lookup "v1" "Secret" .Values.gitlab.namespace "gitlab-credentials") }}
+{{- if $existingSecret }}
+{{- $username = index $existingSecret.data "postgres_user" | b64dec }}
+{{- end -}}
+{{- end -}}
+{{- print $username -}}
 {{- end -}}
 
 {{- define "gitlab.postgres.password" -}}
-{{- print (randAlphaNum 10) -}}
+{{- $password := default (randAlphaNum 10) .Values.gitlab.credentials.postgres_password }}
+{{- if not .Values.gitlab.credentials.postgres_password }}
+{{- $existingSecret := (lookup "v1" "Secret" .Values.gitlab.namespace "gitlab-credentials") }}
+{{- if $existingSecret }}
+{{- $password = index $existingSecret.data "postgres_password" | b64dec }}
+{{- end -}}
+{{- end -}}
+{{- print $password -}}
 {{- end -}}
 
 {{- define "gitlab.postgres.admin_password" -}}
-{{- print (randAlphaNum 10) -}}
+{{- $password := default (randAlphaNum 10) .Values.gitlab.credentials.postgres_admin_password }}
+{{- if not .Values.gitlab.credentials.postgres_admin_password }}
+{{- $existingSecret := (lookup "v1" "Secret" .Values.gitlab.namespace "gitlab-credentials") }}
+{{- if $existingSecret }}
+{{- $password = index $existingSecret.data "postgres_admin_password" | b64dec }}
+{{- end -}}
+{{- end -}}
+{{- print $password -}}
 {{- end -}}

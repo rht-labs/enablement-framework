@@ -105,7 +105,11 @@ minio:
 
 gitlab:
   namespace: tl500-gitlab
-  root_password: 7aydhn160bOrrsGEbnd172rE
+  credentials:
+    root_password: ''
+    postgres_user: ''
+    postgres_password: ''
+    postgres_admin_password: ''
   imagestreams:
     - name: "gitlab-ce"
       tag_name: "gitlab-12.8.7"
