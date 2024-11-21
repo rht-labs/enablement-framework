@@ -1,5 +1,4 @@
 # Default values for tl500
-gitlab_app_name: "gitlab-ce"
 
 # Create a helper to create a prefix if one isn't provided? Would help if we moved to shared clusters
 prefix: ""
@@ -104,16 +103,24 @@ minio:
   namespace: tl500-minio
 
 gitlab:
+  app_name: "gitlab-ce"
   namespace: tl500-gitlab
-  root_password: 7aydhn160bOrrsGEbnd172rE
+  credentials:
+    root_password: ''
+    postgres_user: ''
+    postgres_password: ''
+    postgres_admin_password: ''
   imagestreams:
-    - name: "gitlab-ce"
-      tag_name: "gitlab-12.8.7"
+    gitlab:
+      name: "gitlab-ce"
+      tag_name: "latest"
       stream_uri: "gitlab/gitlab-ce:12.8.7-ce.0"
-    - name: "gitlab-ce-redis"
-      tag_name: "5.0.4"
+    redis:
+      name: "redis"
+      tag_name: "latest"
       stream_uri: "redis:5.0.4-alpine"
-    - name: "postgresql"
+    postgresql:
+      name: "postgresql"
       tag_name: "latest"
       stream_uri: "registry.redhat.io/rhscl/postgresql-96-rhel7"
 # a body of CA certificate that Gitlab should be using goes in here. Body needs to be Base64!
