@@ -3,8 +3,8 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: "{{ $.Values.gitlab_app_name }}-redis-data"
-  namespace: "{{ $.Values.gitlab.namespace }}"
+  name: "{{ .Values.gitlab.app_name }}-redis-data"
+  namespace: "{{ .Values.gitlab.namespace }}"
 spec:
   accessModes:
   - ReadWriteOnce
@@ -15,8 +15,8 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: "{{ $.Values.gitlab_app_name }}-etc"
-  namespace: "{{ $.Values.gitlab.namespace }}"
+  name: "{{ .Values.gitlab.app_name }}-etc"
+  namespace: "{{ .Values.gitlab.namespace }}"
 spec:
   accessModes:
   - ReadWriteOnce
@@ -27,8 +27,8 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: "{{ $.Values.gitlab_app_name }}-data"
-  namespace: "{{ $.Values.gitlab.namespace }}"
+  name: "{{ .Values.gitlab.app_name }}-data"
+  namespace: "{{ .Values.gitlab.namespace }}"
 spec:
   accessModes:
   - ReadWriteOnce
@@ -39,12 +39,12 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: "{{ $.Values.gitlab_app_name }}-postgresql"
-  namespace: "{{ $.Values.gitlab.namespace }}"
+  name: "{{ .Values.gitlab.app_name }}-postgresql"
+  namespace: "{{ .Values.gitlab.namespace }}"
 spec:
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
-      storage: "{{ $.Values.gitlab.postgres_size | default "2Gi" }}"
+      storage: "{{ .Values.gitlab.postgres_size | default "2Gi" }}"
 {{- end }}

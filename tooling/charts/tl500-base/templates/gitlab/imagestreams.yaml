@@ -4,10 +4,10 @@
 kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
-  name: "{{ $is.name }}"
+  name: "{{ $.Values.gitlab.app_name }}-{{ $is.name }}"
   namespace: {{ $.Values.gitlab.namespace }}
   labels:
-    app: "{{ $.Values.gitlab_app_name }}"
+    app: "{{ $.Values.gitlab.app_name }}"
 spec:
   tags:
   - name: {{ $is.tag_name }}
