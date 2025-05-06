@@ -1,0 +1,29 @@
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+  namespace: {{ .Values.logging.namespace }} 
+spec:
+  serviceAccount:
+    name: {{ .Values.logging.sa }} 
+  outputs:
+  - name: lokistack-out
+    type: lokiStack 
+    lokiStack:
+      target: 
+        name: {{ .Values.logging.loki_name }} 
+        namespace: {{ .Values.logging.namespace }}
+      authentication:
+        token:
+          from: serviceAccount
+    tls:
+      ca:
+        key: service-ca.crt
+        configMapName: openshift-service-ca.crt
+  pipelines:
+  - name: infra-app-logs
+    inputRefs: 
+    - application
+    - infrastructure
+    outputRefs:
+    - lokistack-out

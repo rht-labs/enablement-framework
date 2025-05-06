@@ -2,7 +2,7 @@
 apiVersion: loki.grafana.com/v1
 kind: LokiStack
 metadata:
-  name: logging-loki
+  name: {{ .Values.logging.loki_name }} 
   namespace: {{ .Values.logging.namespace }}
 spec:
   size: 1x.extra-small
@@ -12,4 +12,4 @@ spec:
       type: s3
   storageClassName: {{ .Values.logging.storageclass }}
   tenants:
-    mode: openshift-logging
+    mode: {{ .Values.logging.namespace }}
