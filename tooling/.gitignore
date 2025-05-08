@@ -1,2 +1,6 @@
 *.tgz
 *.lock
+
+**/charts/*/charts/**
+
+.DS_Store

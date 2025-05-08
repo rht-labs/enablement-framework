@@ -65,7 +65,8 @@ operators:
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
     operatorgroup:
-      create: false
+      create: true
+      targetNamespace: AllNamespaces
 
   loki-operator:
     enabled: true
