@@ -12,6 +12,8 @@ logging:
   namespace: openshift-logging
   # lokistack configuration requires the sc name. If you are deploying outside of AWS, make sure you update this value
   storageclass: gp3-csi 
+  loki_name: logging-loki
+  sa: logging-collector
   tolerations:
   - effect: NoSchedule
     key: node-role.kubernetes.io/infra

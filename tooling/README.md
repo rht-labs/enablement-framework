@@ -2,7 +2,7 @@
 
 This directory contains the necessary charts used in order to deploy a TL500 Tech Stack against an OCP 4.X cluster. This assumes that the cluster has valid certificates.
 
-🐞 Please ensure your cluster is the latest Z release - 4.10.z or 4.11.z release. We test against these. 🐞
+🐞 Please ensure your cluster is the latest Z release - 4.18.z. We test against these. 🐞
 
 This chart is capable of deploying the following:
 
@@ -12,7 +12,7 @@ This chart is capable of deploying the following:
 - SealedSecrets from Bitnami
 - OpenShift Pipelines
 - Advanced Cluster Security (StackRox)
-- Cluster Logging (ELK)
+- Cluster Logging (LokiStack)
 - Certificate Utils
 - GitOps Operator (ArgoCD)
 
@@ -30,7 +30,7 @@ When specifying a chart version, make sure to use the same version for both char
 
 1. Install TL500 Base
 
-For 4.10.z OpenShift:
+For 4.18.z OpenShift:
 
 ```bash
 helm repo add enablement-framework https://rht-labs.com/enablement-framework 
@@ -39,27 +39,15 @@ helm search repo enablement-framework
 helm install tl500-base enablement-framework/tl500-base --version XYZ --namespace tl500 --create-namespace --timeout=15m
 ```
 
-When deploying to OpenShift 4.11.z+ or 4.12.z+ there are some breaking changes in newer OpenShift versions, specifically around DevSpaces operator. Use the newer values file:
-
-```bash
-helm install tl500-base enablement-framework/tl500-base -f tl500-base/values-v4.11+.yaml --version XYZ --namespace tl500 --create-namespace --timeout=15m
-```
-
 2. Install TL500 Course Content
 
-For 4.10.z OpenShift:
+For 4.18.z OpenShift:
 
 ```bash
 helm repo add enablement-framework https://rht-labs.com/enablement-framework 
 helm repo update
 helm search repo enablement-framework
 helm install tl500-course-content enablement-framework/tl500-course-content --version XYZ --namespace tl500 --create-namespace --timeout=15m
-```
-
-When deploying to OpenShift 4.11.z+ or 4.12.z+ there are some breaking changes in newer OpenShift versions, specifically around DevSpaces operator. Use the newer values file:
-
-```bash
-helm install  tl500-course-content enablement-framework/tl500-course-content -f tl500-base/values-v4.11+.yaml --version XYZ --namespace tl500 --create-namespace --timeout=15m
 ```
 
 ## Using the helm chart source code
@@ -103,7 +91,6 @@ After this is deployed, you will have a functional gitlab server that can be use
 ## CodeReady Workspaces
 
 With CRW, this uses the provided Operator to deploy a CRW instance. With the provided defaults, it restricts uses to two workspaces and allows for only a single `running` instance.
-
 
 ## Running on infra nodes
 

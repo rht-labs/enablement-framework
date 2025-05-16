@@ -1,2 +1,4 @@
 *.tgz
 *.lock
+
+.DS_Store

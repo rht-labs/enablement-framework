@@ -46,9 +46,22 @@ operators:
     enabled: true
     namespace: openshift-logging
     subscription:
-      channel: stable-5.9
+      channel: stable-6.2
       approval: Automatic
       operatorName: cluster-logging
+      sourceName: redhat-operators
+      sourceNamespace: openshift-marketplace
+    operatorgroup:
+      create: true
+      targetNamespace: AllNamespaces
+
+  cluster-observability-operator:
+    enabled: true
+    namespace: openshift-cluster-observability-operator
+    subscription:
+      channel: stable
+      approval: Automatic
+      operatorName: cluster-observability-operator
       sourceName: redhat-operators
       sourceNamespace: openshift-marketplace
     operatorgroup:
@@ -59,7 +72,7 @@ operators:
     enabled: true
     namespace: openshift-operators-redhat
     subscription:
-      channel: stable-5.9
+      channel: stable-6.2
       approval: Automatic
       operatorName: loki-operator
       sourceName: redhat-operators
