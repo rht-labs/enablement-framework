@@ -3,7 +3,7 @@ entries:
   tl500:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.380419281Z"
+    created: "2025-05-16T09:27:09.957553996Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -33,7 +33,7 @@ entries:
     version: v3.0.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.378711223Z"
+    created: "2025-05-16T09:27:09.95580238Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -63,7 +63,7 @@ entries:
     version: v3.0.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.376961608Z"
+    created: "2025-05-16T09:27:09.953206222Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -93,7 +93,7 @@ entries:
     version: v3.0.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.375223534Z"
+    created: "2025-05-16T09:27:09.951467831Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -123,7 +123,7 @@ entries:
     version: v3.0.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.373507471Z"
+    created: "2025-05-16T09:27:09.949777231Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -153,7 +153,7 @@ entries:
     version: v3.0.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.371632482Z"
+    created: "2025-05-16T09:27:09.948099665Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -184,7 +184,7 @@ entries:
   tl500-base:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.319247944Z"
+    created: "2025-05-16T09:27:09.890603087Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -218,7 +218,7 @@ entries:
     version: v3.2.22
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.310031092Z"
+    created: "2025-05-16T09:27:09.88125839Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -252,7 +252,7 @@ entries:
     version: v3.2.21
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.29998335Z"
+    created: "2025-05-16T09:27:09.871812143Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -286,7 +286,7 @@ entries:
     version: v3.2.20
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.285160018Z"
+    created: "2025-05-16T09:27:09.860915848Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -320,7 +320,7 @@ entries:
     version: v3.2.19
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.271566936Z"
+    created: "2025-05-16T09:27:09.851444127Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -354,7 +354,7 @@ entries:
     version: v3.2.18
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.261258174Z"
+    created: "2025-05-16T09:27:09.842110512Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -388,7 +388,7 @@ entries:
     version: v3.2.17
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.25212021Z"
+    created: "2025-05-16T09:27:09.832796973Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -422,7 +422,7 @@ entries:
     version: v3.2.16
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.242118646Z"
+    created: "2025-05-16T09:27:09.824165876Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -456,7 +456,7 @@ entries:
     version: v3.2.15
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.232903538Z"
+    created: "2025-05-16T09:27:09.8148992Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -490,7 +490,7 @@ entries:
     version: v3.2.14
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.222761754Z"
+    created: "2025-05-16T09:27:09.805073082Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -524,7 +524,7 @@ entries:
     version: v3.2.13
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.211235339Z"
+    created: "2025-05-16T09:27:09.796395978Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -558,7 +558,7 @@ entries:
     version: v3.2.12
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.201978032Z"
+    created: "2025-05-16T09:27:09.786679454Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -592,7 +592,7 @@ entries:
     version: v3.2.11
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.191518351Z"
+    created: "2025-05-16T09:27:09.777207419Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -626,7 +626,7 @@ entries:
     version: v3.2.10
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.35953149Z"
+    created: "2025-05-16T09:27:09.935979216Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -660,7 +660,7 @@ entries:
     version: v3.2.9
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.349920973Z"
+    created: "2025-05-16T09:27:09.926102523Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -694,7 +694,7 @@ entries:
     version: v3.2.8
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.339605527Z"
+    created: "2025-05-16T09:27:09.916706091Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -728,7 +728,7 @@ entries:
     version: v3.2.7
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.329546962Z"
+    created: "2025-05-16T09:27:09.904742414Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -762,7 +762,7 @@ entries:
     version: v3.2.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.327381841Z"
+    created: "2025-05-16T09:27:09.900349024Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -796,7 +796,7 @@ entries:
     version: v3.2.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.324574632Z"
+    created: "2025-05-16T09:27:09.896016279Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -830,7 +830,7 @@ entries:
     version: v3.2.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.322346363Z"
+    created: "2025-05-16T09:27:09.892810476Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -864,7 +864,7 @@ entries:
     version: v3.2.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.289169581Z"
+    created: "2025-05-16T09:27:09.863100766Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -898,7 +898,7 @@ entries:
     version: v3.2.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.181661057Z"
+    created: "2025-05-16T09:27:09.767818942Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -928,7 +928,7 @@ entries:
     version: v3.2.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.180118328Z"
+    created: "2025-05-16T09:27:09.766269045Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -958,7 +958,42 @@ entries:
     version: v3.1.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.178545472Z"
+    created: "2025-05-16T09:27:09.764684894Z"
+    dependencies:
+    - condition: sealed-secrets.enabled
+      name: sealed-secrets
+      repository: https://bitnami-labs.github.io/sealed-secrets
+      version: 2.8.2
+    - condition: stackrox-chart.enabled
+      name: stackrox-chart
+      repository: https://redhat-cop.github.io/helm-charts
+      version: 0.0.9
+    - condition: gitops-operator.enabled
+      name: gitops-operator
+      repository: https://redhat-cop.github.io/helm-charts
+      version: 0.7.0
+    - condition: tl500-teamsters.enabled
+      name: tl500-teamsters
+      repository: http://rht-labs.com/tl500-teamsters
+      version: 0.0.3
+    description: 11c45272bd54a159efb0ce3f380f5afbca4d4fd6
+    digest: 82335f31e9b14cfd34e64327034e178a1ce0621e6e2ecec71fc9ec3a5bdb29e4
+    maintainers:
+    - name: eformat
+    - name: tylerauerbeck
+    - name: jacobsee
+    - name: jtudelag
+    - name: ckavili
+    - name: springdo
+    - name: acidonper
+    name: tl500-base
+    type: application
+    urls:
+    - https://rht-labs.com/enablement-framework/tl500-base-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2025-05-16T09:27:09.7550194Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -992,7 +1027,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.167918824Z"
+    created: "2025-05-16T09:27:09.745293748Z"
     dependencies:
     - condition: sealed-secrets.enabled
       name: sealed-secrets
@@ -1027,7 +1062,7 @@ entries:
   tl500-course-content:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.366333123Z"
+    created: "2025-05-16T09:27:09.943113705Z"
     description: e9b249751f1234cad364811f8b09d62451356c44
     digest: 6e0a579c74dfd27ad9917bd5d8829958d9652ec373eb5a06b73f6048e4ca9974
     maintainers:
@@ -1043,7 +1078,7 @@ entries:
     version: v3.2.22
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.365970066Z"
+    created: "2025-05-16T09:27:09.942752627Z"
     description: e9b249751f1234cad364811f8b09d62451356c44
     digest: e0dca57b75801b90e6cf267ed0d3ffeb90981a40104b5002cc6f48a6ffdad4df
     maintainers:
@@ -1059,7 +1094,7 @@ entries:
     version: v3.2.21
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.365592481Z"
+    created: "2025-05-16T09:27:09.942406939Z"
     description: 35d6c4a4788e914ded5cdaa6ace0e5696c3e2ba5
     digest: 6082d1b7f30cf7e0b411b3ed953c519c308fd96a42130fb8a6920065166a7bc6
     maintainers:
@@ -1075,7 +1110,7 @@ entries:
     version: v3.2.20
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.364864833Z"
+    created: "2025-05-16T09:27:09.941706626Z"
     description: 7c63cfbd469720af9598d1c14c7fffae9c45b5be
     digest: 2635d6c4dd9c0ef044f77da89fa08b608ea9a4bafae5776caf907da724f9b268
     maintainers:
@@ -1091,7 +1126,7 @@ entries:
     version: v3.2.19
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.36452029Z"
+    created: "2025-05-16T09:27:09.941370776Z"
     description: A Helm chart for Kubernetes
     digest: 5ad7b5101bab23e8b45ed99b7a6442d40c3b3350dd964a5caf99ee37d237feb6
     maintainers:
@@ -1107,7 +1142,7 @@ entries:
     version: v3.2.18
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.364177981Z"
+    created: "2025-05-16T09:27:09.941019136Z"
     description: A Helm chart for Kubernetes
     digest: 2d839887b29fde58c72bf1d0846786c15db2cdd4d4b63a4142f4dc6f1381e500
     maintainers:
@@ -1123,7 +1158,7 @@ entries:
     version: v3.2.17
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.36382912Z"
+    created: "2025-05-16T09:27:09.940685541Z"
     description: A Helm chart for Kubernetes
     digest: 7548dae4b85595103e464c97d19b7da41e24398f6662ab65ddc001a4f196280e
     maintainers:
@@ -1139,7 +1174,7 @@ entries:
     version: v3.2.16
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.363485499Z"
+    created: "2025-05-16T09:27:09.940350763Z"
     description: A Helm chart for Kubernetes
     digest: f368f4ea1f7249599171a6bfd988098abbe5e3855c79dd275a272f05328d0a6a
     maintainers:
@@ -1155,7 +1190,7 @@ entries:
     version: v3.2.15
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.363133422Z"
+    created: "2025-05-16T09:27:09.939983594Z"
     description: A Helm chart for Kubernetes
     digest: a8e2baca56136bedd6e37a1da3b767e3cac4f90391db542a5d12822df81a1f06
     maintainers:
@@ -1171,7 +1206,7 @@ entries:
     version: v3.2.14
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.362766738Z"
+    created: "2025-05-16T09:27:09.93964534Z"
     description: A Helm chart for Kubernetes
     digest: 837212e5ca1e7208052308c7fd4b55ad02f966a13a182f7b346ad5559edf5310
     maintainers:
@@ -1187,7 +1222,7 @@ entries:
     version: v3.2.13
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.362334982Z"
+    created: "2025-05-16T09:27:09.939298018Z"
     description: A Helm chart for Kubernetes
     digest: 672352d4aa0a80e80e441175857015131ae6adad4a95596c771d8bc85a92debe
     maintainers:
@@ -1203,7 +1238,7 @@ entries:
     version: v3.2.12
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.362005928Z"
+    created: "2025-05-16T09:27:09.938933775Z"
     description: A Helm chart for Kubernetes
     digest: 58604d23f7fe6303fd396bede1149ccd11a85323193959d5676d011eb0aaba63
     maintainers:
@@ -1219,7 +1254,7 @@ entries:
     version: v3.2.11
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.361655263Z"
+    created: "2025-05-16T09:27:09.938569222Z"
     description: A Helm chart for Kubernetes
     digest: 11351bde226e73399af33db43f307b246f7167b79b7f8b9a8bd9406d26406f81
     maintainers:
@@ -1235,7 +1270,7 @@ entries:
     version: v3.2.10
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.368797864Z"
+    created: "2025-05-16T09:27:09.946393795Z"
     description: A Helm chart for Kubernetes
     digest: be13fa13167e194c99fe03d694e06c190313e124ca46f11b279ed4041c2c650c
     maintainers:
@@ -1251,7 +1286,7 @@ entries:
     version: v3.2.9
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.368454533Z"
+    created: "2025-05-16T09:27:09.946011639Z"
     description: A Helm chart for Kubernetes
     digest: 5419b79e67d2eb7c2f891deff4b2426bf91ee4d433d422de62fcefa6b216422b
     maintainers:
@@ -1267,7 +1302,7 @@ entries:
     version: v3.2.8
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.368111042Z"
+    created: "2025-05-16T09:27:09.945390274Z"
     description: A Helm chart for Kubernetes
     digest: b88e1cb73d6dffb310e747682eee1e58d42f044529846b20a38ef38a179f2277
     maintainers:
@@ -1283,7 +1318,7 @@ entries:
     version: v3.2.7
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.367765056Z"
+    created: "2025-05-16T09:27:09.944608418Z"
     description: A Helm chart for Kubernetes
     digest: 002484e8d86b9d43022849bdd7c8ce5fd84756334f871ac880e234981a9f8f97
     maintainers:
@@ -1299,7 +1334,7 @@ entries:
     version: v3.2.6
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.367414832Z"
+    created: "2025-05-16T09:27:09.944186537Z"
     description: A Helm chart for Kubernetes
     digest: c2eef882c72ba8ddcbf2a8e8db6c9930f713076645a1245693c5c148b3e7148d
     maintainers:
@@ -1315,7 +1350,7 @@ entries:
     version: v3.2.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.367067274Z"
+    created: "2025-05-16T09:27:09.943792588Z"
     description: A Helm chart for Kubernetes
     digest: 18c388dce97c636a13298690d07dd157001cd1e7ddff1d0b0d01e46fdd585bbb
     maintainers:
@@ -1331,7 +1366,7 @@ entries:
     version: v3.2.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.36671677Z"
+    created: "2025-05-16T09:27:09.943464011Z"
     description: A Helm chart for Kubernetes
     digest: 043640a6e06935294827734bf96adfc0a1830c6560d46b92992cbb7fc4b91b24
     maintainers:
@@ -1347,7 +1382,7 @@ entries:
     version: v3.2.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.365204477Z"
+    created: "2025-05-16T09:27:09.942035683Z"
     description: A Helm chart for Kubernetes
     digest: 0e51dd6dd2b9284778a887218df4e132df2ff330487eae654ce0555f596e7bff
     maintainers:
@@ -1363,7 +1398,7 @@ entries:
     version: v3.2.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.361264183Z"
+    created: "2025-05-16T09:27:09.937918593Z"
     description: A Helm chart for Kubernetes
     digest: 522a5cdd088a0f35d10cc6eab0082e31b31d6083516ed33db0617d26033c9db8
     maintainers:
@@ -1379,7 +1414,7 @@ entries:
     version: v3.2.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.360701233Z"
+    created: "2025-05-16T09:27:09.937065624Z"
     description: A Helm chart for Kubernetes
     digest: ae4d211c907f4aeb4b8a5ca721c739b339050d4add520943c12e1f9e7020f98f
     maintainers:
@@ -1395,7 +1430,24 @@ entries:
     version: v3.1.0
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-11-21T21:53:21.360319891Z"
+    created: "2025-05-16T09:27:09.936723782Z"
+    description: 11c45272bd54a159efb0ce3f380f5afbca4d4fd6
+    digest: 393c098f212e0de9243709f7e5e7361c692c02532791d2208361498239a69517
+    maintainers:
+    - name: eformat
+    - name: jacobsee
+    - name: jtudelag
+    - name: ckavili
+    - name: springdo
+    - name: acidonper
+    name: tl500-course-content
+    type: application
+    urls:
+    - https://rht-labs.com/enablement-framework/tl500-course-content-0.0.8.tgz
+    version: 0.0.8
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2025-05-16T09:27:09.936365Z"
     description: a53a57dfd328c41dd3ca524d7eb752b1a1194841
     digest: a9052cfbbcbf11f039499946d29471004c5a7a5b75eba57f314a8ec84195109d
     maintainers:
@@ -1409,4 +1461,4 @@ entries:
     urls:
     - https://rht-labs.com/enablement-framework/tl500-course-content-0.0.7.tgz
     version: 0.0.7
-generated: "2024-11-21T21:53:21.157286737Z"
+generated: "2025-05-16T09:27:09.735403292Z"
