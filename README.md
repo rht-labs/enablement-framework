@@ -20,7 +20,7 @@ To install the above tooling, you need a specific OCP setup, with an LDAP instal
        - 64 GB Memory
        - 16 CPU Cores
        - 120 GB FS storage (less might be sufficient)
-   - If you have access to the RedHat Demo Platform, you can to the following to achieve this setup:
+   - If you have access to the [Red Hat Demo Platform](https://catalog.demo.redhat.com/catalog), you can do the following to achieve this setup:
      	1. order an [AWS Blank Open Environment](https://catalog.demo.redhat.com/catalog?item=babylon-catalog-prod/sandboxes-gpte.sandbox-open.prod&utm_source=webapp&utm_medium=share-link)
      	2. install Openshift 4.18 (e.g. using [[Asier Cidon's git ](https://gitlab.consulting.redhat.com/acidonpe/ocp-install-openenv-aws)](https://gitlab.consulting.redhat.com/acidonpe/ocp-install-openenv-aws))
      		- ```computes_type='m5.4xlarge'```
