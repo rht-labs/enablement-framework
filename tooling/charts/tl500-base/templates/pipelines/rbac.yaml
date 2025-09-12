@@ -1,0 +1,37 @@
+{{- if not .Values.ignoreHelmHooks }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: config-pipelines
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+rules:
+- apiGroups:
+  - operator.tekton.dev
+  resources:
+  - tektonconfigs
+  verbs:
+  - get
+  - list
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: config-pipelines
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: config-pipelines
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: {{ .Release.namespace | default "tl500" }}
+{{- end }}
