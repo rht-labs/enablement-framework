@@ -5,7 +5,7 @@ kind: Job
 metadata:
   name: config-pipelines
   annotations:
-    "helm.sh/hook": pre-install
+    "helm.sh/hook": post-install
     "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   template:
@@ -20,6 +20,23 @@ spec:
         command:
           - /bin/bash
           - -c
-          - | # Disable affinity assitant: https://access.redhat.com/solutions/7128120
-            oc patch tektonconfig.operator.tekton.dev/config --patch '{"spec":{"pipeline":{"coschedule":"disabled"}}}' --type=merge
+          - |
+            echo "Waiting for CRD 'tektonconfigs.operator.tekton.dev' to be available..."
+            until oc get crd tektonconfigs.operator.tekton.dev &> /dev/null; do
+              echo "CRD 'tektonconfigs.operator.tekton.dev' not found. Retrying in 10 seconds..."
+              sleep 10
+            done
+            echo "CRD 'tektonconfigs.operator.tekton.dev' is now available."
+
+            echo "Waiting for TektonConfig 'config' to be available..."
+            oc wait --for=condition=Ready --timeout=120s tektonconfig/config
+
+            if [ $? -eq 0 ]; then
+              # Disable affinity assitant: https://access.redhat.com/solutions/7128120
+              echo "TektonConfig 'config' is available. Proceeding with patch."
+              oc patch tektonconfig.operator.tekton.dev/config --patch '{"spec":{"pipeline":{"coschedule":"disabled"}}}' --type=merge
+              echo "Successfully patched TektonConfig 'config'."
+            else
+              echo "Timed out while waiting for TektonConfig 'config' to be ready. Skipping patch."
+            fi
 {{- end }}
