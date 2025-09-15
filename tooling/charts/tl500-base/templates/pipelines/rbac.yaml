@@ -5,10 +5,17 @@ kind: ClusterRole
 metadata:
   name: config-pipelines
   annotations:
-    "helm.sh/hook": pre-install
+    "helm.sh/hook": post-install
     "helm.sh/hook-weight": "-5"
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 rules:
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - get
+  - list
 - apiGroups:
   - operator.tekton.dev
   resources:
@@ -23,7 +30,7 @@ kind: ClusterRoleBinding
 metadata:
   name: config-pipelines
   annotations:
-    "helm.sh/hook": pre-install
+    "helm.sh/hook": post-install
     "helm.sh/hook-weight": "-5"
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 roleRef:
