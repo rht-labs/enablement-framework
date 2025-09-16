@@ -28,15 +28,16 @@ spec:
             done
             echo "CRD 'tektonconfigs.operator.tekton.dev' is now available."
 
-            echo "Waiting for TektonConfig 'config' to be available..."
-            oc wait --for=condition=Ready --timeout=120s tektonconfig/config
+            echo "Waiting for TektonConfig 'config' to be created..."
 
-            if [ $? -eq 0 ]; then
-              # Disable affinity assitant: https://access.redhat.com/solutions/7128120
-              echo "TektonConfig 'config' is available. Proceeding with patch."
-              oc patch tektonconfig.operator.tekton.dev/config --patch '{"spec":{"pipeline":{"coschedule":"disabled"}}}' --type=merge
-              echo "Successfully patched TektonConfig 'config'."
-            else
-              echo "Timed out while waiting for TektonConfig 'config' to be ready. Skipping patch."
-            fi
+            # Loop to check for the resource's existence
+            until oc get tektonconfig config &> /dev/null; do
+              echo "TektonConfig 'config' not yet created. Retrying in 10 seconds..."
+              sleep 10
+            done
+            echo "TektonConfig 'config' has been created. Proceeding with patch."
+            
+            # Apply the patch once the resource is confirmed to exist
+            oc patch tektonconfig config --type=merge -p '{"spec":{"pipeline":{"coschedule":"disabled"}}}'
+            echo "Successfully patched TektonConfig 'config'."
 {{- end }}
