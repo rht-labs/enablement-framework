@@ -46,7 +46,7 @@ operators:
     enabled: true
     namespace: openshift-logging
     subscription:
-      channel: stable-6.2
+      channel: stable-6.3
       approval: Automatic
       operatorName: cluster-logging
       sourceName: redhat-operators
@@ -72,7 +72,7 @@ operators:
     enabled: true
     namespace: openshift-operators-redhat
     subscription:
-      channel: stable-6.2
+      channel: stable-6.3
       approval: Automatic
       operatorName: loki-operator
       sourceName: redhat-operators
