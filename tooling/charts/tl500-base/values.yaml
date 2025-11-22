@@ -15,6 +15,7 @@ namespaces:
   - name: tl500-gitlab
   - name: tl500-shared
   - name: tl500-minio
+  - name: gitlab-system
 
 operators:
 
@@ -103,7 +104,19 @@ operators:
        sourceName: community-operators
        sourceNamespace: openshift-marketplace
      operatorgroup:
-       create: false    
+       create: false
+
+  gitlab-operator-kubernetes:
+     enabled: true
+     namespace: gitlab-system
+     subscription:
+       channel: stable
+       approval: Automatic
+       operatorName: gitlab-operator-kubernetes
+       sourceName: certified-operators
+       sourceNamespace: openshift-marketplace
+     operatorgroup:
+       create: true
 
 logging:
   # Might be needed with clusters that have an infra plane
@@ -116,26 +129,8 @@ minio:
   namespace: tl500-minio
 
 gitlab:
-  app_name: "gitlab-ce"
-  namespace: tl500-gitlab
-  credentials:
-    root_password: ''
-    postgres_user: ''
-    postgres_password: ''
-    postgres_admin_password: ''
-  imagestreams:
-    gitlab:
-      name: "gitlab-ce"
-      tag_name: "latest"
-      stream_uri: "gitlab/gitlab-ce:12.8.7-ce.0"
-    redis:
-      name: "redis"
-      tag_name: "latest"
-      stream_uri: "redis:5.0.4-alpine"
-    postgresql:
-      name: "postgresql"
-      tag_name: "latest"
-      stream_uri: "registry.redhat.io/rhscl/postgresql-96-rhel7"
+  app_name: gitlab
+  namespace: gitlab-system
 # a body of CA certificate that Gitlab should be using goes in here. Body needs to be Base64!
 #  cacert:
   ldap:

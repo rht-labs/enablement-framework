@@ -12,7 +12,7 @@ spec:
   - name: crd-check
     image: quay.io/openshift/origin-cli:4.8
     imagePullPolicy: IfNotPresent
-    command: ['sh', '-c', 'while [ true ]; do oc get crd checlusters.org.eclipse.che centrals.platform.stackrox.io; if [ $? -eq 0 ]; then break; fi ; sleep 5s; done']
+    command: ['sh', '-c', 'while [ true ]; do oc get crd checlusters.org.eclipse.che centrals.platform.stackrox.io gitlabs.apps.gitlab.com; if [ $? -eq 0 ]; then break; fi ; sleep 5s; done']
   restartPolicy: Never
   terminationGracePeriodSeconds: 0
   serviceAccount: default
