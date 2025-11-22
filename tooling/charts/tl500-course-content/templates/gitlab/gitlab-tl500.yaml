@@ -43,7 +43,7 @@ spec:
       global:
         # Doc: https://docs.gitlab.com/operator/openshift_ingress/#setup
         hosts:
-          domain: apps.cluster-pqw8n.pqw8n.sandbox1619.opentlc.com
+          domain: {{ .Values.app_domain }}
           hostSuffix: ce
         ingress:
           class: none
