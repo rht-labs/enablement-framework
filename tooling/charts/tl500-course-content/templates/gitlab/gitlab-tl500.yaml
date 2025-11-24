@@ -1,0 +1,87 @@
+---
+apiVersion: apps.gitlab.com/v1beta1
+kind: GitLab
+metadata:
+  name: gitlab
+  namespace: gitlab-system
+spec:
+  chart:
+    version: "9.5.2" # https://gitlab.com/gitlab-org/cloud-native/gitlab-operator/-/blob/<OPERATOR_VERSION>/CHART_VERSIONS
+    values:
+      nginx-ingress:
+        enabled: false
+      certmanager:
+        install: false
+      # Define TLS secrets for each service Ingress. The cert-manager will create these secrets.
+      gitlab:
+        webservice:
+          deployments:
+            default:
+              hpa:
+                minReplicas: 1
+                maxReplicas: 1
+              ingress:
+                path: /
+              metrics:
+                enabled: true
+                serviceMonitor:
+                  enabled: true
+          ingress:
+            tls:
+              secretName: gitlab-webservice-tls
+      registry:
+        ingress:
+          tls:
+            secretName: gitlab-registry-tls
+      minio:
+        ingress:
+          tls:
+            secretName: gitlab-minio-tls
+      # Doc: https://docs.gitlab.com/operator/installation/?tab=OpenShift#metrics
+      prometheus:
+        install: false
+      global:
+        # Doc: https://docs.gitlab.com/operator/openshift_ingress/#setup
+        hosts:
+          domain: {{ .Values.app_domain }}
+          hostSuffix: ce
+        ingress:
+          class: none
+          configureCertmanager: false
+          tls:
+            enabled: true
+          annotations:
+            cert-manager.io/cluster-issuer: zerossl-production-ec2
+            route.openshift.io/termination: "edge"
+        # # Doc: https://docs.gitlab.com/charts/charts/globals/#configure-host-settings
+        # gitlab:
+        #   https: true
+        # Doc: https://docs.gitlab.com/charts/charts/globals/#configure-monitoring-settings
+        monitoring:
+          enabled: true
+        # Doc: https://docs.gitlab.com/administration/auth/ldap/?tab=Helm+chart+%28Kubernetes%29
+        appConfig:
+          ldap:
+            servers:
+              main:
+                label: LDAP
+                host: ipa.ipa.svc.cluster.local
+                port: 389
+                uid: uid
+                bind_dn: 'uid=ldap_admin,cn=users,cn=accounts,dc=redhatlabs,dc=dev'
+                password:
+                  secret: gitlab-ldap-password
+                  key: password
+                encryption: plain
+                verify_certificates: false
+                active_directory: false
+                user_filter: ''
+                base: 'cn=accounts,dc=redhatlabs,dc=dev'
+                allow_username_or_email_login: true
+                block_auto_created_users: false
+                attributes:
+                    email:
+                      - mail
+                    name: displayName
+                    username:
+                      - uid
