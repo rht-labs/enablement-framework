@@ -93,8 +93,8 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: tl500-gitlab-view
-  namespace: tl500-gitlab
+  name: gitlab-system-view
+  namespace: gitlab-system
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
