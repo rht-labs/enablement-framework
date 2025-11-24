@@ -90,15 +90,3 @@
 {{- print "example.com" -}}
 {{- end -}}
 {{- end -}}
-
-{{- define "gitlab.root_password" -}}
-{{- $secretName := (printf "%v-credentials" .Values.gitlab.app_name) -}}
-{{- $password := default (randAlphaNum 10) .Values.gitlab.credentials.root_password }}
-{{- if not .Values.gitlab.credentials.root_password }}
-{{- $existingSecret := (lookup "v1" "Secret" .Values.gitlab.namespace $secretName) }}
-{{- if $existingSecret }}
-{{- $password = index $existingSecret.data "root_password" | b64dec }}
-{{- end -}}
-{{- end -}}
-{{- print $password -}}
-{{- end -}}
