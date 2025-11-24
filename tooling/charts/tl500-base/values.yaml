@@ -130,8 +130,6 @@ minio:
 gitlab:
   app_name: gitlab
   namespace: gitlab-system
-  credentials:
-    root_password: ''
 # a body of CA certificate that Gitlab should be using goes in here. Body needs to be Base64!
 #  cacert:
   ldap:
