@@ -43,7 +43,7 @@ spec:
       global:
         # Doc: https://docs.gitlab.com/operator/openshift_ingress/#setup
         hosts:
-          domain: {{ .Values.app_domain }}
+          domain: {{ include "tl500.app_domain" . }}
           hostSuffix: ce
         ingress:
           class: none
