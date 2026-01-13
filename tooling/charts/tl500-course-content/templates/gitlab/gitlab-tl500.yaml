@@ -6,7 +6,7 @@ metadata:
   namespace: gitlab-system
 spec:
   chart:
-    version: "9.6.1" # https://gitlab.com/gitlab-org/cloud-native/gitlab-operator/-/blob/<OPERATOR_VERSION>/CHART_VERSIONS
+    version: "9.6.2" # https://gitlab.com/gitlab-org/cloud-native/gitlab-operator/-/blob/<OPERATOR_VERSION>/CHART_VERSIONS
     values:
       nginx-ingress:
         enabled: false
