@@ -34,6 +34,9 @@ crw:
     CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: '-1'
     CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: Always
 
+gitlab:
+  chart_version: 9.9.3. # This value likely needs updating regularly, whenever the operator version changes
+
 # Tech-exercises deployment to engagement environment
 # Deployment done only if `docs:` is uncommented 
 #docs:
