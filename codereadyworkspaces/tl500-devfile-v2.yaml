@@ -103,12 +103,16 @@ components:
       volumeMounts:
         - name: projects
           path: /projects
+        - name: developer-home
+          path: /home/developer
         - name: config
           path: /home/developer/.config
         - name: npm
           path: /home/developer/.npm
     name: stack-tl500
   - name: projects
+    volume: {}
+  - name: developer-home
     volume: {}
   - name: config
     volume: {}
