@@ -168,6 +168,8 @@ gitops-operator:
   enabled: true
   namespaces: []
   ignoreHelmHooks: false
+  operator:
+    channel: gitops-1.18
 
 tl500-teamsters:
   enabled: true
